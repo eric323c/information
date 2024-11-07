@@ -1,10 +1,12 @@
-function makeActive(id) {
-    var sections = document.querySelectorAll('.sidebar a');
-    sections.forEach(section => {
-        section.classList.remove('active');
+document.querySelectorAll('.sidebar a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.sidebar a').forEach(nav => nav.classList.remove('active'));
+        this.classList.add('active');
+        const targetSection = document.querySelector(this.getAttribute('href'));
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-    document.querySelector(`[onclick="makeActive('${id}')"]`).classList.add('active');
-}
+});
 
 function searchSite() {
     let input = document.getElementById('siteSearch');
