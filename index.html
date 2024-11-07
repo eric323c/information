@@ -5,6 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Resources</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline styling for the file upload input and button */
+        .custom-file-input {
+            display: none;
+        }
+        
+        .file-label {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .upload-button {
+            display: none; /* Hide initially */
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .upload-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
@@ -24,9 +55,15 @@
         <section id="documents" class="content-section">
             <h2>Training Documents</h2>
             <div class="container">
-                <input type="file" id="fileInput" accept=".pdf, .jpg, .jpeg" multiple>
-                <button onclick="uploadFile()">Upload Selected Files</button>
-                <div id="previewArea"></div> <!-- Display uploaded file names or previews here -->
+                <!-- Custom file input style -->
+                <label for="fileInput" class="file-label">Choose File(s)</label>
+                <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple onchange="handleFileSelect()">
+                
+                <!-- Upload button, hidden until a file is selected -->
+                <button id="uploadButton" class="upload-button" onclick="uploadFile()">Upload</button>
+                
+                <!-- Area to display uploaded files -->
+                <div id="previewArea"></div>
             </div>
         </section>
 
@@ -69,6 +106,13 @@
         const app = initializeApp(firebaseConfig);
         const storage = getStorage(app);
 
+        // Show upload button only when files are selected
+        function handleFileSelect() {
+            const fileInput = document.getElementById('fileInput');
+            const uploadButton = document.getElementById('uploadButton');
+            uploadButton.style.display = fileInput.files.length > 0 ? 'inline-block' : 'none';
+        }
+
         // Function to handle file upload
         async function uploadFile() {
             const fileInput = document.getElementById('fileInput');
@@ -88,17 +132,21 @@
                     listItem.className = 'file-item';
                     listItem.innerHTML = `
                         <span>${file.name}</span>
-                        <button class="delete-btn" onclick="deleteFile('${file.name}')">
-                            🗑️
-                        </button>
+                        <button class="delete-btn" onclick="deleteFile('${file.name}')">🗑️</button>
                     `;
                     previewArea.appendChild(listItem);
 
+                    // Show confirmation message for each file
+                    alert(`${file.name} uploaded successfully!`);
+                    
                 } catch (error) {
                     console.error("Error uploading file:", error);
                     alert(`Failed to upload ${file.name}`);
                 }
             }
+            // Hide the upload button after uploading
+            fileInput.value = ""; // Reset the file input
+            document.getElementById('uploadButton').style.display = 'none';
         }
 
         // Function to delete a file
@@ -125,7 +173,5 @@
             }
         }
     </script>
-
-    <script src="script.js"></script>
 </body>
 </html>
