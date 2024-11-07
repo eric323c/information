@@ -14,15 +14,18 @@ body {
     overflow: auto;
 }
 
-.sidebar a {
+.sidebar a, .sidebar button {
     padding: 10px;
     text-decoration: none;
     font-size: 18px;
     color: white;
     display: block;
+    border: none;
+    background: none;
+    text-align: left;
 }
 
-.sidebar a.active {
+.sidebar a.active, .sidebar button:hover {
     background-color: #04AA6D;
 }
 
@@ -36,6 +39,17 @@ body {
     padding: 20px;
     overflow-y: auto;
     scroll-behavior: smooth;
+}
+
+.content-section {
+    margin-bottom: 20px;
+}
+
+.container {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 ul {
