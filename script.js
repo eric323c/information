@@ -1,5 +1,5 @@
-const cloudName = 'doh6v6ofz'; // Ensure this is correct
-const unsignedPreset = 'Information'; // Replace with your actual unsigned preset name from Cloudinary
+const cloudName = 'doh6v6ofz'; // Your Cloudinary cloud name
+const unsignedPreset = 'Information'; // Your unsigned preset name
 
 // Function to handle file selection
 function handleFileSelect(event) {
@@ -32,7 +32,7 @@ async function uploadFile() {
         formData.append('upload_preset', unsignedPreset);
 
         try {
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${doh6v6ofz}/upload`, {
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, {
                 method: 'POST',
                 body: formData
             });
