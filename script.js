@@ -1,7 +1,7 @@
-const cloudName = 'doh6v6ofz'; // Your Cloudinary cloud name
-const unsignedPreset = 'Information'; // Replace with the correct preset name
+const cloudName = 'doh6v6ofz'; // Ensure this is correct
+const unsignedPreset = 'Information'; // Replace with your actual unsigned preset name from Cloudinary
 
-// Function to handle the file selection
+// Function to handle file selection
 function handleFileSelect(event) {
     const previewArea = document.getElementById('previewArea');
     previewArea.innerHTML = ''; // Clear previous previews
@@ -49,7 +49,7 @@ async function uploadFile() {
                     previewArea.appendChild(img);
                 }
             } else {
-                alert(`Failed to upload ${file.name}`);
+                alert(`Failed to upload ${file.name}: ${data.error.message}`);
             }
         } catch (error) {
             console.error("Error uploading file:", error);
