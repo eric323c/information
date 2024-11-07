@@ -3,47 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Resources</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Hospital Registration Hub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="sidebar">
-        <input type="search" id="siteSearch" placeholder="Search resources..." onkeyup="searchSite()">
-        <a href="#documents" class="active">Documents</a>
-        <a href="#websites">Websites</a>
-        <a href="#emails">Emails</a>
-        <div class="quick-script">
-            <p>PATIENT VERIFIED NAME, DOB, SSN, AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
-            <button onclick="copyScript()" id="copyButton">Copy Script</button>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <h2>Registration Hub</h2>
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#documents" class="nav-link">Documents</a></li>
+                <li><a href="#emails" class="nav-link">Emails</a></li>
+                <li><a href="#websites" class="nav-link">Websites</a></li>
+            </ul>
+        </nav>
+        <div class="script-container">
+            <p>Patient Script</p>
+            <button id="copyScriptButton">Copy</button>
         </div>
-    </div>
-    <div class="main-content">
-        <section id="documents" class="content-section">
-            <h2>Documents</h2>
-            <div class="container">
-                <div class="document-item">
-                    <a href="assets/document1.pdf" target="_blank">Document 1</a>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <header>
+            <input type="text" id="searchBar" placeholder="Search for documents, emails, websites...">
+        </header>
+
+        <section id="home" class="content-section">
+            <h2>All Resources</h2>
+            <div class="card-grid">
+                <!-- Placeholder Cards for Documents, Websites, and Emails -->
+                <div class="card" data-type="document">
+                    <h3>Document 1</h3>
+                    <p>Sample PDF</p>
+                    <button class="preview">Preview</button>
+                    <button class="download">Download</button>
+                    <button class="delete">Delete</button>
                 </div>
-                <div class="document-item">
-                    <a href="assets/document2.pdf" target="_blank">Document 2</a>
+                <div class="card" data-type="website">
+                    <h3>Website 1</h3>
+                    <p>www.placeholder.com</p>
+                    <button class="visit">Visit</button>
+                </div>
+                <div class="card" data-type="email">
+                    <h3>Email Template 1</h3>
+                    <p>Template for patient reminders</p>
+                    <button class="copy">Copy</button>
                 </div>
             </div>
         </section>
-        <section id="websites" class="content-section" style="display:none;">
-            <h2>Useful Websites</h2>
-            <div class="container">
-                <ul>
-                    <li><a href="https://example.com" target="_blank">Example Website</a></li>
-                </ul>
-            </div>
-        </section>
-        <section id="emails" class="content-section" style="display:none;">
-            <h2>Email Templates</h2>
-            <div class="container">
-                <!-- Content for emails -->
-            </div>
-        </section>
-    </div>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
