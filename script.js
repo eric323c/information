@@ -1,5 +1,5 @@
 const cloudName = 'doh6v6ofz'; // Your Cloudinary cloud name
-const unsignedPreset = 'Information';
+const unsignedPreset = 'Information'; // Your Cloudinary unsigned preset name
 
 // Function to handle the file selection
 function handleFileSelect(event) {
