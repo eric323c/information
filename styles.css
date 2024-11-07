@@ -35,6 +35,7 @@ body {
     background-color: #f4f4f4;
     padding: 20px;
     overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 ul {
