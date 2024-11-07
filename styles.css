@@ -5,8 +5,24 @@ body {
     height: 100vh;
 }
 
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    width: 250px;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures script container stays at the bottom */
+}
+
+.search-padding {
+    padding-bottom: 5px; /* Reduced padding below the search bar */
+}
+
 .sidebar a, .sidebar button {
-    padding: 6px 10px; /* Reduced padding for sidebar links and buttons */
+    padding: 6px 10px; /* Adjusted padding for sidebar links and buttons */
     text-decoration: none;
     font-size: 18px;
     color: white;
@@ -16,20 +32,7 @@ body {
     text-align: left;
 }
 
-.search-padding {
-    padding-bottom: 5px; /* Reduced padding below the search bar */
-}
-
-
-.sidebar a {
-    padding: 10px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-}
-
-.sidebar a.active {
+.sidebar a.active, .sidebar button:hover {
     background-color: #04AA6D;
 }
 
@@ -42,6 +45,7 @@ body {
     color: #fff;
     padding: 10px;
     border-radius: 8px;
+    margin-top: 20px; /* Space from the last link */
 }
 
 .quick-script p {
