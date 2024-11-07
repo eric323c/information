@@ -8,17 +8,17 @@
 </head>
 <body>
     <header>
-        <input type="search" id="siteSearch" placeholder="Search resources..." onkeyup="searchSite()">
         <div class="topnav" id="myTopnav">
-            <a href="#documents">Documents</a>
+            <a href="#documents" class="active">Documents</a>
             <a href="#websites">Websites</a>
             <a href="#emails">Emails</a>
             <a href="#scripts">Scripts</a>
         </div>
+        <input type="search" id="siteSearch" placeholder="Search resources..." onkeyup="searchSite()">
     </header>
     <div class="container">
         <main>
-            <section id="documents">
+            <section id="documents" class="content-section">
                 <h2>Training Documents</h2>
                 <div class="accordion">
                     <button class="accordion-button">Manuals</button>
@@ -26,9 +26,9 @@
                         <a href="files/training-manual.pdf" target="_blank">Training Manual</a>
                     </div>
                 </div>
-                <!-- Additional accordion panels can be added here -->
+                <!-- Additional accordion panels for other document types -->
             </section>
-            <!-- Other sections -->
+            <!-- Additional sections for Websites, Emails, Scripts -->
         </main>
     </div>
     <footer>
