@@ -7,29 +7,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="topnav" id="myTopnav">
-            <a href="#documents" class="active">Documents</a>
-            <a href="#websites">Websites</a>
-            <a href="#emails">Emails</a>
-            <a href="#scripts">Scripts</a>
-        </div>
+    <div class="sidebar">
         <input type="search" id="siteSearch" placeholder="Search resources..." onkeyup="searchSite()">
-    </header>
-    <div class="container">
-        <main>
-            <section id="documents" class="content-section">
-                <h2>Training Documents</h2>
-                <div class="accordion">
-                    <button class="accordion-button">Manuals</button>
-                    <div class="panel">
-                        <a href="files/training-manual.pdf" target="_blank">Training Manual</a>
-                    </div>
-                </div>
-                <!-- Additional accordion panels for other document types -->
-            </section>
-            <!-- Additional sections for Websites, Emails, Scripts -->
-        </main>
+        <a href="#documents" class="active" onclick="makeActive('documents')">Documents</a>
+        <a href="#websites" onclick="makeActive('websites')">Websites</a>
+        <a href="#emails" onclick="makeActive('emails')">Emails</a>
+        <a href="#scripts" onclick="makeActive('scripts')">Scripts</a>
+    </div>
+    <div class="main-content">
+        <section id="documents">
+            <h2>Training Documents</h2>
+            <p><a href="files/training-manual.pdf" target="_blank">Training Manual</a></p>
+        </section>
+        <section id="websites" style="display:none;">
+            <h2>Useful Websites</h2>
+            <!-- Content -->
+        </section>
+        <section id="emails" style="display:none;">
+            <h2>Email Templates</h2>
+            <!-- Content -->
+        </section>
+        <section id="scripts" style="display:none;">
+            <h2>Scripts for Registration</h2>
+            <!-- Content -->
+        </section>
     </div>
     <footer>
         <p>© 2024 Hospital Registration Resources. All rights reserved.</p>
