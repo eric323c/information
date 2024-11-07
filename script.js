@@ -1,35 +1,38 @@
-// Function to handle copying the script text
-function copyScript() {
-    const scriptText = document.querySelector('.quick-script p').textContent;
-    navigator.clipboard.writeText(scriptText).then(() => {
-        const copyButton = document.getElementById('copyButton');
-        copyButton.textContent = 'Copied!';
-        setTimeout(() => copyButton.textContent = 'Copy Script', 2000); // Reset after 2 seconds
-    }).catch(err => console.error('Failed to copy text: ', err));
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const searchBar = document.getElementById('searchBar');
+    const cards = document.querySelectorAll('.card');
+    const copyScriptButton = document.getElementById('copyScriptButton');
 
-// Function to search the sidebar
-function searchSite() {
-    const filter = document.getElementById('siteSearch').value.toUpperCase();
-    const links = document.querySelectorAll('.sidebar a');
-
-    links.forEach(link => {
-        const txtValue = link.textContent || link.innerText;
-        link.style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+    // Search functionality
+    searchBar.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        cards.forEach(card => {
+            const isMatch = card.innerText.toLowerCase().includes(query);
+            card.style.display = isMatch ? 'block' : 'none';
+        });
     });
-}
 
-// Sidebar navigation functionality to switch sections
-document.querySelectorAll('.sidebar a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelectorAll('.content-section').forEach(section => section.style.display = 'none');
-        document.querySelectorAll('.sidebar a').forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
-        
-        const targetSection = document.querySelector(this.getAttribute('href'));
-        if (targetSection) {
-            targetSection.style.display = 'block';
-        }
+    // Copy script button functionality
+    copyScriptButton.addEventListener('click', () => {
+        navigator.clipboard.writeText("Patient script placeholder text")
+            .then(() => {
+                copyScriptButton.textContent = "Copied!";
+                setTimeout(() => copyScriptButton.textContent = "Copy", 2000);
+            });
+    });
+
+    // Placeholder for preview, download, delete, visit, copy actions
+    document.querySelectorAll('.card button').forEach(button => {
+        button.addEventListener('click', () => {
+            const action = button.className;
+            if (action === 'preview') alert("Previewing document...");
+            else if (action === 'download') alert("Downloading document...");
+            else if (action === 'delete') alert("Deleting document...");
+            else if (action === 'visit') alert("Visiting website...");
+            else if (action === 'copy') {
+                navigator.clipboard.writeText("Email template placeholder text");
+                alert("Email template copied!");
+            }
+        });
     });
 });
