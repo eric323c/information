@@ -6,13 +6,7 @@
     <title>Registration Resources</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .custom-file-input { display: none; }
-        .file-label { display: inline-block; padding: 8px 15px; background-color: #4CAF50; color: white; border-radius: 5px; cursor: pointer; }
-        .upload-button { display: none; margin-top: 10px; padding: 8px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .upload-button:disabled { background-color: #ccc; cursor: not-allowed; }
-        .file-item { display: flex; align-items: center; margin-top: 5px; }
-        .file-item span { margin-right: 10px; }
-        .delete-btn { cursor: pointer; background: none; border: none; color: red; font-size: 16px; }
+        /* Styles here */
     </style>
 </head>
 <body>
@@ -36,102 +30,7 @@
         </section>
     </div>
 
-    <!-- Firebase SDKs and Configuration -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getStorage, ref, uploadBytes, deleteObject } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
-
-        // Your Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyD1BsRh0vxSHP6MRRStcPBFVdFxAykj_qY",
-            authDomain: "information-7efaf.firebaseapp.com",
-            projectId: "information-7efaf",
-            storageBucket: "information-7efaf.appspot.com",
-            messagingSenderId: "501827051484",
-            appId: "1:501827051484:web:cead873c48843d99823919"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const storage = getStorage(app);
-
-        // Show upload button and preview selected files
-        function handleFileSelect() {
-            const fileInput = document.getElementById('fileInput');
-            const uploadButton = document.getElementById('uploadButton');
-            const previewArea = document.getElementById('previewArea');
-
-            console.log("Files selected:", fileInput.files);
-
-            if (fileInput.files.length > 0) {
-                uploadButton.style.display = 'inline-block';
-            } else {
-                uploadButton.style.display = 'none';
-            }
-
-            previewArea.innerHTML = '';
-            for (let file of fileInput.files) {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.innerHTML = `<span>${file.name}</span>`;
-                previewArea.appendChild(fileItem);
-            }
-        }
-
-        // Function to handle file upload
-        async function uploadFile() {
-            const fileInput = document.getElementById('fileInput');
-            const files = fileInput.files;
-            const previewArea = document.getElementById('previewArea');
-
-            for (let file of files) {
-                const storageRef = ref(storage, 'uploads/' + file.name);
-                console.log("Uploading file:", file.name);
-
-                try {
-                    await uploadBytes(storageRef, file);
-                    console.log("File uploaded:", file.name);
-
-                    const fileItem = document.createElement('div');
-                    fileItem.className = 'file-item';
-                    fileItem.innerHTML = `<span>${file.name}</span>
-                        <button class="delete-btn" onclick="deleteFile('${file.name}')">🗑️</button>`;
-                    previewArea.appendChild(fileItem);
-
-                    alert(`${file.name} uploaded successfully!`);
-                    
-                } catch (error) {
-                    console.error("Error uploading file:", error);
-                    alert(`Failed to upload ${file.name}`);
-                }
-            }
-
-            fileInput.value = "";
-            document.getElementById('uploadButton').style.display = 'none';
-        }
-
-        // Function to delete a file
-        async function deleteFile(fileName) {
-            const confirmDelete = confirm(`Are you sure you want to delete ${fileName}?`);
-            if (confirmDelete) {
-                const storageRef = ref(storage, 'uploads/' + fileName);
-                try {
-                    await deleteObject(storageRef);
-                    alert(`${fileName} has been deleted successfully!`);
-                    
-                    const previewArea = document.getElementById('previewArea');
-                    const fileItems = Array.from(previewArea.getElementsByClassName('file-item'));
-                    fileItems.forEach(item => {
-                        if (item.querySelector('span').textContent === fileName) {
-                            previewArea.removeChild(item);
-                        }
-                    });
-                } catch (error) {
-                    console.error("Error deleting file:", error);
-                    alert(`Failed to delete ${fileName}`);
-                }
-            }
-        }
-    </script>
+    <!-- Link to external JavaScript file -->
+    <script type="module" src="script.js"></script>
 </body>
 </html>
