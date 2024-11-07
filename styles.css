@@ -8,28 +8,36 @@ body {
 .sidebar {
     background-color: #333;
     color: #fff;
-    padding: 10px;  /* Reduced overall padding for the sidebar */
+    padding: 10px;  /* Consistent padding for the sidebar */
     width: 250px;
     height: 100%;
     overflow: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensures the script container stays at the bottom */
+    justify-content: flex-start; /* Align items to the start of the flex container */
+}
+
+/* Remove any default margins that might be affecting spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .search-padding {
-    padding-bottom: 2px; /* Minimally adjusted padding below the search bar for aesthetic spacing */
+    padding-bottom: 2px; /* Minimal padding below the search bar */
 }
 
 .sidebar a, .sidebar button {
-    padding: 4px 8px; /* Substantially reduced padding to compact the navigation links */
+    padding: 4px 8px; /* Reduced padding to decrease space */
     text-decoration: none;
-    font-size: 16px; /* Slightly reduced font size for better fit */
+    font-size: 16px;
     color: white;
     display: block;
     border: none;
     background: none;
     text-align: left;
+    margin-bottom: 2px; /* Minimal margin to separate items */
 }
 
 .sidebar a.active, .sidebar button:hover {
@@ -43,13 +51,12 @@ body {
 .quick-script {
     background-color: #444;
     color: #fff;
-    padding: 8px;  /* Adjusted padding inside the script box */
+    padding: 8px;
     border-radius: 8px;
-    margin-top: 10px; /* Consistent spacing from the last link */
+    margin-top: auto; /* Pushes the script container to the bottom */
 }
 
 .quick-script p {
-    margin: 0;
     font-size: 14px;
 }
 
@@ -75,7 +82,7 @@ body {
 }
 
 .content-section {
-    margin-bottom: 10px; /* Reduced margin between sections */
+    margin-bottom: 10px;
 }
 
 .container {
@@ -87,7 +94,6 @@ body {
 
 ul {
     list-style: none;
-    padding: 0;
 }
 
 ul li a {
