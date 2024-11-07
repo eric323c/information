@@ -23,7 +23,7 @@
             <h2>Training Documents</h2>
             <div class="container">
                 <label for="fileInput" class="file-label">Choose File(s)</label>
-                <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple onchange="handleFileSelect()">
+                <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple onchange="handleFileSelect(event)">
                 <button id="uploadButton" class="upload-button" onclick="uploadFile()">Upload</button>
                 <div id="previewArea"></div>
             </div>
