@@ -6,11 +6,10 @@
     <title>Registration Resources</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Inline styling for the file upload input and button */
         .custom-file-input {
             display: none;
         }
-        
+
         .file-label {
             display: inline-block;
             padding: 8px 15px;
@@ -19,7 +18,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        
+
         .upload-button {
             display: none; /* Hide initially */
             margin-top: 10px;
@@ -30,17 +29,36 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        
+
         .upload-button:disabled {
             background-color: #ccc;
             cursor: not-allowed;
+        }
+
+        /* Style for preview area */
+        .file-item {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .file-item span {
+            margin-right: 10px;
+        }
+
+        .delete-btn {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: red;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <input type="search" id="siteSearch" placeholder="Search resources..." onkeyup="searchSite()">
-        <div class="search-padding"></div> <!-- Added for padding below the search bar -->
+        <div class="search-padding"></div>
         <a href="#documents" class="active">Documents</a>
         <a href="#websites">Websites</a>
         <a href="#emails">Emails</a>
@@ -58,10 +76,10 @@
                 <!-- Custom file input style -->
                 <label for="fileInput" class="file-label">Choose File(s)</label>
                 <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple onchange="handleFileSelect()">
-                
+
                 <!-- Upload button, hidden until a file is selected -->
                 <button id="uploadButton" class="upload-button" onclick="uploadFile()">Upload</button>
-                
+
                 <!-- Area to display uploaded files -->
                 <div id="previewArea"></div>
             </div>
@@ -106,11 +124,27 @@
         const app = initializeApp(firebaseConfig);
         const storage = getStorage(app);
 
-        // Show upload button only when files are selected
+        // Show upload button and preview selected files
         function handleFileSelect() {
             const fileInput = document.getElementById('fileInput');
             const uploadButton = document.getElementById('uploadButton');
-            uploadButton.style.display = fileInput.files.length > 0 ? 'inline-block' : 'none';
+            const previewArea = document.getElementById('previewArea');
+
+            // Show the upload button only if files are selected
+            if (fileInput.files.length > 0) {
+                uploadButton.style.display = 'inline-block';
+            } else {
+                uploadButton.style.display = 'none';
+            }
+
+            // Display file names in the preview area
+            previewArea.innerHTML = ''; // Clear previous preview
+            for (let file of fileInput.files) {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `<span>${file.name}</span>`;
+                previewArea.appendChild(fileItem);
+            }
         }
 
         // Function to handle file upload
@@ -118,7 +152,6 @@
             const fileInput = document.getElementById('fileInput');
             const files = fileInput.files;
             const previewArea = document.getElementById('previewArea');
-            previewArea.innerHTML = ''; // Clear previous previews
 
             for (let file of files) {
                 const storageRef = ref(storage, 'uploads/' + file.name);
@@ -128,13 +161,13 @@
                     await uploadBytes(storageRef, file);
 
                     // Display uploaded file with delete option
-                    const listItem = document.createElement('div');
-                    listItem.className = 'file-item';
-                    listItem.innerHTML = `
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
                         <span>${file.name}</span>
                         <button class="delete-btn" onclick="deleteFile('${file.name}')">🗑️</button>
                     `;
-                    previewArea.appendChild(listItem);
+                    previewArea.appendChild(fileItem);
 
                     // Show confirmation message for each file
                     alert(`${file.name} uploaded successfully!`);
@@ -144,8 +177,9 @@
                     alert(`Failed to upload ${file.name}`);
                 }
             }
-            // Hide the upload button after uploading
-            fileInput.value = ""; // Reset the file input
+
+            // Reset file input and hide upload button
+            fileInput.value = "";
             document.getElementById('uploadButton').style.display = 'none';
         }
 
