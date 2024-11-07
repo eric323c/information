@@ -5,41 +5,91 @@ body {
     padding: 0;
     background: #f4f4f4;
     color: #333;
+    display: flex;
+    flex-direction: column;
 }
 
-header, nav, section, footer {
-    margin: 20px;
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+}
+
+aside {
+    flex: 1;
+    background: #ccc;
     padding: 20px;
-    background: #fff;
-    border: 1px solid #ddd;
 }
 
-header h1 {
-    margin: 0;
-}
-
-nav ul {
+aside ul {
     list-style: none;
     padding: 0;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 10px;
+aside ul li a {
+    display: block;
+    padding: 10px;
+    background: #fff;
+    margin-bottom: 5px;
+    color: black;
+    text-decoration: none;
 }
 
-a {
-    color: #00f;
+main {
+    flex: 3;
+    padding: 20px;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
 }
 
 footer {
     text-align: center;
     font-size: 0.8em;
+    padding: 10px;
+    background: #333;
+    color: white;
+    clear: both;
 }
-
-blockquote {
-    border-left: 3px solid #ccc;
-    margin: 0;
-    padding-left: 20px;
-}
-
