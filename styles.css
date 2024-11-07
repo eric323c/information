@@ -67,9 +67,9 @@ body, html {
     flex-grow: 1;
     padding: 20px;
     background-color: #f4f4f4;
-    min-height: 100vh; /* Ensure main content fills viewport height */
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* Ensure main content fills viewport height */
 }
 
 .container {
@@ -89,5 +89,4 @@ body, html {
     margin-top: 20px;
     border-top: 1px solid #ddd;
     padding-top: 10px;
-    flex-grow: 1;
 }
