@@ -8,42 +8,27 @@
 </head>
 <body>
     <header>
-        <div class="topnav">
-            <a href="#documents">Training Documents</a>
-            <a href="#websites">Useful Websites</a>
-            <a href="#emails">Sample Emails</a>
+        <input type="search" id="siteSearch" placeholder="Search resources..." onkeyup="searchSite()">
+        <div class="topnav" id="myTopnav">
+            <a href="#documents">Documents</a>
+            <a href="#websites">Websites</a>
+            <a href="#emails">Emails</a>
             <a href="#scripts">Scripts</a>
         </div>
     </header>
     <div class="container">
-        <aside>
-            <ul>
-                <li><a href="#doc1">Document 1</a></li>
-                <li><a href="#doc2">Document 2</a></li>
-                <!-- Add more links as needed -->
-            </ul>
-        </aside>
         <main>
             <section id="documents">
                 <h2>Training Documents</h2>
-                <!-- Content omitted for brevity -->
+                <div class="accordion">
+                    <button class="accordion-button">Manuals</button>
+                    <div class="panel">
+                        <a href="files/training-manual.pdf" target="_blank">Training Manual</a>
+                    </div>
+                </div>
+                <!-- Additional accordion panels can be added here -->
             </section>
-            <section id="websites">
-                <h2>Useful Websites</h2>
-                <!-- Content omitted for brevity -->
-            </section>
-            <section id="emails">
-                <h2>Sample Emails</h2>
-                <!-- Content omitted for brevity -->
-            </section>
-            <section id="scripts">
-                <h2>Scripts</h2>
-                <textarea readonly>
-PATIENT VERIFIED NAME, DOB, SSN AND ALL OTHER DEMO INFO.
-INSURANCE IS ?.
-PCP IS DR. ?.
-                </textarea>
-            </section>
+            <!-- Other sections -->
         </main>
     </div>
     <footer>
@@ -52,4 +37,3 @@ PCP IS DR. ?.
     <script src="script.js"></script>
 </body>
 </html>
-
