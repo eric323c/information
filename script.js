@@ -1,8 +1,9 @@
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { getStorage, ref, uploadBytes, deleteObject } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-// Firebase configuration
+// Your Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyD1BsRh0vxSHP6MRRStcPBFVdFxAykj_qY",
     authDomain: "information-7efaf.firebaseapp.com",
@@ -14,9 +15,23 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 const storage = getStorage(app);
 
-// Function to handle file selection, preview, and show upload button
+// Sign in anonymously
+signInAnonymously(auth)
+  .then(() => {
+    console.log("Signed in anonymously");
+
+    // Enable file selection and upload once authenticated
+    document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+    document.getElementById('uploadButton').addEventListener('click', uploadFile);
+  })
+  .catch((error) => {
+    console.error("Error signing in anonymously:", error);
+  });
+
+// Handle file selection, preview, and show upload button
 function handleFileSelect(event) {
     const files = event.target.files;
     const previewArea = document.getElementById('previewArea');
@@ -96,20 +111,6 @@ async function deleteFile(fileName) {
         }
     }
 }
-
-// Sidebar navigation to toggle content sections
-document.querySelectorAll('.sidebar a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelectorAll('.content-section').forEach(section => section.style.display = 'none');
-        document.querySelectorAll('.sidebar a').forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
-        const targetSection = document.querySelector(this.getAttribute('href'));
-        if (targetSection) {
-            targetSection.style.display = 'block';
-        }
-    });
-});
 
 // Print document function
 function printDocument(fileUrl) {
