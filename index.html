@@ -15,18 +15,19 @@
     </div>
 
     <div class="main-content">
-        <!-- Section for Document Uploads -->
+        <!-- Section for Document Links -->
         <section id="documents" class="content-section">
             <h2>Training Documents</h2>
             <div class="container">
-                <label for="fileInput" class="file-label">Choose File(s)</label>
-                <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple onchange="handleFileSelect(event)">
-                <button id="uploadButton" onclick="uploadFile()">Upload</button>
-                <div id="previewArea"></div>
+                <ul>
+                    <li><a href="assets/document1.pdf" target="_blank">Document 1</a></li>
+                    <li><a href="assets/document2.pdf" target="_blank">Document 2</a></li>
+                    <!-- Add more links as needed -->
+                </ul>
             </div>
         </section>
     </div>
 
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
