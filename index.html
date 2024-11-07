@@ -8,38 +8,54 @@
 </head>
 <body>
     <header>
-        <h1>Registration Resources</h1>
+        <div class="topnav">
+            <a href="#documents">Training Documents</a>
+            <a href="#websites">Useful Websites</a>
+            <a href="#emails">Sample Emails</a>
+        </div>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#documents">Training Documents</a></li>
-            <li><a href="#websites">Useful Websites</a></li>
-            <li><a href="#emails">Sample Emails</a></li>
-        </ul>
-    </nav>
-    <section id="documents">
-        <h2>Training Documents</h2>
-        <!-- Example of linking to a local file -->
-        <a href="files/training-manual.pdf" target="_blank">Training Manual</a>
-    </section>
-    <section id="websites">
-        <h2>Useful Websites</h2>
-        <a href="https://www.example.com" target="_blank">Example Website</a>
-    </section>
-    <section id="emails">
-        <h2>Sample Emails</h2>
-        <p>Here is an example of a typical email communication format used for registration.</p>
-        <blockquote>
-            Subject: Registration Confirmation<br>
-            Dear [Participant],<br>
-            Thank you for registering. We look forward to your participation.<br>
-            Regards,<br>
-            [Your Name]
-        </blockquote>
-    </section>
+    <div class="container">
+        <aside>
+            <ul>
+                <li><a href="#doc1">Document 1</a></li>
+                <li><a href="#doc2">Document 2</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </aside>
+        <main>
+            <section id="documents">
+                <h2>Training Documents</h2>
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'Manual')">Manuals</button>
+                    <button class="tablinks" onclick="openTab(event, 'Policy')">Policies</button>
+                </div>
+                <div id="Manual" class="tabcontent">
+                    <a href="files/training-manual.pdf" target="_blank">Training Manual</a>
+                </div>
+                <div id="Policy" class="tabcontent">
+                    <a href="files/policy-document.pdf" target="_blank">Policy Document</a>
+                </div>
+            </section>
+            <section id="websites">
+                <h2>Useful Websites</h2>
+                <a href="https://www.example.com" target="_blank">Example Website</a>
+            </section>
+            <section id="emails">
+                <h2>Sample Emails</h2>
+                <p>Here is an example of a typical email communication format used for registration.</p>
+                <blockquote>
+                    Subject: Registration Confirmation<br>
+                    Dear [Participant],<br>
+                    Thank you for registering. We look forward to your participation.<br>
+                    Regards,<br>
+                    [Your Name]
+                </blockquote>
+            </section>
+        </main>
+    </div>
     <footer>
         <p>© 2024 Hospital Registration Resources. All rights reserved.</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
-
