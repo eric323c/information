@@ -12,33 +12,23 @@
         <a href="#documents" class="active">Documents</a>
         <a href="#websites">Websites</a>
         <a href="#emails">Emails</a>
+        <div class="quick-script">
+            <p>PATIENT VERIFIED NAME, DOB, SSN, AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
+            <button onclick="copyScript()">Copy Script</button>
+        </div>
     </div>
 
     <div class="main-content">
-        <!-- Section for Document Uploads -->
         <section id="documents" class="content-section">
             <h2>Training Documents</h2>
-            <div class="container">
-                <label for="fileInput" class="file-label">Choose File(s)</label>
-                <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple>
-                <button id="uploadButton" class="upload-button" onclick="uploadFile()">Upload</button>
-                <div id="previewArea"></div>
-            </div>
+            <label for="fileInput">Choose File(s)</label>
+            <input type="file" id="fileInput" multiple onchange="handleFileSelect(event)">
+            <button onclick="uploadFile()">Upload</button>
+            <div id="previewArea"></div>
         </section>
-        
-        <!-- Placeholder sections for other content -->
-        <section id="websites" class="content-section" style="display:none;">
-            <h2>Useful Websites</h2>
-            <p>Links to important websites will go here.</p>
-        </section>
-        
-        <section id="emails" class="content-section" style="display:none;">
-            <h2>Email Templates</h2>
-            <p>Email templates for registrations will go here.</p>
-        </section>
+        <!-- Other sections here -->
     </div>
 
-    <!-- Link to external JavaScript file -->
     <script type="module" src="script.js"></script>
 </body>
 </html>
