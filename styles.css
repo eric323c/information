@@ -61,3 +61,30 @@ ul li a {
     color: #0000EE;
     text-decoration: none;
 }
+/* Previous styles are maintained. New styles for script container */
+.quick-script {
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.quick-script p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.quick-script button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quick-script button:hover {
+    background-color: #037256;
+}
