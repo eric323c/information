@@ -1,45 +1,21 @@
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+function makeActive(id) {
+    var sections = document.querySelectorAll('.sidebar a');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
 }
+
 function searchSite() {
-    var input, filter, main, section, a, i, txtValue;
-    input = document.getElementById("siteSearch");
-    filter = input.value.toUpperCase();
-    main = document.getElementsByTagName("main")[0];
-    section = main.getElementsByTagName("section");
-    for (i = 0; i < section.length; i++) {
-        a = section[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
+    let input = document.getElementById('siteSearch');
+    let filter = input.value.toUpperCase();
+    let sections = document.querySelectorAll('.main-content section');
+    sections.forEach(section => {
+        let txtValue = section.textContent || section.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            section[i].style.display = "";
+            section.style.display = "";
         } else {
-            section[i].style.display = "none";
-        }
-    }
-}
-
-var acc = document.getElementsByClassName("accordion-button");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-        } else {
-            panel.style.display = "block";
+            section.style.display = "none";
         }
     });
 }
-
