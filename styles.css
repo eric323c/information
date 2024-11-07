@@ -3,32 +3,55 @@ body {
     margin: 0;
     display: flex;
 }
-
+/* Sidebar styling */
 .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 200px;
     background-color: #333;
     color: white;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
-    padding: 15px;
-}
-
-.sidebar input[type="search"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    width: 100%;
+    justify-content: space-between;
 }
 
 .sidebar a {
-    color: white;
-    padding: 10px;
-    text-decoration: none;
+    padding: 10px 15px;
     display: block;
-    margin: 5px 0;
+    color: white;
+    text-decoration: none;
 }
 
 .sidebar a.active {
     background-color: #4CAF50;
+}
+
+.sidebar input[type="search"] {
+    margin: 10px;
+    padding: 8px;
+    width: calc(100% - 20px);
+}
+
+/* Quick Script section */
+.quick-script {
+    background-color: #444;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    color: #ccc;
+    text-align: center;
+}
+
+.quick-script button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 5px;
 }
 
 .main-content {
