@@ -32,7 +32,7 @@ async function uploadFile() {
         formData.append('upload_preset', unsignedPreset);
 
         try {
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, {
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${doh6v6ofz}/upload`, {
                 method: 'POST',
                 body: formData
             });
