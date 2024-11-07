@@ -1,7 +1,7 @@
 const cloudName = 'doh6v6ofz'; // Your Cloudinary cloud name
-const unsignedPreset = 'Information'; // Your unsigned preset name
+const unsignedPreset = 'Information'; // Ensure this preset is set to "unsigned" in Cloudinary
 
-// Function to handle file selection
+// Function to handle the file selection
 function handleFileSelect(event) {
     const previewArea = document.getElementById('previewArea');
     previewArea.innerHTML = ''; // Clear previous previews
@@ -17,7 +17,7 @@ function handleFileSelect(event) {
 async function uploadFile() {
     const fileInput = document.getElementById('fileInput');
     const files = fileInput.files;
-    
+
     if (files.length === 0) {
         alert("Please select a file to upload.");
         return;
@@ -32,7 +32,7 @@ async function uploadFile() {
         formData.append('upload_preset', unsignedPreset);
 
         try {
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, {
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${doh6v6ofz}/upload`, {
                 method: 'POST',
                 body: formData
             });
