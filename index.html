@@ -12,22 +12,30 @@
         <a href="#documents" class="active">Documents</a>
         <a href="#websites">Websites</a>
         <a href="#emails">Emails</a>
+        <div class="quick-script">
+            <p>PATIENT VERIFIED NAME, DOB, SSN, AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
+            <button onclick="copyScript()">Copy Script</button>
+        </div>
     </div>
 
     <div class="main-content">
-        <!-- Section for Document Links -->
+        <!-- Section for Document Uploads -->
         <section id="documents" class="content-section">
             <h2>Training Documents</h2>
             <div class="container">
-                <ul>
-                    <li><a href="assets/document1.pdf" target="_blank">Document 1</a></li>
-                    <li><a href="assets/document2.pdf" target="_blank">Document 2</a></li>
-                    <!-- Add more links as needed -->
-                </ul>
+                <div class="document-item">
+                    <p><a href="#" onclick="previewFile('assets/document1.pdf')">Document 1</a></p>
+                </div>
+                <div class="document-item">
+                    <p><a href="#" onclick="previewFile('assets/document2.pdf')">Document 2</a></p>
+                </div>
+            </div>
+            <div id="previewArea">
+                <embed id="filePreview" src="" width="100%" height="500px" type="application/pdf">
             </div>
         </section>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
