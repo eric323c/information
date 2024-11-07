@@ -1,102 +1,74 @@
 body {
-    font-family: 'Arial', sans-serif;
-    display: flex;
+    font-family: Arial, sans-serif;
     margin: 0;
-    height: 100vh;
+    display: flex;
 }
 
 .sidebar {
+    width: 200px;
     background-color: #333;
-    color: #fff;
-    padding: 10px;  /* Consistent padding for the sidebar */
-    width: 250px;
-    height: 100%;
-    overflow: auto;
+    color: white;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align items to the start of the flex container */
+    padding: 15px;
 }
 
-/* Remove any default margins that might be affecting spacing */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+.sidebar input[type="search"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
-.search-padding {
-    padding-bottom: 2px; /* Minimal padding below the search bar */
-}
-
-.sidebar a, .sidebar button {
-    padding: 4px 8px; /* Reduced padding to decrease space */
+.sidebar a {
+    color: white;
+    padding: 10px;
     text-decoration: none;
-    font-size: 16px;
-    color: white;
     display: block;
-    border: none;
-    background: none;
-    text-align: left;
-    margin-bottom: 2px; /* Minimal margin to separate items */
+    margin: 5px 0;
 }
 
-.sidebar a.active, .sidebar button:hover {
-    background-color: #04AA6D;
-}
-
-.sidebar a:hover {
-    background-color: #555;
-}
-
-.quick-script {
-    background-color: #444;
-    color: #fff;
-    padding: 8px;
-    border-radius: 8px;
-    margin-top: auto; /* Pushes the script container to the bottom */
-}
-
-.quick-script p {
-    font-size: 14px;
-}
-
-.quick-script button {
-    background-color: #04AA6D;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.quick-script button:hover {
-    background-color: #037256;
+.sidebar a.active {
+    background-color: #4CAF50;
 }
 
 .main-content {
     flex-grow: 1;
-    background-color: #f4f4f4;
     padding: 20px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-}
-
-.content-section {
-    margin-bottom: 10px;
 }
 
 .container {
-    background-color: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-ul {
-    list-style: none;
+.file-label {
+    font-weight: bold;
 }
 
-ul li a {
-    color: #0000EE;
-    text-decoration: none;
+.custom-file-input {
+    margin: 10px 0;
+}
+
+.upload-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.upload-button:hover {
+    background-color: #45a049;
+}
+
+#previewArea {
+    margin-top: 20px;
+}
+
+#previewArea img {
+    max-width: 200px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
 }
