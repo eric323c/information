@@ -53,7 +53,7 @@
     <script type="module">
         // Import Firebase SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+        import { getStorage, ref, uploadBytes, deleteObject } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
         // Your Firebase configuration
         const firebaseConfig = {
@@ -69,24 +69,58 @@
         const app = initializeApp(firebaseConfig);
         const storage = getStorage(app);
 
-        // Function to upload files to Firebase Storage
+        // Function to handle file upload
         async function uploadFile() {
             const fileInput = document.getElementById('fileInput');
-            const files = fileInput.files; // Get all selected files
+            const files = fileInput.files;
             const previewArea = document.getElementById('previewArea');
             previewArea.innerHTML = ''; // Clear previous previews
 
             for (let file of files) {
-                const storageRef = ref(storage, 'uploads/' + file.name); // Create a reference
+                const storageRef = ref(storage, 'uploads/' + file.name);
 
                 try {
+                    // Upload the file
                     await uploadBytes(storageRef, file);
-                    const listItem = document.createElement('p');
-                    listItem.textContent = `Uploaded: ${file.name}`;
-                    previewArea.appendChild(listItem); // Show each uploaded file
+
+                    // Display uploaded file with delete option
+                    const listItem = document.createElement('div');
+                    listItem.className = 'file-item';
+                    listItem.innerHTML = `
+                        <span>${file.name}</span>
+                        <button class="delete-btn" onclick="deleteFile('${file.name}')">
+                            🗑️
+                        </button>
+                    `;
+                    previewArea.appendChild(listItem);
+
                 } catch (error) {
                     console.error("Error uploading file:", error);
                     alert(`Failed to upload ${file.name}`);
+                }
+            }
+        }
+
+        // Function to delete a file
+        async function deleteFile(fileName) {
+            const confirmDelete = confirm(`Are you sure you want to delete ${fileName}?`);
+            if (confirmDelete) {
+                const storageRef = ref(storage, 'uploads/' + fileName);
+                try {
+                    await deleteObject(storageRef);
+                    alert(`${fileName} has been deleted successfully!`);
+                    
+                    // Remove the file item from the preview area
+                    const previewArea = document.getElementById('previewArea');
+                    const fileItems = Array.from(previewArea.getElementsByClassName('file-item'));
+                    fileItems.forEach(item => {
+                        if (item.querySelector('span').textContent === fileName) {
+                            previewArea.removeChild(item);
+                        }
+                    });
+                } catch (error) {
+                    console.error("Error deleting file:", error);
+                    alert(`Failed to delete ${fileName}`);
                 }
             }
         }
@@ -95,4 +129,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
