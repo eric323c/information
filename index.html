@@ -1,58 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document Upload</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Resources</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Upload a Document to Firebase</h1>
-  
-  <!-- File input and upload button -->
-  <input type="file" id="fileInput">
-  <button onclick="uploadFile()">Upload Document</button>
+    <div class="sidebar">
+        <input type="search" id="siteSearch" placeholder="Search resources..." onkeyup="searchSite()">
+        <div class="search-padding"></div> <!-- Added for padding below the search bar -->
+        <a href="#documents" class="active">Documents</a>
+        <a href="#websites">Websites</a>
+        <a href="#emails">Emails</a>
+        <div class="quick-script">
+            <p>PATIENT VERIFIED NAME, DOB, SSN, AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
+            <button onclick="copyScript()">Copy Script</button>
+        </div>
+    </div>
 
-  <!-- Firebase SDKs and Configuration -->
-  <script type="module">
-    // Import Firebase SDKs
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+    <div class="main-content">
+        <!-- Section for Document Uploads -->
+        <section id="documents" class="content-section">
+            <h2>Training Documents</h2>
+            <div class="container">
+                <input type="file" id="fileInput" accept=".pdf, .jpg, .jpeg" multiple>
+                <button onclick="uploadFile()">Upload Selected Files</button>
+                <div id="previewArea"></div> <!-- Display uploaded file names or previews here -->
+            </div>
+        </section>
 
-    // Your Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyD1BsRh0vxSHP6MRRStcPBFVdFxAykj_qY",
-      authDomain: "information-7efaf.firebaseapp.com",
-      projectId: "information-7efaf",
-      storageBucket: "information-7efaf.appspot.com",  // Note: storageBucket should end with `.appspot.com`
-      messagingSenderId: "501827051484",
-      appId: "1:501827051484:web:cead873c48843d99823919"
-    };
+        <!-- Websites Section -->
+        <section id="websites" class="content-section" style="display:none;">
+            <h2>Useful Websites</h2>
+            <div class="container">
+                <ul>
+                    <li><a href="https://pennstatehealth.provider.ci.healthpay24.cloud/healthcare/search/" target="_blank">HealthPay24</a></li>
+                </ul>
+            </div>
+        </section>
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const storage = getStorage(app);
+        <!-- Emails Section -->
+        <section id="emails" class="content-section" style="display:none;">
+            <h2>Email Templates</h2>
+            <div class="container">
+                <!-- Content for emails -->
+            </div>
+        </section>
+    </div>
 
-    // Function to handle file upload
-    async function uploadFile() {
-      const fileInput = document.getElementById('fileInput');
-      const file = fileInput.files[0]; // Get the selected file
+    <!-- Firebase SDKs and Configuration -->
+    <script type="module">
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-      if (file) {
-        // Create a reference to the file location in Firebase Storage
-        const storageRef = ref(storage, 'uploads/' + file.name);
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD1BsRh0vxSHP6MRRStcPBFVdFxAykj_qY",
+            authDomain: "information-7efaf.firebaseapp.com",
+            projectId: "information-7efaf",
+            storageBucket: "information-7efaf.appspot.com",
+            messagingSenderId: "501827051484",
+            appId: "1:501827051484:web:cead873c48843d99823919"
+        };
 
-        try {
-          // Upload the file
-          await uploadBytes(storageRef, file);
-          alert('File uploaded successfully!');
-        } catch (error) {
-          console.error("Error uploading file:", error);
-          alert('Failed to upload file.');
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+
+        // Function to upload files to Firebase Storage
+        async function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files; // Get all selected files
+            const previewArea = document.getElementById('previewArea');
+            previewArea.innerHTML = ''; // Clear previous previews
+
+            for (let file of files) {
+                const storageRef = ref(storage, 'uploads/' + file.name); // Create a reference
+
+                try {
+                    await uploadBytes(storageRef, file);
+                    const listItem = document.createElement('p');
+                    listItem.textContent = `Uploaded: ${file.name}`;
+                    previewArea.appendChild(listItem); // Show each uploaded file
+                } catch (error) {
+                    console.error("Error uploading file:", error);
+                    alert(`Failed to upload ${file.name}`);
+                }
+            }
         }
-      } else {
-        alert('No file selected.');
-      }
-    }
-  </script>
+    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
