@@ -6,66 +6,21 @@
     <title>Registration Resources</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .custom-file-input {
-            display: none;
-        }
-
-        .file-label {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .upload-button {
-            display: none; /* Hide initially */
-            margin-top: 10px;
-            padding: 8px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .upload-button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        /* Style for preview area */
-        .file-item {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        .file-item span {
-            margin-right: 10px;
-        }
-
-        .delete-btn {
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: red;
-            font-size: 16px;
-        }
+        .custom-file-input { display: none; }
+        .file-label { display: inline-block; padding: 8px 15px; background-color: #4CAF50; color: white; border-radius: 5px; cursor: pointer; }
+        .upload-button { display: none; margin-top: 10px; padding: 8px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .upload-button:disabled { background-color: #ccc; cursor: not-allowed; }
+        .file-item { display: flex; align-items: center; margin-top: 5px; }
+        .file-item span { margin-right: 10px; }
+        .delete-btn { cursor: pointer; background: none; border: none; color: red; font-size: 16px; }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <input type="search" id="siteSearch" placeholder="Search resources..." onkeyup="searchSite()">
-        <div class="search-padding"></div>
         <a href="#documents" class="active">Documents</a>
         <a href="#websites">Websites</a>
         <a href="#emails">Emails</a>
-        <div class="quick-script">
-            <p>PATIENT VERIFIED NAME, DOB, SSN, AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
-            <button onclick="copyScript()">Copy Script</button>
-        </div>
     </div>
 
     <div class="main-content">
@@ -73,40 +28,16 @@
         <section id="documents" class="content-section">
             <h2>Training Documents</h2>
             <div class="container">
-                <!-- Custom file input style -->
                 <label for="fileInput" class="file-label">Choose File(s)</label>
                 <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple onchange="handleFileSelect()">
-
-                <!-- Upload button, hidden until a file is selected -->
                 <button id="uploadButton" class="upload-button" onclick="uploadFile()">Upload</button>
-
-                <!-- Area to display uploaded files -->
                 <div id="previewArea"></div>
-            </div>
-        </section>
-
-        <!-- Websites Section -->
-        <section id="websites" class="content-section" style="display:none;">
-            <h2>Useful Websites</h2>
-            <div class="container">
-                <ul>
-                    <li><a href="https://pennstatehealth.provider.ci.healthpay24.cloud/healthcare/search/" target="_blank">HealthPay24</a></li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Emails Section -->
-        <section id="emails" class="content-section" style="display:none;">
-            <h2>Email Templates</h2>
-            <div class="container">
-                <!-- Content for emails -->
             </div>
         </section>
     </div>
 
     <!-- Firebase SDKs and Configuration -->
     <script type="module">
-        // Import Firebase SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
         import { getStorage, ref, uploadBytes, deleteObject } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
@@ -130,15 +61,15 @@
             const uploadButton = document.getElementById('uploadButton');
             const previewArea = document.getElementById('previewArea');
 
-            // Show the upload button only if files are selected
+            console.log("Files selected:", fileInput.files);
+
             if (fileInput.files.length > 0) {
                 uploadButton.style.display = 'inline-block';
             } else {
                 uploadButton.style.display = 'none';
             }
 
-            // Display file names in the preview area
-            previewArea.innerHTML = ''; // Clear previous preview
+            previewArea.innerHTML = '';
             for (let file of fileInput.files) {
                 const fileItem = document.createElement('div');
                 fileItem.className = 'file-item';
@@ -155,21 +86,18 @@
 
             for (let file of files) {
                 const storageRef = ref(storage, 'uploads/' + file.name);
+                console.log("Uploading file:", file.name);
 
                 try {
-                    // Upload the file
                     await uploadBytes(storageRef, file);
+                    console.log("File uploaded:", file.name);
 
-                    // Display uploaded file with delete option
                     const fileItem = document.createElement('div');
                     fileItem.className = 'file-item';
-                    fileItem.innerHTML = `
-                        <span>${file.name}</span>
-                        <button class="delete-btn" onclick="deleteFile('${file.name}')">🗑️</button>
-                    `;
+                    fileItem.innerHTML = `<span>${file.name}</span>
+                        <button class="delete-btn" onclick="deleteFile('${file.name}')">🗑️</button>`;
                     previewArea.appendChild(fileItem);
 
-                    // Show confirmation message for each file
                     alert(`${file.name} uploaded successfully!`);
                     
                 } catch (error) {
@@ -178,7 +106,6 @@
                 }
             }
 
-            // Reset file input and hide upload button
             fileInput.value = "";
             document.getElementById('uploadButton').style.display = 'none';
         }
@@ -192,7 +119,6 @@
                     await deleteObject(storageRef);
                     alert(`${fileName} has been deleted successfully!`);
                     
-                    // Remove the file item from the preview area
                     const previewArea = document.getElementById('previewArea');
                     const fileItems = Array.from(previewArea.getElementsByClassName('file-item'));
                     fileItems.forEach(item => {
