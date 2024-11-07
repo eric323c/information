@@ -16,8 +16,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
-// Handle file selection, preview, and show upload button
-document.getElementById('fileInput').addEventListener('change', function(event) {
+// Function to handle file selection, preview, and show upload button
+function handleFileSelect(event) {
     const files = event.target.files;
     const previewArea = document.getElementById('previewArea');
     const uploadButton = document.getElementById('uploadButton');
@@ -39,7 +39,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     });
 
     uploadButton.style.display = files.length > 0 ? 'inline-block' : 'none';
-});
+}
 
 // Function to upload files to Firebase Storage
 async function uploadFile() {
@@ -146,6 +146,7 @@ function searchSite() {
 }
 
 // Make functions accessible globally for inline events in HTML
+window.handleFileSelect = handleFileSelect;
 window.uploadFile = uploadFile;
 window.deleteFile = deleteFile;
 window.printDocument = printDocument;
