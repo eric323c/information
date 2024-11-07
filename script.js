@@ -1,72 +1,18 @@
-const cloudName = 'doh6v6ofz'; // Your Cloudinary cloud name
-const unsignedPreset = 'Information'; // Ensure this preset is set to "unsigned" in Cloudinary
+// Define cloud name and unsigned preset for Cloudinary, if needed later
+const cloudName = 'doh6v6ofz';
+const unsignedPreset = 'Information';
 
-// Function to handle the file selection
-function handleFileSelect(event) {
-    const previewArea = document.getElementById('previewArea');
-    previewArea.innerHTML = ''; // Clear previous previews
-
-    Array.from(event.target.files).forEach(file => {
-        const filePreview = document.createElement('p');
-        filePreview.textContent = file.name;
-        previewArea.appendChild(filePreview);
-    });
+// Function to preview a document
+function previewFile(filePath) {
+    document.getElementById('filePreview').src = filePath;
 }
 
-// Function to upload file(s) to Cloudinary
-async function uploadFile() {
-    const fileInput = document.getElementById('fileInput');
-    const files = fileInput.files;
-
-    if (files.length === 0) {
-        alert("Please select a file to upload.");
-        return;
-    }
-
-    const previewArea = document.getElementById('previewArea');
-    previewArea.innerHTML = ''; // Clear previews for new uploads
-
-    for (let file of files) {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', unsignedPreset);
-
-        try {
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${doh6v6ofz}/upload`, {
-                method: 'POST',
-                body: formData
-            });
-            const data = await response.json();
-
-            if (data.secure_url) {
-                const fileLink = document.createElement('p');
-                fileLink.innerHTML = `Uploaded Successfully: <a href="${data.secure_url}" target="_blank">${file.name}</a>`;
-                previewArea.appendChild(fileLink);
-
-                if (file.type.startsWith('image/')) {
-                    const img = document.createElement('img');
-                    img.src = data.secure_url;
-                    previewArea.appendChild(img);
-                }
-            } else {
-                alert(`Failed to upload ${file.name}: ${data.error.message}`);
-            }
-        } catch (error) {
-            console.error("Error uploading file:", error);
-            alert(`Error uploading ${file.name}`);
-        }
-    }
-}
-
-// Function to search the sidebar
-function searchSite() {
-    const filter = document.getElementById('siteSearch').value.toUpperCase();
-    const links = document.querySelectorAll('.sidebar a');
-
-    links.forEach(link => {
-        const txtValue = link.textContent || link.innerText;
-        link.style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
-    });
+// Function to copy the script text
+function copyScript() {
+    const scriptText = document.querySelector('.quick-script p').textContent;
+    navigator.clipboard.writeText(scriptText).then(() => {
+        alert("Script copied to clipboard!");
+    }).catch(err => console.error('Failed to copy text: ', err));
 }
 
 // Sidebar navigation functionality to switch sections
@@ -84,7 +30,18 @@ document.querySelectorAll('.sidebar a').forEach(link => {
     });
 });
 
+// Function to search within the sidebar
+function searchSite() {
+    const filter = document.getElementById('siteSearch').value.toUpperCase();
+    const links = document.querySelectorAll('.sidebar a');
+
+    links.forEach(link => {
+        const txtValue = link.textContent || link.innerText;
+        link.style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+    });
+}
+
 // Make functions accessible for HTML inline events
-window.handleFileSelect = handleFileSelect;
-window.uploadFile = uploadFile;
+window.previewFile = previewFile;
+window.copyScript = copyScript;
 window.searchSite = searchSite;
