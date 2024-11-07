@@ -1,9 +1,18 @@
-body {
+/* General Reset */
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
+    padding: 0;
 }
 
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar styling */
 .sidebar {
     width: 200px;
     background-color: #333;
@@ -12,6 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh; /* Fill the height of the viewport */
 }
 
 .sidebar input[type="search"] {
@@ -52,10 +62,14 @@ body {
     margin-top: 10px;
 }
 
+/* Main content styling */
 .main-content {
     flex-grow: 1;
     padding: 20px;
     background-color: #f4f4f4;
+    min-height: 100vh; /* Ensure main content fills viewport height */
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
@@ -75,4 +89,5 @@ body {
     margin-top: 20px;
     border-top: 1px solid #ddd;
     padding-top: 10px;
+    flex-grow: 1;
 }
