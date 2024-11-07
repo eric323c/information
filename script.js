@@ -1,10 +1,14 @@
-document.querySelectorAll('.sidebar a').forEach(link => {
+document.querySelectorAll('.sidebar a, .sidebar button').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelectorAll('.sidebar a').forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
+        document.querySelectorAll('.sidebar a, .sidebar button').forEach(nav => nav.classList.remove('active'));
+        if (this.tagName === 'A') {
+            this.classList.add('active');
+        }
         const targetSection = document.querySelector(this.getAttribute('href'));
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     });
 });
 
