@@ -11,4 +11,35 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+function searchSite() {
+    var input, filter, main, section, a, i, txtValue;
+    input = document.getElementById("siteSearch");
+    filter = input.value.toUpperCase();
+    main = document.getElementsByTagName("main")[0];
+    section = main.getElementsByTagName("section");
+    for (i = 0; i < section.length; i++) {
+        a = section[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            section[i].style.display = "";
+        } else {
+            section[i].style.display = "none";
+        }
+    }
+}
+
+var acc = document.getElementsByClassName("accordion-button");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    });
+}
 
