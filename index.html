@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Resources</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Styles here */
-    </style>
 </head>
 <body>
     <div class="sidebar">
@@ -23,10 +20,21 @@
             <h2>Training Documents</h2>
             <div class="container">
                 <label for="fileInput" class="file-label">Choose File(s)</label>
-                <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple onchange="handleFileSelect(event)">
+                <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple>
                 <button id="uploadButton" class="upload-button" onclick="uploadFile()">Upload</button>
                 <div id="previewArea"></div>
             </div>
+        </section>
+        
+        <!-- Placeholder sections for other content -->
+        <section id="websites" class="content-section" style="display:none;">
+            <h2>Useful Websites</h2>
+            <p>Links to important websites will go here.</p>
+        </section>
+        
+        <section id="emails" class="content-section" style="display:none;">
+            <h2>Email Templates</h2>
+            <p>Email templates for registrations will go here.</p>
         </section>
     </div>
 
