@@ -12,22 +12,19 @@
         <a href="#documents" class="active">Documents</a>
         <a href="#websites">Websites</a>
         <a href="#emails">Emails</a>
-        <div class="quick-script">
-            <p>PATIENT VERIFIED NAME, DOB, SSN, AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
-            <button onclick="copyScript()">Copy Script</button>
-        </div>
     </div>
 
     <div class="main-content">
-<section id="documents" class="content-section">
-    <h2>Training Documents</h2>
-    <label for="fileInput">Choose File(s)</label>
-    <input type="file" id="fileInput" multiple onchange="handleFileSelect(event)">
-    <button onclick="uploadFile()">Upload</button>
-    <div id="previewArea"></div>
-</section>
-
-        <!-- Other sections here -->
+        <!-- Section for Document Uploads -->
+        <section id="documents" class="content-section">
+            <h2>Training Documents</h2>
+            <div class="container">
+                <label for="fileInput" class="file-label">Choose File(s)</label>
+                <input type="file" id="fileInput" class="custom-file-input" accept=".pdf, .jpg, .jpeg" multiple onchange="handleFileSelect(event)">
+                <button id="uploadButton" onclick="uploadFile()">Upload</button>
+                <div id="previewArea"></div>
+            </div>
+        </section>
     </div>
 
     <script type="module" src="script.js"></script>
