@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "mongodb": "^5.0.0"
+    "mongodb": "^5.0.0",
+    "formidable": "^2.0.1"
   },
   "scripts": {
     "start": "node index.js"
