@@ -70,79 +70,11 @@ function visitWebsite(url) {
     window.open(url, '_blank');
 }
 
-function previewDocument() {
-    alert('Previewing document...');
+// Function to open a document in a new tab for preview
+function previewDocument(url) {
+    window.open(url, '_blank');
 }
 
 function downloadDocument() {
     alert('Downloading document...');
-}
-
-function deleteDocument() {
-    alert('Deleting document...');
-}
-
-function copyEmailTemplate() {
-    alert('Email template copied!');
-}
-
-// Upload Document function with fetchDocuments call after successful upload
-async function uploadDocument() {
-    const fileInput = document.getElementById('fileInput');
-    
-    // Check if a file is selected
-    if (!fileInput.files || fileInput.files.length === 0) {
-        alert("Please select a document to upload.");
-        return;
-    }
-    
-    const file = fileInput.files[0];
-    
-    // Prepare form data
-    const formData = new FormData();
-    formData.append('document', file);
-
-    try {
-        const response = await fetch('/api/upload', {
-            method: 'POST',
-            body: formData,
-        });
-
-        if (response.ok) {
-            alert("Document uploaded successfully.");
-            fetchDocuments(); // Refresh the document list to show the new upload
-        } else {
-            throw new Error("Failed to upload document");
-        }
-    } catch (error) {
-        console.error("Error uploading document:", error);
-        alert("Error uploading document. Please try again.");
-    }
-}
-
-// Function to fetch documents from MongoDB
-async function fetchDocuments() {
-    try {
-        const response = await fetch('/api/getDocument');
-        const documents = await response.json();
-        displayDocuments(documents);
-    } catch (error) {
-        console.error("Error fetching documents:", error);
-    }
-}
-
-// Function to display fetched documents
-function displayDocuments(documents) {
-    const container = document.getElementById('resourceContainer');
-    container.innerHTML = '<h2>All Resources</h2>'; // Clear and reset the container
-    documents.forEach(doc => {
-        const docItem = document.createElement('div');
-        docItem.classList.add('resource-item');
-        docItem.innerHTML = `
-            <h3>${doc.name}</h3>
-            <button onclick="previewDocument('${doc.url}')">Preview</button>
-            <button onclick="downloadDocument('${doc.url}')">Download</button>
-        `;
-        container.appendChild(docItem);
-    });
 }
