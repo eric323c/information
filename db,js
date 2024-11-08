@@ -1,0 +1,23 @@
+const { MongoClient } = require('mongodb');
+
+const uri = process.env.MONGODB_URI; // Loaded from environment variables
+
+let client;
+let clientPromise;
+
+if (!uri) {
+  throw new Error('mongodb+srv://eric32301:9Opayd8AfDaKe1PK@thirdshifthub.fntli.mongodb.net/?retryWrites=true&w=majority&appName=ThirdShiftHub');
+}
+
+if (process.env.NODE_ENV === 'development') {
+  if (!global._mongoClientPromise) {
+    client = new MongoClient(uri);
+    global._mongoClientPromise = client.connect();
+  }
+  clientPromise = global._mongoClientPromise;
+} else {
+  client = new MongoClient(uri);
+  clientPromise = client.connect();
+}
+
+module.exports = clientPromise;
