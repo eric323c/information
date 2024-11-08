@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
 const mongoose = require('mongoose');
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
@@ -13,10 +13,15 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     .then(() => console.log("Connected to MongoDB"))
     .catch(err => console.error("MongoDB connection error:", err));
 
-// Define a sample route
+// Sample route to fetch documents
 app.get('/api/documents', async (req, res) => {
-    // MongoDB document retrieval logic goes here
-    res.json({ message: "Documents will be loaded dynamically here" });
+    try {
+        const documents = await mongoose.connection.db.collection('ThirdShiftHub').find({}).toArray();
+        res.json(documents);
+    } catch (error) {
+        console.error("Error fetching documents:", error);
+        res.status(500).json({ message: "Failed to fetch documents" });
+    }
 });
 
 // Start server
