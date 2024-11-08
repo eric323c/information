@@ -77,3 +77,12 @@ function previewDocument(url) {
 function downloadDocument() {
     alert('Downloading document...');
 }
+// Function to open the VA Guide modal
+function openVAGuide() {
+    document.getElementById('vaGuideModal').style.display = 'block';
+}
+
+// Function to close the VA Guide modal
+function closeVAGuide() {
+    document.getElementById('vaGuideModal').style.display = 'none';
+}
