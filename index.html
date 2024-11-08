@@ -39,6 +39,11 @@
 <div class="content">
     <h2>All Resources</h2>
     <div class="resource-container" id="resourceContainer">
+        <form id="uploadForm" enctype="multipart/form-data">
+    <label for="fileInput">Choose Document</label>
+    <input type="file" id="fileInput" name="document" required>
+    <button type="button" onclick="uploadDocument()">Upload</button>
+</form>
         <!-- Document -->
         <div class="resource-item" data-type="documents">
             <h3>Document 1</h3>
