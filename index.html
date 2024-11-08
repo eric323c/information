@@ -3,58 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Registration Hub</title>
+    <title>Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-        <h2>Registration Hub</h2>
-        <nav>
-            <ul>
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#documents" class="nav-link">Documents</a></li>
-                <li><a href="#emails" class="nav-link">Emails</a></li>
-                <li><a href="#websites" class="nav-link">Websites</a></li>
-            </ul>
-        </nav>
-        <div class="script-container">
-            <p>Patient Script</p>
-            <button id="copyScriptButton">Copy</button>
-        </div>
-    </aside>
+<!-- Sidebar Navigation -->
+<div class="sidebar">
+    <input type="text" class="search-bar" placeholder="Search for documents, emails, websites...">
+    <h1>Third Shift Hub</h1>
+    <nav>
+        <ul>
+            <li><a href="#" data-section="home">Home</a></li>
+            <li><a href="#" data-section="documents">Documents</a></li>
+            <li><a href="#" data-section="emails">Emails</a></li>
+            <li><a href="#" data-section="websites">Websites</a></li>
+        </ul>
+    </nav>
 
-    <!-- Main Content -->
-    <main>
-        <header>
-            <input type="text" id="searchBar" placeholder="Search for documents, emails, websites...">
-        </header>
-
-        <section id="home" class="content-section">
-            <h2>All Resources</h2>
-            <div class="card-grid">
-                <!-- Placeholder Cards for Documents, Websites, and Emails -->
-                <div class="card" data-type="document">
-                    <h3>Document 1</h3>
-                    <p>Sample PDF</p>
-                    <button class="preview">Preview</button>
-                    <button class="download">Download</button>
-                    <button class="delete">Delete</button>
-                </div>
-                <div class="card" data-type="website">
-                    <h3>Website 1</h3>
-                    <p>www.placeholder.com</p>
-                    <button class="visit">Visit</button>
-                </div>
-                <div class="card" data-type="email">
-                    <h3>Email Template 1</h3>
-                    <p>Template for patient reminders</p>
-                    <button class="copy">Copy</button>
-                </div>
+        <!-- Container for the script boxes -->
+        <div class="script-box-container">
+            <!-- First Script Box -->
+            <div class="script-box">
+                <p>PATIENT VERIFIED PHONE # & SSN</p>
+                <button id="copyButton1" onclick="copyScript('PATIENT VERIFIED PHONE # & SSN', 'copyButton1')">Copy</button>
             </div>
-        </section>
-    </main>
 
-    <script src="script.js"></script>
+            <!-- Second Script Box -->
+            <div class="script-box">
+                <p>PATIENT VERIFIED NAME, DOB, SSN AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
+                <button id="copyButton2" onclick="copyScript('PATIENT VERIFIED NAME, DOB, SSN AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.', 'copyButton2')">Copy</button>
+            </div>
+            </div>
+</div>
+<!-- Main Content Area -->
+<div class="content">
+    <h2>All Resources</h2>
+    <div class="resource-container" id="resourceContainer">
+        <!-- Document -->
+        <div class="resource-item" data-type="documents">
+            <h3>Document 1</h3>
+            <p>Sample PDF</p>
+            <button onclick="previewDocument()">Preview</button>
+            <button onclick="downloadDocument()">Download</button>
+            <button onclick="deleteDocument()">Delete</button>
+        </div>
+
+        <!-- Websites -->
+        <div class="resource-item" data-type="websites">
+            <h3>Health Pay</h3>
+            <p><a href="https://emergencycarereporting.communitycare.va.gov/request" target="_blank">HealthPay</a></p>
+            <button onclick="visitWebsite('https://emergencycarereporting.communitycare.va.gov/request')">Visit</button>
+        </div>
+        <div class="resource-item" data-type="websites">
+            <h3>Availity</h3>
+            <p><a href="https://apps.availity.com/web/onboarding/availity-fr-ui/" target="_blank">apps.availity.com</a></p>
+            <button onclick="visitWebsite('https://apps.availity.com/web/onboarding/availity-fr-ui/')">Visit</button>
+        </div>
+
+        <div class="resource-item" data-type="websites">
+            <h3>PROMISe</h3>
+            <p><a href="https://promise.dhs.pa.gov/portal/provider/Home/tabid/135/Default.aspx" target="_blank">promise.dhs.pa.gov</a></p>
+            <button onclick="visitWebsite('https://promise.dhs.pa.gov/portal/provider/Home/tabid/135/Default.aspx')">Visit</button>
+        </div>
+
+        <div class="resource-item" data-type="websites">
+            <h3>Microsoft Teams</h3>
+            <p><a href="https://teams.microsoft.com/v2/" target="_blank">teams.microsoft.com</a></p>
+            <button onclick="visitWebsite('https://teams.microsoft.com/v2/')">Visit</button>
+        </div>
+
+        <div class="resource-item" data-type="websites">
+            <h3>NaviNet</h3>
+            <p><a href="https://identity.navinet.net/Account/Login" target="_blank">identity.navinet.net</a></p>
+            <button onclick="visitWebsite('https://identity.navinet.net/Account/Login')">Visit</button>
+        </div>
+
+        <div class="resource-item" data-type="websites">
+            <h3>Outlook</h3>
+            <p><a href="https://outlook.office.com/mail/" target="_blank">outlook.office.com</a></p>
+            <button onclick="visitWebsite('https://outlook.office.com/mail/')">Visit</button>
+        </div>
+
+        <div class="resource-item" data-type="websites">
+            <h3>Novitasphere</h3>
+            <p><a href="https://home.idm.cms.gov/sso/signin/login.html" target="_blank">novitasphere.com</a></p>
+            <button onclick="visitWebsite('https://home.idm.cms.gov/sso/signin/login.html')">Visit</button>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
