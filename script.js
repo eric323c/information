@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
             item.style.display = isMatch ? 'block' : 'none';
         });
     });
+
+    // Fetch and display documents on page load
+    fetchDocuments();
 });
 
 // Function to copy script text and provide feedback
@@ -37,7 +40,6 @@ function copyScript(text, buttonId) {
     navigator.clipboard.writeText(text).then(() => {
         showCopiedFeedback(buttonId);
     }).catch(() => {
-        // Fallback approach if navigator.clipboard fails
         const tempTextArea = document.createElement('textarea');
         tempTextArea.value = text;
         document.body.appendChild(tempTextArea);
@@ -83,7 +85,8 @@ function deleteDocument() {
 function copyEmailTemplate() {
     alert('Email template copied!');
 }
-// script.js
+
+// Upload Document function with fetchDocuments call after successful upload
 async function uploadDocument() {
     const fileInput = document.getElementById('fileInput');
     
@@ -100,7 +103,6 @@ async function uploadDocument() {
     formData.append('document', file);
 
     try {
-        // Replace with your actual endpoint for uploading documents
         const response = await fetch('/api/upload', {
             method: 'POST',
             body: formData,
@@ -108,7 +110,7 @@ async function uploadDocument() {
 
         if (response.ok) {
             alert("Document uploaded successfully.");
-            // Optional: Reload the document list or update UI
+            fetchDocuments(); // Refresh the document list to show the new upload
         } else {
             throw new Error("Failed to upload document");
         }
@@ -144,6 +146,3 @@ function displayDocuments(documents) {
         container.appendChild(docItem);
     });
 }
-
-// Call fetchDocuments to display existing documents on page load
-fetchDocuments();
