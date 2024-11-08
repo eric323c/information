@@ -83,3 +83,40 @@ function deleteDocument() {
 function copyEmailTemplate() {
     alert('Email template copied!');
 }
+async function fetchDocuments() {
+    try {
+        // Fetch data from the serverless function you created on Vercel
+        const response = await fetch('/api/getDocuments');
+        const documents = await response.json();
+
+        // Find the container in your HTML where you want to display the documents
+        const resourceContainer = document.getElementById('resourceContainer');
+        
+        // Clear any existing content
+        resourceContainer.innerHTML = '';
+
+        // Loop over each document and create an element for it
+        documents.forEach(doc => {
+            // Create the HTML structure for each document card
+            const documentItem = document.createElement('div');
+            documentItem.classList.add('resource-item');
+            documentItem.setAttribute('data-type', 'documents');
+
+            documentItem.innerHTML = `
+                <h3>${doc.title}</h3>
+                <img src="${doc.imagePath}" alt="${doc.title} Preview" class="document-preview">
+                <button onclick="previewDocument('${doc.imagePath}')">Preview</button>
+                <button onclick="downloadDocument('${doc.imagePath}')">Download</button>
+                <button onclick="deleteDocument('${doc._id}')">Delete</button>
+            `;
+
+            // Append each document card to the container
+            resourceContainer.appendChild(documentItem);
+        });
+    } catch (error) {
+        console.error("Error fetching documents:", error);
+    }
+}
+
+// Call fetchDocuments on page load or when you need to refresh the list
+document.addEventListener('DOMContentLoaded', fetchDocuments);
