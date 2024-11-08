@@ -30,3 +30,5 @@ async function uploadDocument() {
         alert("Error uploading document: " + error.message);
     }
 }
+alert("Document uploaded successfully!");
+fetchDocuments(); // This would refresh the list of documents dynamically
