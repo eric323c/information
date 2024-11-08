@@ -77,7 +77,7 @@ function previewDocument(url) {
 function downloadDocument() {
     alert('Downloading document...');
 }
-// Function to open VA Guide in a new window
+// Function to open VA Guide in a new window with input fields
 function openVAGuide() {
     const guideContent = `
         <html>
@@ -88,6 +88,10 @@ function openVAGuide() {
                 h2 { font-weight: bold; }
                 p { margin: 5px 0; }
                 hr { margin: 10px 0; }
+                label { font-weight: bold; margin-top: 10px; display: block; }
+                input[type="text"] { width: 100%; padding: 5px; margin: 5px 0 10px; border: 1px solid #ccc; border-radius: 4px; }
+                button { margin-top: 15px; padding: 8px 12px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+                button:hover { background-color: #45a049; }
             </style>
         </head>
         <body>
@@ -105,11 +109,56 @@ function openVAGuide() {
             <p>Fax Number: 610-378-2395</p>
             <p>Department: Utilization Review</p>
             <p>Email: ur@pennstatehealth.psu.edu</p>
+            <hr>
+
+            <!-- Temporary Information Form -->
+            <h3>Temporary Information</h3>
+            <label>First Name:</label> <input type="text" id="firstName" placeholder="Enter first name">
+            <label>Last Name:</label> <input type="text" id="lastName" placeholder="Enter last name">
+            <label>Gender:</label> <input type="text" id="gender" placeholder="M/F">
+            <label>DOB:</label> <input type="text" id="dob" placeholder="MM/DD/YYYY">
+            <label>SSN:</label> <input type="text" id="ssn" placeholder="SSN">
+            <label>Address:</label> <input type="text" id="address" placeholder="Enter address">
+            <label>Chief Complaint:</label> <input type="text" id="chiefComplaint" placeholder="Enter complaint">
+            <label>Date/Time of Arrival:</label> <input type="text" id="arrivalTime" placeholder="MM/DD/YYYY HH:MM AM/PM">
+            <label>Ambulance:</label> <input type="text" id="ambulance" placeholder="Y/N">
+            <label>Admitted:</label> <input type="text" id="admitted" placeholder="Y/N">
+            <label>VA Form Completion:</label> <input type="text" id="vaFormCompletion" placeholder="Enter form details">
+
+            <button onclick="submitVAForm()">Submit</button>
+
+            <script>
+                function submitVAForm() {
+                    const formData = {
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        gender: document.getElementById('gender').value,
+                        dob: document.getElementById('dob').value,
+                        ssn: document.getElementById('ssn').value,
+                        address: document.getElementById('address').value,
+                        chiefComplaint: document.getElementById('chiefComplaint').value,
+                        arrivalTime: document.getElementById('arrivalTime').value,
+                        ambulance: document.getElementById('ambulance').value,
+                        admitted: document.getElementById('admitted').value,
+                        vaFormCompletion: document.getElementById('vaFormCompletion').value,
+                    };
+
+                    console.log("Submitted VA Form Data:", formData);
+                    alert("VA Reporting Information Submitted:\\n" + JSON.stringify(formData, null, 2));
+
+                    // Clear the form fields after submission
+                    for (let key in formData) {
+                        document.getElementById(key).value = '';
+                    }
+                }
+            </script>
         </body>
         </html>
     `;
+
     const guideWindow = window.open("", "VA Guide", "width=400,height=600");
     guideWindow.document.write(guideContent);
     guideWindow.document.close();
 }
+
 
