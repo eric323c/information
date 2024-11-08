@@ -1,125 +1,159 @@
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body Styling */
 body {
     display: flex;
     font-family: Arial, sans-serif;
-    background-color: #f7f9fc;
+    height: 100vh;
+    background-color: #f3f3f3;
     color: #333;
+    overflow: hidden;
 }
 
+/* Sidebar Styling with Flexbox to push script boxes to the bottom */
 .sidebar {
-    width: 250px;
-    background-color: #2c3e50;
-    color: #fff;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between; /* Distribute space to push script boxes to bottom */
+    width: 250px;
+    background-color: #2d3e50;
     padding: 20px;
+    height: 100vh; /* Full viewport height */
 }
 
-.sidebar h2 {
+.sidebar h1 {
+    color: #ffffff;
     margin-bottom: 20px;
+    font-size: 1.5em;
 }
 
-.nav-link {
-    color: #bdc3c7;
+.sidebar nav ul {
+    list-style-type: none;
+    width: 100%;
+}
+
+.sidebar nav ul li {
+    margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+    color: #cccccc;
     text-decoration: none;
-    margin: 10px 0;
+    font-size: 18px;
     display: block;
+    padding: 8px;
     text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
-.nav-link:hover {
-    color: #ecf0f1;
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+    background-color: #3e5068;
+    color: #ffffff;
 }
 
-.script-container {
-    margin-top: auto;
-    text-align: center;
-}
-
-.script-container button {
-    background-color: #16a085;
-    color: #fff;
-    padding: 10px 15px;
+.sidebar .search-bar {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
 }
 
-main {
-    flex-grow: 1;
-    padding: 20px;
+/* Sidebar Script Box Styling */
+.script-box {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #3e5068;
+    border-radius: 5px;
+    color: #ffffff;
+    text-align: center;
 }
-
-header {
+.script-box-container {
     display: flex;
-    justify-content: center;
-    padding: 10px;
-    background-color: #ecf0f1;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto; /* Pushes this section to the bottom of sidebar */
 }
-
-#searchBar {
-    width: 80%;
-    padding: 8px;
-    font-size: 16px;
+.script-box button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #2d3e50;
+    border: none;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.content-section {
-    padding: 10px;
+.script-box button:hover {
+    background-color: #4a5c70;
 }
 
-.card-grid {
+/* Main Content Styling */
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333333;
+}
+.resource-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px;
+    align-content: flex-start;
 }
-
-.card {
-    width: 200px;
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 15px;
+.resource-item {
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 0 1 200px;
+    height: auto; /* Prevents all items from matching the tallest one */
+    max-width: 250px; /* Limits the max width to avoid oversized items */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    justify-content: space-between;
 }
 
-.card button {
-    margin-top: 5px;
+.resource-item h3 {
+    color: #333333;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.resource-item p {
+    color: #666666;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.resource-item button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
     padding: 8px;
-    width: 80%;
+    background-color: #cccccc;
     border: none;
     border-radius: 4px;
+    color: #333333;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.preview {
-    background-color: #2980b9;
-    color: #fff;
-}
-
-.download {
-    background-color: #27ae60;
-    color: #fff;
-}
-
-.delete {
-    background-color: #c0392b;
-    color: #fff;
-}
-
-.visit, .copy {
-    background-color: #8e44ad;
-    color: #fff;
+.resource-item button:hover {
+    background-color: #dddddd;
 }
