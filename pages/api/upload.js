@@ -1,21 +1,32 @@
-import clientPromise from '../../db';
+async function uploadDocument() {
+    const fileInput = document.getElementById("fileInput");
 
-export default async function handler(req, res) {
-    if (req.method !== 'POST') {
-        res.status(405).end(); // Method Not Allowed
+    // Ensure a file has been selected
+    if (!fileInput.files || fileInput.files.length === 0) {
+        console.error("No file selected for upload.");
+        alert("Please choose a file before uploading.");
         return;
     }
 
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append("document", file);
+
     try {
-        const client = await clientPromise;
-        const db = client.db("ThirdShiftHub");
+        const response = await fetch("/api/upload", {
+            method: "POST",
+            body: formData,
+        });
 
-        const document = req.body.document;
-        const result = await db.collection("documents").insertOne({ document });
+        if (!response.ok) {
+            throw new Error("Failed to upload document");
+        }
 
-        res.status(200).json({ message: "Document uploaded successfully!", result });
+        const result = await response.json();
+        console.log("Document uploaded successfully:", result);
+        alert("Document uploaded successfully!");
     } catch (error) {
         console.error("Error uploading document:", error);
-        res.status(500).json({ error: "Failed to upload document" });
+        alert("Error uploading document: " + error.message);
     }
 }
