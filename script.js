@@ -85,43 +85,62 @@ function copyEmailTemplate() {
 }
 // script.js
 
-async function uploadDocument(file) {
-  try {
-    const response = await fetch('/api/upload', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name: file.name, data: await file.text() }),
-    });
+// Function to upload a document to the server
+async function uploadDocument() {
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0];
 
-    if (response.ok) {
-      alert("Document uploaded successfully!");
-      fetchDocuments();
-    } else {
-      alert("Failed to upload document.");
+    if (!file) {
+        alert("Please select a file to upload.");
+        return;
     }
-  } catch (error) {
-    console.error("Error uploading document:", error);
-  }
+
+    const formData = new FormData();
+    formData.append("document", file);
+
+    try {
+        const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            alert("Document uploaded successfully!");
+            fetchDocuments();
+        } else {
+            alert("Failed to upload document.");
+        }
+    } catch (error) {
+        console.error("Error uploading document:", error);
+    }
 }
 
+// Function to fetch documents from MongoDB
 async function fetchDocuments() {
-  try {
-    const response = await fetch('/api/getDocument');
-    const documents = await response.json();
-    displayDocuments(documents);
-  } catch (error) {
-    console.error("Error fetching documents:", error);
-  }
+    try {
+        const response = await fetch('/api/getDocument');
+        const documents = await response.json();
+        displayDocuments(documents);
+    } catch (error) {
+        console.error("Error fetching documents:", error);
+    }
 }
 
+// Function to display fetched documents
 function displayDocuments(documents) {
-  const container = document.getElementById('documentsContainer');
-  container.innerHTML = '';
-  documents.forEach(doc => {
-    const docItem = document.createElement('div');
-    docItem.textContent = doc.name;
-    container.appendChild(docItem);
-  });
+    const container = document.getElementById('resourceContainer');
+    container.innerHTML = '<h2>All Resources</h2>'; // Clear and reset the container
+    documents.forEach(doc => {
+        const docItem = document.createElement('div');
+        docItem.classList.add('resource-item');
+        docItem.innerHTML = `
+            <h3>${doc.name}</h3>
+            <button onclick="previewDocument('${doc.url}')">Preview</button>
+            <button onclick="downloadDocument('${doc.url}')">Download</button>
+        `;
+        container.appendChild(docItem);
+    });
 }
+
+// Call fetchDocuments to display existing documents on page load
+fetchDocuments();
