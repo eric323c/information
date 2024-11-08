@@ -39,20 +39,20 @@
 <div class="content">
     <h2>All Resources</h2>
     <div class="resource-container" id="resourceContainer">
-        <!-- Document Upload Form -->
-<form id="uploadForm" enctype="multipart/form-data">
-    <label for="fileInput">Choose Document</label>
-    <input type="file" id="fileInput" name="document" required>
-    <button type="button" onclick="uploadDocument()">Upload</button>
-</form>
         <!-- Document -->
-        <div class="resource-item" data-type="documents">
-            <h3>Document 1</h3>
-            <p>Sample PDF</p>
-            <button onclick="previewDocument()">Preview</button>
-            <button onclick="downloadDocument()">Download</button>
-            <button onclick="deleteDocument()">Delete</button>
-        </div>
+<!-- Document -->
+<div class="resource-item" data-type="documents">
+    <h3>Document 1</h3>
+    <p>Sample PDF</p>
+    <!-- Button to preview the document by opening the Google Docs link in a new tab -->
+    <button onclick="previewDocument('https://docs.google.com/document/d/1hstrbRU5E05MdzUJ0YKfERMg6hsqh_fs/view')" target="_blank">Preview</button>
+    
+    <!-- Direct download button using the Google Docs download link -->
+    <a href="https://docs.google.com/uc?export=download&id=1hstrbRU5E05MdzUJ0YKfERMg6hsqh_fs">
+        <button>Download</button>
+    </a>
+</div>
+
 
         <!-- Websites -->
         <div class="resource-item" data-type="websites">
