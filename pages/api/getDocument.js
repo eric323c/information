@@ -1,9 +1,9 @@
-import clientPromise from '../../db';
+const clientPromise = require('../../db');
 
 export default async function handler(req, res) {
     try {
         const client = await clientPromise;
-        const db = client.db("ThirdShiftHub");
+        const db = client.db("ThirdShiftHub"); // Specify your database name
 
         const documents = await db.collection("documents").find({}).toArray();
         res.status(200).json(documents);
