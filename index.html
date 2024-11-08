@@ -99,11 +99,12 @@
     <button onclick="visitWebsite('https://pennstatehealth.provider.ci.healthpay24.cloud/account/login?ReturnUrl=%2F')">Visit</button>
 </div>
 
-<!-- Updated Website Container for "VA Portal" -->
+<!-- VA Portal with Additional Button for VA Guide -->
 <div class="resource-item" data-type="websites">
     <h3>VA Portal</h3>
-    <a href="https://emergencycarereporting.communitycare.va.gov/#/request" target="_blank">va.gov</a>
+    <a href="https://emergencycarereporting.communitycare.va.gov/#/request" target="_blank">VA.gov</a>
     <button onclick="visitWebsite('https://emergencycarereporting.communitycare.va.gov/#/request')">Visit</button>
+    <button onclick="openVAGuide()">VA Guide</button>
 </div>
 
         <div class="resource-item" data-type="websites">
@@ -141,6 +142,32 @@
             <p><a href="https://home.idm.cms.gov/sso/signin/login.html" target="_blank">novitasphere.com</a></p>
             <button onclick="visitWebsite('https://home.idm.cms.gov/sso/signin/login.html')">Visit</button>
         </div>
+    </div>
+</div>
+<!-- VA Guide Modal (Place this near the end of your index.html) -->
+<div id="vaGuideModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeVAGuide()">&times;</span>
+        <h2>VA Reporting Guide</h2>
+        
+        <p><strong>Facility Information –</strong></p>
+        <p>Name: Penn State Health St. Joseph Medical Center</p>
+        <p>Phone: 610-378-2595</p>
+        <p>NPI: 1699734665</p>
+        <p>Tax ID: 231352211</p>
+        <p>Address: 2500 Bernville Rd, Reading PA, 19605, United States</p>
+
+        <hr>
+
+        <p><strong>Point of Contact Information –</strong></p>
+        <p>Name: UR (Utilization Review)</p>
+        <p>Phone Number: 610-378-2479</p>
+        <p>Fax Number: 610-378-2395</p>
+        <p>Department: Utilization Review</p>
+        <p>Email: ur@pennstatehealth.psu.edu</p>
+
+        <!-- Copy button to copy all information to clipboard -->
+        <button onclick="copyVAGuideText()">Copy VA Guide Information</button>
     </div>
 </div>
 <script src="script.js"></script>
