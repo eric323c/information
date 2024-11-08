@@ -1,4 +1,4 @@
-const clientPromise = require('../../db'); // Database connection
+const clientPromise = require('../../db');
 const formidable = require('formidable');   // Library for handling file uploads
 const fs = require('fs');
 
