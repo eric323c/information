@@ -84,34 +84,37 @@ function copyEmailTemplate() {
     alert('Email template copied!');
 }
 // script.js
-
-// Function to upload a document to the server
 async function uploadDocument() {
-    const fileInput = document.getElementById("fileInput");
-    const file = fileInput.files[0];
-
-    if (!file) {
-        alert("Please select a file to upload.");
+    const fileInput = document.getElementById('fileInput');
+    
+    // Check if a file is selected
+    if (!fileInput.files || fileInput.files.length === 0) {
+        alert("Please select a document to upload.");
         return;
     }
-
+    
+    const file = fileInput.files[0];
+    
+    // Prepare form data
     const formData = new FormData();
-    formData.append("document", file);
+    formData.append('document', file);
 
     try {
+        // Replace with your actual endpoint for uploading documents
         const response = await fetch('/api/upload', {
             method: 'POST',
             body: formData,
         });
 
         if (response.ok) {
-            alert("Document uploaded successfully!");
-            fetchDocuments();
+            alert("Document uploaded successfully.");
+            // Optional: Reload the document list or update UI
         } else {
-            alert("Failed to upload document.");
+            throw new Error("Failed to upload document");
         }
     } catch (error) {
         console.error("Error uploading document:", error);
+        alert("Error uploading document. Please try again.");
     }
 }
 
