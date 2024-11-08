@@ -70,7 +70,6 @@ function visitWebsite(url) {
     window.open(url, '_blank');
 }
 
-// Function to open a document in a new tab for preview
 function previewDocument(url) {
     window.open(url, '_blank');
 }
