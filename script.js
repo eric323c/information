@@ -117,3 +117,31 @@ function displayDocuments(documents) {
 
 // Call fetchDocuments when the page loads
 document.addEventListener('DOMContentLoaded', fetchDocuments);
+async function uploadDocument() {
+    const formData = new FormData();
+    const fileInput = document.getElementById('fileInput');
+
+    if (fileInput.files.length === 0) {
+        alert("Please select a document to upload.");
+        return;
+    }
+
+    formData.append('document', fileInput.files[0]);
+
+    try {
+        const response = await fetch('/api/uploadDocument', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            alert("Document uploaded successfully!");
+            // Optionally, refresh the list of documents to include the new one
+            fetchDocuments();
+        } else {
+            alert("Failed to upload document.");
+        }
+    } catch (error) {
+        console.error("Error uploading document:", error);
+    }
+}
