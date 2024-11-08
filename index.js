@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 // Sample route to fetch documents
 app.get('/api/documents', async (req, res) => {
     try {
-        const documents = await mongoose.connection.db.collection('ThirdShiftHub').find({}).toArray();
+        const documents = await mongoose.connection.db.collection('Documents').find({}).toArray();
         res.json(documents);
     } catch (error) {
         console.error("Error fetching documents:", error);
