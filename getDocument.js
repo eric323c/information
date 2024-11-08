@@ -1,4 +1,6 @@
-const clientPromise = require('../../db');
+// getDocument.js
+
+const clientPromise = require('./db');
 
 export default async function handler(req, res) {
   try {
