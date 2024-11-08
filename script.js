@@ -85,63 +85,43 @@ function copyEmailTemplate() {
 }
 // script.js
 
-async function fetchDocuments() {
-    try {
-        const response = await fetch('/api/getDocument');
-        if (!response.ok) throw new Error("Failed to fetch documents");
-
-        const documents = await response.json();
-        displayDocuments(documents); // Call a function to display documents
-    } catch (error) {
-        console.error("Error fetching documents:", error);
-    }
-}
-
-// Function to display documents on the page
-function displayDocuments(documents) {
-    const resourceContainer = document.getElementById('resourceContainer');
-    resourceContainer.innerHTML = ''; // Clear previous content
-
-    documents.forEach(doc => {
-        const resourceItem = document.createElement('div');
-        resourceItem.className = 'resource-item';
-        resourceItem.innerHTML = `
-            <h3>${doc.title}</h3>
-            <p>${doc.description}</p>
-            <button onclick="previewDocument('${doc.fileUrl}')">Preview</button>
-            <button onclick="downloadDocument('${doc.fileUrl}')">Download</button>
-        `;
-        resourceContainer.appendChild(resourceItem);
+async function uploadDocument(file) {
+  try {
+    const response = await fetch('/api/upload', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name: file.name, data: await file.text() }),
     });
+
+    if (response.ok) {
+      alert("Document uploaded successfully!");
+      fetchDocuments();
+    } else {
+      alert("Failed to upload document.");
+    }
+  } catch (error) {
+    console.error("Error uploading document:", error);
+  }
 }
 
-// Call fetchDocuments when the page loads
-document.addEventListener('DOMContentLoaded', fetchDocuments);
-async function uploadDocument() {
-    const formData = new FormData();
-    const fileInput = document.getElementById('fileInput');
+async function fetchDocuments() {
+  try {
+    const response = await fetch('/api/getDocument');
+    const documents = await response.json();
+    displayDocuments(documents);
+  } catch (error) {
+    console.error("Error fetching documents:", error);
+  }
+}
 
-    if (fileInput.files.length === 0) {
-        alert("Please select a document to upload.");
-        return;
-    }
-
-    formData.append('document', fileInput.files[0]);
-
-    try {
-        const response = await fetch('/api/uploadDocument', {
-            method: 'POST',
-            body: formData,
-        });
-
-        if (response.ok) {
-            alert("Document uploaded successfully!");
-            // Optionally, refresh the list of documents to include the new one
-            fetchDocuments();
-        } else {
-            alert("Failed to upload document.");
-        }
-    } catch (error) {
-        console.error("Error uploading document:", error);
-    }
+function displayDocuments(documents) {
+  const container = document.getElementById('documentsContainer');
+  container.innerHTML = '';
+  documents.forEach(doc => {
+    const docItem = document.createElement('div');
+    docItem.textContent = doc.name;
+    container.appendChild(docItem);
+  });
 }
