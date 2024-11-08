@@ -1,17 +1,17 @@
 // db.js
 
 const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://eric32301:9Opayd8AfDaKe1PK@thirdshifthub.fntli.mongodb.net/?retryWrites=true&w=majority&appName=ThirdShiftHub"; 
+const uri = "mongodb+srv://eric32301:9Opayd8AfDaKe1PK@thirdshifthub.fntli.mongodb.net/?retryWrites=true&w=majority&appName=ThirdShiftHub";
 
 let client;
 let clientPromise;
 
 if (!global._mongoClientPromise) {
-  client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  global._mongoClientPromise = client.connect();
+    client = new MongoClient(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    global._mongoClientPromise = client.connect();
 }
 
 clientPromise = global._mongoClientPromise;
