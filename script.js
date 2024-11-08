@@ -1,38 +1,85 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const searchBar = document.getElementById('searchBar');
-    const cards = document.querySelectorAll('.card');
-    const copyScriptButton = document.getElementById('copyScriptButton');
+    const searchBar = document.querySelector('.search-bar');
+    const resourceContainer = document.getElementById('resourceContainer');
+    const navLinks = document.querySelectorAll('.sidebar nav ul li a');
+    const resourceItems = Array.from(document.querySelectorAll('.resource-item'));
 
-    // Search functionality
-    searchBar.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        cards.forEach(card => {
-            const isMatch = card.innerText.toLowerCase().includes(query);
-            card.style.display = isMatch ? 'block' : 'none';
+    function updateVisibleResources(section) {
+        document.querySelector('.content h2').textContent = section === 'home' ? 'All Resources' : section.charAt(0).toUpperCase() + section.slice(1);
+        resourceItems.forEach(item => {
+            item.style.display = section === 'home' || item.getAttribute('data-type') === section ? 'block' : 'none';
+        });
+    }
+
+    updateVisibleResources('home');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const section = link.getAttribute('data-section');
+            navLinks.forEach(link => link.classList.remove('active'));
+            link.classList.add('active');
+            updateVisibleResources(section);
         });
     });
 
-    // Copy script button functionality
-    copyScriptButton.addEventListener('click', () => {
-        navigator.clipboard.writeText("Patient script placeholder text")
-            .then(() => {
-                copyScriptButton.textContent = "Copied!";
-                setTimeout(() => copyScriptButton.textContent = "Copy", 2000);
-            });
-    });
-
-    // Placeholder for preview, download, delete, visit, copy actions
-    document.querySelectorAll('.card button').forEach(button => {
-        button.addEventListener('click', () => {
-            const action = button.className;
-            if (action === 'preview') alert("Previewing document...");
-            else if (action === 'download') alert("Downloading document...");
-            else if (action === 'delete') alert("Deleting document...");
-            else if (action === 'visit') alert("Visiting website...");
-            else if (action === 'copy') {
-                navigator.clipboard.writeText("Email template placeholder text");
-                alert("Email template copied!");
-            }
+    searchBar.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        resourceItems.forEach(item => {
+            const isMatch = item.textContent.toLowerCase().includes(query);
+            item.style.display = isMatch ? 'block' : 'none';
         });
     });
 });
+
+// Function to copy script text and provide feedback
+function copyScript(text, buttonId) {
+    navigator.clipboard.writeText(text).then(() => {
+        showCopiedFeedback(buttonId);
+    }).catch(() => {
+        // Fallback approach if navigator.clipboard fails
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = text;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        
+        try {
+            document.execCommand('copy');
+            showCopiedFeedback(buttonId);
+        } catch (err) {
+            console.error('Failed to copy text using fallback method: ', err);
+            alert('Copy failed, please try again.');
+        }
+        
+        document.body.removeChild(tempTextArea);
+    });
+}
+
+// Function to show 'Copied!' feedback
+function showCopiedFeedback(buttonId) {
+    const button = document.getElementById(buttonId);
+    button.textContent = 'Copied!';
+    setTimeout(() => {
+        button.textContent = 'Copy';
+    }, 2000); // Reset after 2 seconds
+}
+
+function visitWebsite(url) {
+    window.open(url, '_blank');
+}
+
+function previewDocument() {
+    alert('Previewing document...');
+}
+
+function downloadDocument() {
+    alert('Downloading document...');
+}
+
+function deleteDocument() {
+    alert('Deleting document...');
+}
+
+function copyEmailTemplate() {
+    alert('Email template copied!');
+}
