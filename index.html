@@ -6,11 +6,12 @@
     <title>Hub</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        // Check for the login flag
-        if (localStorage.getItem("isLoggedIn") !== "true") {
-            // Redirect to the login page if not logged in
-            window.location.href = "login.html";
-        }
+        // Redirect to login.html if the user is not logged in
+        document.addEventListener("DOMContentLoaded", function() {
+            if (localStorage.getItem("isLoggedIn") !== "true") {
+                window.location.href = "login.html";
+            }
+        });
     </script>
 </head>
 <body>
