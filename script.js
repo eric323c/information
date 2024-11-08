@@ -77,51 +77,39 @@ function previewDocument(url) {
 function downloadDocument() {
     alert('Downloading document...');
 }
-// Function to open the VA Guide modal
+// Function to open VA Guide in a new window
 function openVAGuide() {
-    document.getElementById('vaGuideModal').style.display = 'block';
+    const guideContent = `
+        <html>
+        <head>
+            <title>VA Reporting Guide</title>
+            <style>
+                body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+                h2 { font-weight: bold; }
+                p { margin: 5px 0; }
+                hr { margin: 10px 0; }
+            </style>
+        </head>
+        <body>
+            <h2>VA Reporting Guide</h2>
+            <p><strong>Facility Information –</strong></p>
+            <p>Name: Penn State Health St. Joseph Medical Center</p>
+            <p>Phone: 610-378-2595</p>
+            <p>NPI: 1699734665</p>
+            <p>Tax ID: 231352211</p>
+            <p>Address: 2500 Bernville Rd, Reading PA, 19605, United States</p>
+            <hr>
+            <p><strong>Point of Contact Information –</strong></p>
+            <p>Name: UR (Utilization Review)</p>
+            <p>Phone Number: 610-378-2479</p>
+            <p>Fax Number: 610-378-2395</p>
+            <p>Department: Utilization Review</p>
+            <p>Email: ur@pennstatehealth.psu.edu</p>
+        </body>
+        </html>
+    `;
+    const guideWindow = window.open("", "VA Guide", "width=400,height=600");
+    guideWindow.document.write(guideContent);
+    guideWindow.document.close();
 }
-// Function to open the VA Guide modal
-function openVAGuide() {
-    const modal = document.getElementById('vaGuideModal');
-    modal.style.display = 'block';
-    dragElement(modal); // Make modal draggable
-}
 
-// Function to close the VA Guide modal
-function closeVAGuide() {
-    document.getElementById('vaGuideModal').style.display = 'none';
-}
-
-// Function to make the modal draggable
-function dragElement(element) {
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-    const header = element.querySelector(".modal-header");
-    if (header) {
-        header.onmousedown = dragMouseDown;
-    }
-
-    function dragMouseDown(e) {
-        e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e.preventDefault();
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        element.style.top = (element.offsetTop - pos2) + "px";
-        element.style.left = (element.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-}
