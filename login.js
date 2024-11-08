@@ -4,10 +4,13 @@ function checkPassword() {
     const correctPassword = "PsuMapa2017";
     
     if (passwordInput === correctPassword) {
-        // Password is correct, redirect to the main page
-        window.location.href = "index.html"; // Ensure this points to your main content HTML file
+        // Set a flag to indicate the user is logged in
+        localStorage.setItem("isLoggedIn", "true");
+        
+        // Redirect to the main page
+        window.location.href = "index.html";
     } else {
-        // Password is incorrect, show error message
+        // Show error message if password is incorrect
         const errorMessage = document.getElementById('errorMessage');
         errorMessage.style.display = 'block';
     }
