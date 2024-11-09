@@ -115,6 +115,7 @@ h2 {
     gap: 20px;
     align-content: flex-start;
 }
+
 .resource-item {
     background-color: #ffffff;
     border-radius: 8px;
@@ -122,29 +123,40 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     flex: 0 1 200px;
-    height: auto; /* Prevents all items from matching the tallest one */
-    max-width: 250px; /* Limits the max width to avoid oversized items */
+    max-width: 250px;
+    height: 250px; /* Set a consistent height for all items */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box; /* Ensures padding doesn't affect the set height */
 }
 
 .resource-item h3 {
     color: #333333;
     font-size: 1.2em;
-    margin-bottom: 10px;
+    margin: 0;
+    padding: 5px 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
 
 .resource-item p {
     color: #666666;
     font-size: 0.9em;
-    margin-bottom: 10px;
+    margin: 5px 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
 
 .resource-item button {
     display: block;
     width: 100%;
-    margin-top: 10px;
+    margin-top: auto; /* Ensures the button is aligned at the bottom */
     padding: 8px;
     background-color: #cccccc;
     border: none;
@@ -154,6 +166,7 @@ h2 {
     transition: background-color 0.3s;
 }
 
+/* Hover effect for buttons */
 .resource-item button:hover {
     background-color: #dddddd;
 }
