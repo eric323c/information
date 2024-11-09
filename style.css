@@ -112,44 +112,45 @@ h2 {
 .resource-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px; /* Reduced gap for tighter layout */
-    justify-content: center; /* Center all items */
+    gap: 20px;
+    align-content: flex-start;
 }
 
 .resource-item {
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 10px; /* Compact padding */
+    padding: 10px 5px; /* Compact padding to reduce white space */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 180px; /* More compact width */
-    height: 220px; /* Set a consistent height */
+    width: 180px; /* Narrow width for a more compact layout */
+    height: 200px; /* Fixed height for consistency */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
+    justify-content: space-between; /* Align elements within each item */
 }
 
 .resource-item h3 {
     color: #333333;
-    font-size: 1em; /* Slightly smaller title size */
+    font-size: 1em;
     margin: 5px 0;
 }
 
 .resource-item p {
     color: #666666;
-    font-size: 0.85em; /* Compact font size for description */
+    font-size: 0.85em;
     margin: 5px 0;
-    flex-grow: 1; /* Pushes the button down */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+}
+
+.resource-item a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .resource-item button {
-    width: 100%;
-    padding: 6px 0; /* Smaller padding for buttons */
+    width: 90%; /* Slightly narrower button width for compact look */
+    padding: 6px;
     font-size: 0.9em;
     background-color: #cccccc;
     border: none;
