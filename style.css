@@ -119,38 +119,32 @@ h2 {
 .resource-item {
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 10px 5px; /* Compact padding to reduce white space */
+    padding: 10px; /* Reduced padding to remove extra white space */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 180px; /* Narrow width for a more compact layout */
-    height: 200px; /* Fixed height for consistency */
+    width: 200px; /* Kept width consistent */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* Align elements within each item */
+    justify-content: space-between;
 }
 
 .resource-item h3 {
     color: #333333;
-    font-size: 1em;
-    margin: 5px 0;
+    font-size: 1.1em;
+    margin: 0; /* Removed extra margins */
 }
 
 .resource-item p {
     color: #666666;
-    font-size: 0.85em;
-    margin: 5px 0;
+    font-size: 0.9em;
+    margin: 8px 0; /* Compact spacing */
     text-align: center;
 }
 
-.resource-item a {
-    text-decoration: none;
-    color: inherit;
-}
-
 .resource-item button {
-    width: 90%; /* Slightly narrower button width for compact look */
-    padding: 6px;
+    width: 90%; /* Consistent button width */
+    padding: 8px;
     font-size: 0.9em;
     background-color: #cccccc;
     border: none;
@@ -158,6 +152,7 @@ h2 {
     color: #333333;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: auto; /* Forces button to stay at the bottom */
 }
 
 .resource-item button:hover {
