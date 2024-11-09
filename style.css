@@ -112,46 +112,45 @@ h2 {
 .resource-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    align-content: flex-start;
+    gap: 15px; /* Reduced gap for tighter layout */
+    justify-content: center; /* Center all items */
 }
 
 .resource-item {
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 15px;
+    padding: 10px; /* Compact padding */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    flex: 0 1 200px;
-    max-width: 250px;
+    width: 180px; /* More compact width */
+    height: 220px; /* Set a consistent height */
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    height: 220px; /* Set a compact height */
     box-sizing: border-box;
 }
 
 .resource-item h3 {
     color: #333333;
-    font-size: 1.2em;
-    margin: 0;
-    flex-shrink: 0; /* Ensure title stays at the top */
+    font-size: 1em; /* Slightly smaller title size */
+    margin: 5px 0;
 }
 
 .resource-item p {
     color: #666666;
-    font-size: 0.9em;
-    margin: 10px 0;
-    flex-grow: 1; /* Centers the paragraph text vertically */
+    font-size: 0.85em; /* Compact font size for description */
+    margin: 5px 0;
+    flex-grow: 1; /* Pushes the button down */
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
 }
 
 .resource-item button {
-    margin-top: 10px;
-    padding: 8px;
+    width: 100%;
+    padding: 6px 0; /* Smaller padding for buttons */
+    font-size: 0.9em;
     background-color: #cccccc;
     border: none;
     border-radius: 4px;
@@ -160,11 +159,9 @@ h2 {
     transition: background-color 0.3s;
 }
 
-/* Button hover effect */
 .resource-item button:hover {
     background-color: #dddddd;
 }
-
 /* Modal styling */
 .modal {
     display: none;
