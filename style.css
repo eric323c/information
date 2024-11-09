@@ -162,6 +162,7 @@ h2 {
 .resource-item button:hover {
     background-color: #dddddd;
 }
+
 /* Modal styling */
 .modal {
     display: none;
