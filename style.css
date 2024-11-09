@@ -124,39 +124,33 @@ h2 {
     text-align: center;
     flex: 0 1 200px;
     max-width: 250px;
-    height: 250px; /* Set a consistent height for all items */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box; /* Ensures padding doesn't affect the set height */
+    height: 220px; /* Set a compact height */
+    box-sizing: border-box;
 }
 
 .resource-item h3 {
     color: #333333;
     font-size: 1.2em;
     margin: 0;
-    padding: 5px 0;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    flex-shrink: 0; /* Ensure title stays at the top */
 }
 
 .resource-item p {
     color: #666666;
     font-size: 0.9em;
-    margin: 5px 0;
-    flex-grow: 1;
+    margin: 10px 0;
+    flex-grow: 1; /* Centers the paragraph text vertically */
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
 .resource-item button {
-    display: block;
-    width: 100%;
-    margin-top: auto; /* Ensures the button is aligned at the bottom */
+    margin-top: 10px;
     padding: 8px;
     background-color: #cccccc;
     border: none;
@@ -166,10 +160,11 @@ h2 {
     transition: background-color 0.3s;
 }
 
-/* Hover effect for buttons */
+/* Button hover effect */
 .resource-item button:hover {
     background-color: #dddddd;
 }
+
 /* Modal styling */
 .modal {
     display: none;
