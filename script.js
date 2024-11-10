@@ -77,6 +77,7 @@ function previewDocument(url) {
 function downloadDocument() {
     alert('Downloading document...');
 }
+
 // Function to open VA Guide in a new window with input fields
 function openVAGuide() {
     const guideContent = `
@@ -160,5 +161,3 @@ function openVAGuide() {
     guideWindow.document.write(guideContent);
     guideWindow.document.close();
 }
-
-
