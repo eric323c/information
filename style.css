@@ -196,3 +196,18 @@ h2 {
 .modal-title {
     font-weight: bold;
 }
+/* Container Icons */
+.container-icon {
+    width: 20px; /* Adjust size as needed */
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Favicon Next to Links */
+.favicon {
+    width: 16px; /* Favicon size */
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
