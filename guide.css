@@ -15,6 +15,7 @@
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
 /* Start Guide Modal */
@@ -54,11 +55,12 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* Overlay Content for Guide Text */
 .overlay-content {
     background-color: #fff;
     padding: 20px;
@@ -77,11 +79,12 @@
     cursor: pointer;
 }
 
-/* Highlight Box */
+/* Highlight Box for each step */
 #highlightBox {
     position: absolute;
-    border: 2px solid #3e5068;
+    border: 3px solid #3e5068;
     background-color: rgba(62, 80, 104, 0.2);
     z-index: 1002;
-    pointer-events: none;
+    display: none;
+    pointer-events: none; /* Prevent interaction with the highlighted area */
 }
