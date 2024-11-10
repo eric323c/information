@@ -177,6 +177,27 @@
                 </p>
                 <button onclick="visitWebsite('https://home.idm.cms.gov/sso/signin/login.html')">Visit</button>
             </div>
+            <!-- Floating Help Button -->
+<div id="helpButton" class="help-button">?</div>
+
+<!-- Start Guide Modal -->
+<div id="startGuideModal" class="guide-modal">
+    <div class="modal-content">
+        <h2>Need Help?</h2>
+        <p>Would you like a quick tour of how to use this website?</p>
+        <button onclick="startGuide()">Yes, show me</button>
+        <button onclick="closeGuide()">No, thanks</button>
+    </div>
+</div>
+
+<!-- Overlay for Guide Steps -->
+<div id="guideOverlay" class="guide-overlay" style="display: none;">
+    <div class="overlay-content">
+        <p id="guideText"></p>
+        <button onclick="nextStep()">Next</button>
+    </div>
+</div>
+
         </div>
     </div>
 
