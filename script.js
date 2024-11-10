@@ -78,7 +78,7 @@ function downloadDocument() {
     alert('Downloading document...');
 }
 
-// Function to open VA Guide in a new window with input fields
+// Function to open VA Guide as a pop-up with input fields that become uneditable on submission
 function openVAGuide() {
     const guideContent = `
         <html>
@@ -102,6 +102,7 @@ function openVAGuide() {
                     background-color: #f3f3f3; 
                     border: none; 
                     padding: 5px; 
+                    margin-bottom: 10px;
                 }
                 button { 
                     margin-top: 15px; 
@@ -150,7 +151,7 @@ function openVAGuide() {
 
             <script>
                 function submitVAForm() {
-                    // Get all input elements
+                    // Get all input elements and make them uneditable after submission
                     const inputs = document.querySelectorAll('input[type="text"]');
                     
                     inputs.forEach(input => {
@@ -159,7 +160,7 @@ function openVAGuide() {
                         uneditableText.className = 'uneditable-text';
                         uneditableText.textContent = input.value || "N/A";
                         
-                        // Replace input with uneditable text
+                        // Replace the input with uneditable text
                         input.parentNode.replaceChild(uneditableText, input);
                     });
                 }
@@ -168,6 +169,7 @@ function openVAGuide() {
         </html>
     `;
 
+    // Open a new window for the VA Guide with specified dimensions
     const guideWindow = window.open("", "VA Guide", "width=400,height=600");
     guideWindow.document.write(guideContent);
     guideWindow.document.close();
