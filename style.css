@@ -19,11 +19,11 @@ body {
 .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribute space to push script boxes to bottom */
+    justify-content: space-between;
     width: 250px;
     background-color: #2d3e50;
     padding: 20px;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
 }
 
 .sidebar h1 {
@@ -79,7 +79,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: auto; /* Pushes this section to the bottom of sidebar */
+    margin-top: auto;
 }
 .script-box button {
     margin-top: 10px;
@@ -109,6 +109,7 @@ h2 {
     margin-bottom: 20px;
     color: #333333;
 }
+
 .resource-container {
     display: flex;
     flex-wrap: wrap;
@@ -127,7 +128,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    min-height: 150px; /* Adjusted height */
+    min-height: 180px; /* Adjusted height to fit button at bottom */
 }
 
 .resource-item h3 {
@@ -135,6 +136,13 @@ h2 {
     font-size: 1.1em;
     margin: 0;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resource-item h3 .container-icon {
+    margin-right: 5px;
 }
 
 .resource-item p {
@@ -142,11 +150,19 @@ h2 {
     font-size: 0.9em;
     margin: 0;
     margin-bottom: 10px;
-    flex-grow: 1; /* Allows the paragraph to take up remaining space */
+    flex-grow: 1;
     display: flex;
-    align-items: center; /* Center-aligns text vertically */
-    justify-content: center; /* Center-aligns text horizontally */
+    align-items: center;
+    justify-content: center;
     text-align: center;
+}
+
+.resource-item a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #666666;
 }
 
 .resource-item button {
@@ -166,7 +182,6 @@ h2 {
     background-color: #dddddd;
 }
 
-
 /* Modal styling */
 .modal {
     display: none;
@@ -183,7 +198,7 @@ h2 {
     border: 1px solid #888;
     width: 100%;
     padding: 20px;
-    cursor: move; /* Hint to user that it's draggable */
+    cursor: move;
 }
 
 .modal-header {
@@ -196,9 +211,10 @@ h2 {
 .modal-title {
     font-weight: bold;
 }
+
 /* Container Icons */
 .container-icon {
-    width: 20px; /* Adjust size as needed */
+    width: 20px;
     height: 20px;
     margin-right: 8px;
     vertical-align: middle;
@@ -206,7 +222,7 @@ h2 {
 
 /* Favicon Next to Links */
 .favicon {
-    width: 16px; /* Favicon size */
+    width: 16px;
     height: 16px;
     margin-right: 5px;
     vertical-align: middle;
