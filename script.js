@@ -90,8 +90,28 @@ function openVAGuide() {
                 p { margin: 5px 0; }
                 hr { margin: 10px 0; }
                 label { font-weight: bold; margin-top: 10px; display: block; }
-                input[type="text"] { width: 100%; padding: 5px; margin: 5px 0 10px; border: 1px solid #ccc; border-radius: 4px; }
-                button { margin-top: 15px; padding: 8px 12px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+                input[type="text"], .uneditable-text { 
+                    width: 100%; 
+                    padding: 5px; 
+                    margin: 5px 0 10px; 
+                    border: 1px solid #ccc; 
+                    border-radius: 4px; 
+                    display: block;
+                }
+                .uneditable-text { 
+                    background-color: #f3f3f3; 
+                    border: none; 
+                    padding: 5px; 
+                }
+                button { 
+                    margin-top: 15px; 
+                    padding: 8px 12px; 
+                    background-color: #4CAF50; 
+                    color: white; 
+                    border: none; 
+                    border-radius: 4px; 
+                    cursor: pointer; 
+                }
                 button:hover { background-color: #45a049; }
             </style>
         </head>
@@ -130,27 +150,18 @@ function openVAGuide() {
 
             <script>
                 function submitVAForm() {
-                    const formData = {
-                        firstName: document.getElementById('firstName').value,
-                        lastName: document.getElementById('lastName').value,
-                        gender: document.getElementById('gender').value,
-                        dob: document.getElementById('dob').value,
-                        ssn: document.getElementById('ssn').value,
-                        address: document.getElementById('address').value,
-                        chiefComplaint: document.getElementById('chiefComplaint').value,
-                        arrivalTime: document.getElementById('arrivalTime').value,
-                        ambulance: document.getElementById('ambulance').value,
-                        admitted: document.getElementById('admitted').value,
-                        vaFormCompletion: document.getElementById('vaFormCompletion').value,
-                    };
-
-                    console.log("Submitted VA Form Data:", formData);
-                    alert("VA Reporting Information Submitted:\\n" + JSON.stringify(formData, null, 2));
-
-                    // Clear the form fields after submission
-                    for (let key in formData) {
-                        document.getElementById(key).value = '';
-                    }
+                    // Get all input elements
+                    const inputs = document.querySelectorAll('input[type="text"]');
+                    
+                    inputs.forEach(input => {
+                        // Create an uneditable text element to replace the input
+                        const uneditableText = document.createElement('div');
+                        uneditableText.className = 'uneditable-text';
+                        uneditableText.textContent = input.value || "N/A";
+                        
+                        // Replace input with uneditable text
+                        input.parentNode.replaceChild(uneditableText, input);
+                    });
                 }
             </script>
         </body>
