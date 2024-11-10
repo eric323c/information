@@ -108,7 +108,7 @@ body {
 
 /* Main Content Styling */
 .content {
-    flex-grow: 1; /* Allows content to grow to fill available space */
+    flex-grow: 1;
     margin-left: 250px; /* Offset for sidebar */
     padding: 20px;
     overflow-y: auto;
@@ -130,7 +130,7 @@ body {
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: calc(25% - 20px); /* Responsive width for larger screens */
+    width: calc(25% - 20px);
     min-width: 200px;
     max-width: 250px;
     display: flex;
@@ -183,15 +183,16 @@ body {
     background-color: #dddddd;
 }
 
-/* Modal styling */
+/* Modal styling for VA Guide */
 .modal {
     display: none;
     position: fixed;
     z-index: 1000;
-    left: 50px;
-    top: 50px;
-    width: 400px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.5);
+    width: 400px;
 }
 
 .modal-content {
@@ -199,18 +200,44 @@ body {
     border: 1px solid #888;
     width: 100%;
     padding: 20px;
-    cursor: move;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: grab;
+.modal-content h2 {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: #333333;
 }
 
-.modal-title {
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
     font-weight: bold;
+    color: #333333;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-content button {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #3e5068;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #2d3e50;
 }
 
 /* Container Icons */
