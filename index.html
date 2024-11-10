@@ -178,34 +178,27 @@
                 </p>
                 <button onclick="visitWebsite('https://home.idm.cms.gov/sso/signin/login.html')">Visit</button>
             </div>
-            <!-- Floating Help Button -->
-<div id="helpButton" class="help-button">?</div>
+  <!-- Help Button -->
+<button id="helpButton" class="help-button">?</button>
 
 <!-- Start Guide Modal -->
 <div id="startGuideModal" class="guide-modal">
     <div class="modal-content">
-        <h2>Need Help?</h2>
-        <p>Would you like a quick tour of how to use this website?</p>
+        <p>Need Help?<br>Would you like a quick tour of how to use this website?</p>
         <button onclick="startGuide()">Yes, show me</button>
         <button onclick="closeGuide()">No, thanks</button>
     </div>
 </div>
 
-<div id="startGuideModal" class="guide-modal">
-    <div class="modal-content">
-        <p>Need Help?</p>
-        <p>Would you like a quick tour of how to use this website?</p>
-        <button onclick="startGuide()">Yes, show me</button>
-        <button onclick="closeGuide()">No, thanks</button>
+<!-- Guide Overlay for Highlighted Steps -->
+<div id="guideOverlay" class="guide-overlay">
+    <div class="overlay-content">
+        <p id="guideText">Welcome to the Guide!</p>
+        <button id="nextStepButton">Next</button>
+        <button id="closeGuideButton">Close</button>
     </div>
-</div>
-
-<div id="guideOverlay" class="guide-overlay"></div>
-
-<div id="guideTextBox">
-    <p id="guideText"></p>
-    <button onclick="nextStep()">Next</button>
-    <button onclick="endGuide()">Close</button>
+    <!-- Highlight Box for each step -->
+    <div id="highlightBox"></div>
 </div>
 
         </div>
