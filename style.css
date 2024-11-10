@@ -107,8 +107,11 @@ body {
 }
 
 /* Main Content Styling */
+/* Main Content Styling - Reduced Width */
 .content {
-    margin-left: 280px; /* Matches sidebar width */
+    max-width: 1000px; /* Set a maximum width to prevent excessive white space */
+    margin-left: 250px; /* Align with the sidebar width */
+    margin-right: auto; /* Center content by setting auto margin */
     padding: 20px;
     background-color: #f9f9f9;
     overflow-y: auto;
