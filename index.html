@@ -20,19 +20,19 @@
             </ul>
         </nav>
         <!-- Container for the script boxes -->
-<div class="script-box-container">
-    <!-- First Script Box -->
-    <div class="script-box">
-        <p>PT VERIFIED PHONE # & SSN</p>
-        <button id="copyButton1" onclick="copyScript('PATIENT VERIFIED PHONE # & SSN', 'copyButton1')">Copy</button>
-    </div>
+        <div class="script-box-container">
+            <!-- First Script Box -->
+            <div class="script-box">
+                <p>PT VERIFIED PHONE # & SSN</p>
+                <button id="copyButton1" onclick="copyScript('PT VERIFIED PHONE # & SSN', 'copyButton1')">Copy</button>
+            </div>
 
-    <!-- Second Script Box -->
-    <div class="script-box">
-        <p>PATIENT VERIFIED NAME, DOB, SSN AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
-        <button id="copyButton2" onclick="copyScript('PATIENT VERIFIED NAME, DOB, SSN AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.', 'copyButton2')">Copy</button>
-    </div>
-</div>
+            <!-- Second Script Box -->
+            <div class="script-box">
+                <p>PATIENT VERIFIED NAME, DOB, SSN AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
+                <button id="copyButton2" onclick="copyScript('PATIENT VERIFIED NAME, DOB, SSN AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.', 'copyButton2')">Copy</button>
+            </div>
+        </div>
     </div>
 
     <!-- Main Content Area -->
@@ -46,60 +46,9 @@
                 <button onclick="downloadDocument()">Download</button>
             </div>
 
-            <div class="resource-item" data-type="documents">
-                <h3><img src="https://www.iconpacks.net/icons/1/free-document-icon-901-thumb.png" alt="Document Icon" class="container-icon"> Unadmitting</h3>
-                <p>A Guide To Un-Admit A Patient</p>
-                <button onclick="downloadDocument()">Download</button>
-            </div>
+            <!-- Additional Document and Website items go here -->
 
-            <div class="resource-item" data-type="documents">
-                <h3><img src="https://www.iconpacks.net/icons/1/free-document-icon-901-thumb.png" alt="Document Icon" class="container-icon"> VA Reporting</h3>
-                <p>A Cheat Sheet For Reports To VA</p>
-                <button onclick="downloadDocument()">Download</button>
-            </div>
-
-            <div class="resource-item" data-type="documents">
-                <h3><img src="https://www.iconpacks.net/icons/1/free-document-icon-901-thumb.png" alt="Document Icon" class="container-icon"> Baby Run!</h3>
-                <p>A Guide To Labor Checks, NST's and C-Sections</p>
-                <button onclick="downloadDocument()">Download</button>
-            </div>
-
-            <div class="resource-item" data-type="documents">
-                <h3><img src="https://www.iconpacks.net/icons/1/free-document-icon-901-thumb.png" alt="Document Icon" class="container-icon"> Downtime</h3>
-                <p>A Guide For Downtime</p>
-                <button onclick="downloadDocument()">Download</button>
-            </div>
-
-            <div class="resource-item" data-type="documents">
-                <h3><img src="https://www.iconpacks.net/icons/1/free-document-icon-901-thumb.png" alt="Document Icon" class="container-icon"> Eligibility Websites</h3>
-                <p>A Cheat Sheet for All Eligibility Websites</p>
-                <button onclick="downloadDocument()">Download</button>
-            </div>
-
-            <div class="resource-item" data-type="documents">
-                <h3><img src="https://www.iconpacks.net/icons/1/free-document-icon-901-thumb.png" alt="Document Icon" class="container-icon"> Work Queues</h3>
-                <p>A guide to completing and incomplete discharge</p>
-                <button onclick="downloadDocument()">Download</button>
-            </div>
-
-            <div class="resource-item" data-type="documents">
-                <h3><img src="https://www.iconpacks.net/icons/1/free-document-icon-901-thumb.png" alt="Document Icon" class="container-icon"> Admission Signatures</h3>
-                <p>A guide to explaining Admission Signatures and what they mean</p>
-                <button onclick="downloadDocument()">Download</button>
-            </div>
-
-            <!-- Website Containers -->
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=pennstatehealth.provider.ci.healthpay24.cloud" alt="HealthPay 24 Favicon" class="favicon">
-                    HealthPay 24
-                </h3>
-                <p>
-                    <a href="https://pennstatehealth.provider.ci.healthpay24.cloud/account/login?ReturnUrl=%2F" target="_blank">healthpay24.cloud</a>
-                </p>
-                <button onclick="visitWebsite('https://pennstatehealth.provider.ci.healthpay24.cloud/account/login?ReturnUrl=%2F')">Visit</button>
-            </div>
-
+            <!-- VA Portal with Guide Button -->
             <div class="resource-item" data-type="websites">
                 <h3>
                     <img src="https://www.google.com/s2/favicons?sz=32&domain=emergencycarereporting.communitycare.va.gov" alt="VA Portal Favicon" class="favicon">
@@ -111,75 +60,34 @@
                 <button onclick="visitWebsite('https://emergencycarereporting.communitycare.va.gov/#/request')">Visit</button>
                 <button onclick="openVAGuide()">VA Guide</button>
             </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=apps.availity.com" alt="Availity Favicon" class="favicon">
-                    Availity
-                </h3>
-                <p>
-                    <a href="https://apps.availity.com/web/onboarding/availity-fr-ui/" target="_blank">apps.availity.com</a>
-                </p>
-                <button onclick="visitWebsite('https://apps.availity.com/web/onboarding/availity-fr-ui/')">Visit</button>
-            </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=promise.dhs.pa.gov" alt="PROMISe Favicon" class="favicon">
-                    PROMISe
-                </h3>
-                <p>
-                    <a href="https://promise.dhs.pa.gov/portal/provider/Home/tabid/135/Default.aspx" target="_blank">promise.dhs.pa.gov</a>
-                </p>
-                <button onclick="visitWebsite('https://promise.dhs.pa.gov/portal/provider/Home/tabid/135/Default.aspx')">Visit</button>
-            </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=teams.microsoft.com" alt="Microsoft Teams Favicon" class="favicon">
-                    Microsoft Teams
-                </h3>
-                <p>
-                    <a href="https://teams.microsoft.com/v2/" target="_blank">teams.microsoft.com</a>
-                </p>
-                <button onclick="visitWebsite('https://teams.microsoft.com/v2/')">Visit</button>
-            </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=identity.navinet.net" alt="NaviNet Favicon" class="favicon">
-                    NaviNet
-                </h3>
-                <p>
-                    <a href="https://identity.navinet.net/Account/Login" target="_blank">identity.navinet.net</a>
-                </p>
-                <button onclick="visitWebsite('https://identity.navinet.net/Account/Login')">Visit</button>
-            </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=outlook.office.com" alt="Outlook Favicon" class="favicon">
-                    Outlook
-                </h3>
-                <p>
-                    <a href="https://outlook.office.com/mail/" target="_blank">outlook.office.com</a>
-                </p>
-                <button onclick="visitWebsite('https://outlook.office.com/mail/')">Visit</button>
-            </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=home.idm.cms.gov" alt="Novitasphere Favicon" class="favicon">
-                    Novitasphere
-                </h3>
-                <p>
-                    <a href="https://home.idm.cms.gov/sso/signin/login.html" target="_blank">novitasphere.com</a>
-                </p>
-                <button onclick="visitWebsite('https://home.idm.cms.gov/sso/signin/login.html')">Visit</button>
-            </div>
         </div>
     </div>
 
+    <!-- VA Guide Modal -->
+    <div id="vaGuideModal" class="modal">
+        <div class="modal-content">
+            <h2>VA Reporting Information</h2>
+            
+            <!-- Form Inputs for Patient Info -->
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" placeholder="Enter patient's name">
+            
+            <label for="patientDOB">Date of Birth:</label>
+            <input type="date" id="patientDOB">
+            
+            <label for="insurance">Insurance:</label>
+            <input type="text" id="insurance" placeholder="Enter insurance details">
+            
+            <!-- Submit and Edit Buttons -->
+            <button id="submitInfoButton">Submit</button>
+            <button id="editInfoButton" style="display: none;">Edit</button>
+            
+            <!-- Close Button -->
+            <button onclick="closeVAGuide()">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
