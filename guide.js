@@ -14,15 +14,40 @@ const steps = [
     },
     {
         element: "#documentSection",
-        text: "These are your Documents. Icons here indicate types of documents available.",
+        text: "These are your Documents. Icons here indicate types of documents available. Click on a document to download or view more details.",
+        action: () => { /* No special action */ }
+    },
+    {
+        element: "#websiteSection",
+        text: "This is the Websites section, where you can access important online resources. Click 'Visit' to open each site.",
+        action: () => { /* No special action */ }
+    },
+    {
+        element: "#searchBar",
+        text: "Use this Search bar to quickly find documents, emails, or websites by typing keywords.",
+        action: () => { /* No special action */ }
+    },
+    {
+        element: "#sidebar",
+        text: "This is the Sidebar. Navigate between Home, Documents, Emails, and Websites sections.",
         action: () => { /* No special action */ }
     },
     {
         element: "#vaGuideButton",
-        text: "Click this VA Guide button to open a special module for VA reporting information.",
+        text: "Click this VA Guide button to open a special module for VA reporting information. The module helps you fill out details easily.",
         action: () => document.querySelector("#vaGuideButton").click()
     },
-    // Add more steps as needed for other elements
+    {
+        element: "#resourceContainer",
+        text: "Here are all your resources, categorized into Documents and Websites for quick access.",
+        action: () => { /* No special action */ }
+    },
+    {
+        element: "#helpButton",
+        text: "This button at the bottom right opens the guide anytime you need assistance.",
+        action: () => { /* No special action */ }
+    },
+    // Add more steps as needed for any other elements
 ];
 
 // Start the guide by displaying the first step
@@ -42,9 +67,15 @@ function showStep() {
         const rect = element.getBoundingClientRect();
         document.getElementById("guideText").innerText = step.text;
         
-        // Highlight the element (optional)
+        // Position guide text near the highlighted element
+        document.getElementById("guideText").style.top = `${rect.top + window.scrollY + rect.height + 10}px`;
+        document.getElementById("guideText").style.left = `${rect.left}px`;
+        
+        // Highlight the element
         element.style.border = "2px solid #3e5068";
-        step.action(); // Perform any action needed for this step
+        
+        // Perform any action needed for this step
+        step.action();
     }
 }
 
