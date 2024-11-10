@@ -12,40 +12,41 @@ body {
     height: 100vh;
     background-color: #f3f3f3;
     color: #333;
-    overflow: hidden; /* Prevents body scroll */
+    overflow-x: hidden; /* Prevents horizontal overflow */
 }
 
-/* Sidebar Styling */
+/* Sidebar Styling with Fixed Position and Adjusted Layout */
 .sidebar {
     position: fixed;
     left: 0;
     top: 0;
-    width: 280px; /* Adjusted width for better readability */
+    width: 250px;
     background-color: #2d3e50;
     display: flex;
     flex-direction: column;
     padding: 20px;
     height: 100vh;
-    overflow-y: hidden; /* Prevents scrolling within the sidebar */
+    overflow-y: auto; /* Adds scrolling if content overflows */
+    z-index: 1000;
 }
 
-/* Styling for search bar, title, and navigation */
+/* Sidebar search bar, title, and navigation styling */
 .sidebar .search-bar {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 8px;
+    margin-bottom: 15px;
     border: none;
     border-radius: 4px;
 }
 
 .sidebar h1 {
     color: #ffffff;
-    font-size: 1.6em; /* Slightly larger for readability */
+    font-size: 1.5em;
     margin-bottom: 20px;
 }
 
 .sidebar nav {
-    margin-top: 10px; /* Adds some space between title and navigation */
+    margin-top: 20px;
 }
 
 .sidebar nav ul {
@@ -54,7 +55,7 @@ body {
 }
 
 .sidebar nav ul li {
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .sidebar nav ul li a {
@@ -76,24 +77,23 @@ body {
 
 /* Script Box Styling */
 .script-box-container {
-    margin-top: auto; /* Ensures this container stays at the bottom */
+    margin-top: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .script-box {
-    padding: 12px;
+    padding: 10px;
     background-color: #3e5068;
     border-radius: 5px;
     color: #ffffff;
     text-align: center;
-    font-size: 14px;
 }
 
 .script-box button {
     margin-top: 10px;
-    padding: 6px 12px;
+    padding: 5px 10px;
     background-color: #2d3e50;
     border: none;
     border-radius: 4px;
@@ -107,28 +107,21 @@ body {
 }
 
 /* Main Content Styling */
-/* Main Content Styling - Reduced Width */
 .content {
-    max-width: 1000px; /* Set a maximum width to prevent excessive white space */
-    margin-left: 250px; /* Align with the sidebar width */
-    margin-right: auto; /* Center content by setting auto margin */
+    flex-grow: 1; /* Allows content to grow to fill available space */
+    margin-left: 250px; /* Offset for sidebar */
     padding: 20px;
-    background-color: #f9f9f9;
     overflow-y: auto;
     height: 100vh;
+    background-color: #f9f9f9;
 }
 
-h2 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    color: #333333;
-}
-
+/* Responsive Resource Container and Item Styling */
 .resource-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    align-content: flex-start;
+    justify-content: flex-start;
 }
 
 .resource-item {
@@ -137,7 +130,9 @@ h2 {
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 200px;
+    width: calc(25% - 20px); /* Responsive width for larger screens */
+    min-width: 200px;
+    max-width: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,8 +168,8 @@ h2 {
 
 .resource-item button {
     width: 90%;
-    padding: 10px;
-    font-size: 0.95em;
+    padding: 8px;
+    font-size: 0.9em;
     background-color: #cccccc;
     border: none;
     border-radius: 4px;
@@ -235,15 +230,29 @@ h2 {
 }
 
 /* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .resource-item {
+        width: calc(33.333% - 20px); /* 3 items per row */
+    }
+}
+
 @media (max-width: 768px) {
     .sidebar {
-        position: relative;
         width: 100%;
         height: auto;
-        padding: 10px;
     }
 
     .content {
         margin-left: 0;
+    }
+
+    .resource-item {
+        width: calc(50% - 20px); /* 2 items per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .resource-item {
+        width: 100%; /* 1 item per row on very small screens */
     }
 }
