@@ -14,44 +14,56 @@ body {
     color: #333;
 }
 
-/* Sidebar Styling with Fixed Position and Responsive Adjustments */
+/* Sidebar Styling with Fixed Position and Adjusted Layout */
 .sidebar {
     position: fixed;
     left: 0;
     top: 0;
-    bottom: 0;
     width: 250px;
     background-color: #2d3e50;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 20px;
     height: 100vh;
+    overflow-y: auto; /* Adds scrolling if content overflows */
+}
+
+/* Styling for search bar, title, and navigation */
+.sidebar .search-bar {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
 }
 
 .sidebar h1 {
     color: #ffffff;
-    margin-bottom: 20px;
     font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.sidebar nav {
+    margin-top: 20px; /* Adds some space between title and navigation */
 }
 
 .sidebar nav ul {
     list-style-type: none;
-    width: 100%;
+    padding: 0;
 }
 
 .sidebar nav ul li {
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .sidebar nav ul li a {
     color: #cccccc;
     text-decoration: none;
     font-size: 18px;
-    display: block;
     padding: 8px;
     text-align: center;
     border-radius: 4px;
+    display: block;
     transition: background-color 0.3s;
 }
 
@@ -61,29 +73,20 @@ body {
     color: #ffffff;
 }
 
-.sidebar .search-bar {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 4px;
+/* Script Box Styling */
+.script-box-container {
+    margin-top: auto; /* Ensures this container stays at the bottom */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/* Sidebar Script Box Styling */
 .script-box {
-    margin-top: 10px;
     padding: 10px;
     background-color: #3e5068;
     border-radius: 5px;
     color: #ffffff;
     text-align: center;
-}
-
-.script-box-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: auto;
 }
 
 .script-box button {
