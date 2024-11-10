@@ -12,10 +12,9 @@ body {
     height: 100vh;
     background-color: #f3f3f3;
     color: #333;
-    overflow: hidden;
 }
 
-/* Sidebar Styling with Flexbox to push script boxes to the bottom */
+/* Sidebar Styling with Fixed Position and Responsive Adjustments */
 .sidebar {
     position: fixed;
     left: 0;
@@ -79,12 +78,14 @@ body {
     color: #ffffff;
     text-align: center;
 }
+
 .script-box-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: auto;
 }
+
 .script-box button {
     margin-top: 10px;
     padding: 5px 10px;
@@ -102,7 +103,7 @@ body {
 
 /* Main Content Styling */
 .content {
-    margin-left: 250px; /* Same width as the sidebar */
+    margin-left: 250px;
     padding: 20px;
     background-color: #f9f9f9;
     overflow-y: auto;
@@ -133,7 +134,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    min-height: 180px; /* Adjusted height to fit button at bottom */
+    min-height: 180px;
 }
 
 .resource-item h3 {
@@ -160,14 +161,6 @@ h2 {
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-.resource-item a {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    text-decoration: none;
-    color: #666666;
 }
 
 .resource-item button {
@@ -225,10 +218,24 @@ h2 {
     vertical-align: middle;
 }
 
-/* Favicon Next to Links */
+/* Favicon for Website Icons in Header */
 .favicon {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
     vertical-align: middle;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .content {
+        margin-left: 0;
+    }
 }
