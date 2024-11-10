@@ -17,11 +17,15 @@ body {
 
 /* Sidebar Styling with Flexbox to push script boxes to the bottom */
 .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #2d3e50;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 250px;
-    background-color: #2d3e50;
     padding: 20px;
     height: 100vh;
 }
@@ -98,10 +102,11 @@ body {
 
 /* Main Content Styling */
 .content {
-    flex: 1;
+    margin-left: 250px; /* Same width as the sidebar */
     padding: 20px;
-    overflow-y: auto;
     background-color: #f9f9f9;
+    overflow-y: auto;
+    height: 100vh;
 }
 
 h2 {
