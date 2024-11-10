@@ -191,12 +191,21 @@
     </div>
 </div>
 
-<!-- Overlay for Guide Steps -->
-<div id="guideOverlay" class="guide-overlay" style="display: none;">
-    <div class="overlay-content">
-        <p id="guideText"></p>
-        <button onclick="nextStep()">Next</button>
+<div id="startGuideModal" class="guide-modal">
+    <div class="modal-content">
+        <p>Need Help?</p>
+        <p>Would you like a quick tour of how to use this website?</p>
+        <button onclick="startGuide()">Yes, show me</button>
+        <button onclick="closeGuide()">No, thanks</button>
     </div>
+</div>
+
+<div id="guideOverlay" class="guide-overlay"></div>
+
+<div id="guideTextBox">
+    <p id="guideText"></p>
+    <button onclick="nextStep()">Next</button>
+    <button onclick="endGuide()">Close</button>
 </div>
 
         </div>
