@@ -12,6 +12,7 @@ body {
     height: 100vh;
     background-color: #f3f3f3;
     color: #333;
+    overflow: hidden; /* Prevents body scroll */
 }
 
 /* Sidebar Styling */
@@ -19,13 +20,13 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    width: 260px; /* Slightly wider for larger font */
+    width: 280px; /* Adjusted width for better readability */
     background-color: #2d3e50;
     display: flex;
     flex-direction: column;
     padding: 20px;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: hidden; /* Prevents scrolling within the sidebar */
 }
 
 /* Styling for search bar, title, and navigation */
@@ -44,7 +45,7 @@ body {
 }
 
 .sidebar nav {
-    margin-top: 10px; /* Adjust spacing for cleaner layout */
+    margin-top: 10px; /* Adds some space between title and navigation */
 }
 
 .sidebar nav ul {
@@ -107,7 +108,7 @@ body {
 
 /* Main Content Styling */
 .content {
-    margin-left: 260px; /* Adjusted to match the sidebar width */
+    margin-left: 280px; /* Matches sidebar width */
     padding: 20px;
     background-color: #f9f9f9;
     overflow-y: auto;
