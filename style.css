@@ -12,14 +12,15 @@ body {
     height: 100vh;
     background-color: #f3f3f3;
     color: #333;
+    overflow-x: hidden; /* Prevents horizontal scroll from sidebar */
 }
 
-/* Sidebar Styling with Fixed Position and Adjusted Layout */
+/* Sidebar Styling with Fixed Position */
 .sidebar {
     position: fixed;
     left: 0;
     top: 0;
-    width: 300px; /* Increased width for sidebar */
+    width: 270px; /* Moderate increase */
     background-color: #2d3e50;
     display: flex;
     flex-direction: column;
@@ -28,40 +29,35 @@ body {
     overflow-y: auto;
 }
 
-/* Styling for search bar, title, and navigation */
+/* Sidebar Search, Title, and Navigation Styling */
 .sidebar .search-bar {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 8px;
+    margin-bottom: 15px;
     border: none;
     border-radius: 4px;
-    font-size: 16px; /* Increased font size */
+    font-size: 15px; /* Slightly increased font size */
 }
 
 .sidebar h1 {
     color: #ffffff;
-    font-size: 1.8em; /* Increased font size */
+    font-size: 1.6em; /* Slight increase */
     margin-bottom: 20px;
-}
-
-.sidebar nav {
-    margin-top: 20px;
 }
 
 .sidebar nav ul {
     list-style-type: none;
-    padding: 0;
 }
 
 .sidebar nav ul li {
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .sidebar nav ul li a {
     color: #cccccc;
     text-decoration: none;
-    font-size: 20px; /* Increased font size */
-    padding: 10px;
+    font-size: 17px; /* Slight increase */
+    padding: 8px;
     text-align: center;
     border-radius: 4px;
     display: block;
@@ -79,28 +75,28 @@ body {
     margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
 }
 
 .script-box {
-    padding: 15px;
+    padding: 10px;
     background-color: #3e5068;
     border-radius: 5px;
     color: #ffffff;
     text-align: center;
-    font-size: 16px; /* Increased font size */
+    font-size: 15px; /* Slightly increased */
 }
 
 .script-box button {
-    margin-top: 10px;
-    padding: 8px 12px;
+    margin-top: 8px;
+    padding: 5px 10px;
     background-color: #2d3e50;
     border: none;
     border-radius: 4px;
     color: #ffffff;
     cursor: pointer;
+    font-size: 15px; /* Slightly increased */
     transition: background-color 0.3s;
-    font-size: 16px; /* Increased font size */
 }
 
 .script-box button:hover {
@@ -109,7 +105,7 @@ body {
 
 /* Main Content Styling */
 .content {
-    margin-left: 300px; /* Adjusted for wider sidebar */
+    margin-left: 270px; /* Align with sidebar width */
     padding: 20px;
     background-color: #f9f9f9;
     overflow-y: auto;
@@ -117,7 +113,7 @@ body {
 }
 
 h2 {
-    font-size: 2em; /* Increased font size */
+    font-size: 1.8em;
     margin-bottom: 20px;
     color: #333333;
 }
@@ -132,20 +128,20 @@ h2 {
 .resource-item {
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 220px; /* Adjusted width for slightly larger content */
+    width: 220px; /* Slightly larger for readability */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    min-height: 200px; /* Adjusted height to fit button at bottom */
+    min-height: 180px;
 }
 
 .resource-item h3 {
     color: #333333;
-    font-size: 1.2em; /* Increased font size */
+    font-size: 1.1em;
     margin: 0;
     margin-bottom: 10px;
     display: flex;
@@ -153,13 +149,9 @@ h2 {
     justify-content: center;
 }
 
-.resource-item h3 .container-icon {
-    margin-right: 5px;
-}
-
 .resource-item p {
     color: #666666;
-    font-size: 1em; /* Increased font size */
+    font-size: 1em; /* Slightly increased */
     margin: 0;
     margin-bottom: 10px;
     flex-grow: 1;
@@ -171,8 +163,8 @@ h2 {
 
 .resource-item button {
     width: 90%;
-    padding: 10px;
-    font-size: 1em; /* Increased font size */
+    padding: 8px;
+    font-size: 1em;
     background-color: #cccccc;
     border: none;
     border-radius: 4px;
@@ -218,8 +210,8 @@ h2 {
 
 /* Container Icons */
 .container-icon {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     margin-right: 8px;
     vertical-align: middle;
 }
