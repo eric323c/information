@@ -283,3 +283,12 @@ body {
         width: 100%; /* 1 item per row on very small screens */
     }
 }
+/* Background color for websites */
+.resource-item[data-type="websites"] {
+    background-color: #f2f4f8; /* Light grey for websites */
+}
+
+/* Background color for documents */
+.resource-item[data-type="documents"] {
+    background-color: #ffffff; /* White for documents */
+}
