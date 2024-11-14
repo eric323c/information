@@ -283,20 +283,3 @@ body {
         width: 100%; /* 1 item per row on very small screens */
     }
 }
-/* Section titles styling */
-.section-title {
-    text-align: center;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-top: 0;
-    padding: 10px 0;
-    color: #333;
-}
-/* Different background colors for each section */
-.websites-section {
-    background-color: #f2f4f8; /* Light grey background for websites */
-}
-
-.documents-section {
-    background-color: #e8ebf0; /* Slightly darker grey for documents */
-}
