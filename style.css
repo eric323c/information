@@ -292,46 +292,62 @@ body {
 .resource-item[data-type="documents"] {
     background-color: #ffffff; /* White for documents */
 }
-/* Sidebar Button */
-.sidebar-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
+/* Login Container */
+#login-container, #main-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
-.sidebar-button:hover {
-    background-color: #45a049;
+#login-container h1, #main-container h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
 }
 
-/* Modal */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1000;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    max-width: 90%;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    padding: 20px;
+.form-group {
+  margin-bottom: 15px;
 }
 
-.modal-content .close {
-    float: right;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
 }
 
-.modal-content .close:hover {
-    color: black;
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#login-button, #logout-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2em;
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#login-button:hover, #logout-button:hover {
+  background-color: #e04e4e;
+}
+
+#error-message {
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: red;
+  text-align: center;
 }
