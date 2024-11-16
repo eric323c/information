@@ -176,23 +176,57 @@ function openVAGuide() {
 }
 import { signUpUser, logInUser } from './auth.js';
 
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('registerEmail').value;
-  const password = document.getElementById('registerPassword').value;
-  const name = document.getElementById('registerName').value || null;
-  const avatar_url = document.getElementById('registerAvatar').value || null;
-
-  await signUpUser(email, password, name, avatar_url);
+// Open the modal
+document.getElementById('authModalButton').addEventListener('click', () => {
+    document.getElementById('authModal').style.display = 'block';
 });
 
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
-
-  await logInUser(email, password);
-});
-function fetchDocuments() {
-    console.log("fetchDocuments function called, but it isn't implemented yet.");
+// Close the modal
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
 }
+
+// Toggle between Login and Sign Up forms
+function toggleAuth(formType) {
+    const loginFormContainer = document.getElementById('loginFormContainer');
+    const registerFormContainer = document.getElementById('registerFormContainer');
+
+    if (formType === 'login') {
+        loginFormContainer.style.display = 'block';
+        registerFormContainer.style.display = 'none';
+    } else {
+        loginFormContainer.style.display = 'none';
+        registerFormContainer.style.display = 'block';
+    }
+}
+
+// Add event listener for the sign-up form
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+    const name = document.getElementById('registerName').value;
+
+    const result = await signUpUser(email, password, name);
+    if (result) {
+        document.getElementById('signupMessage').textContent = 'Sign-up successful! Please check your email.';
+        toggleAuth('login'); // Switch to login form after sign-up
+    } else {
+        document.getElementById('signupMessage').textContent = 'Error during sign-up. Please try again.';
+    }
+});
+
+// Add event listener for the login form
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    const result = await logInUser(email, password);
+    if (result) {
+        document.getElementById('loginMessage').textContent = 'Login successful!';
+        closeAuthModal(); // Close the modal after successful login
+    } else {
+        document.getElementById('loginMessage').textContent = 'Invalid email or password. Please try again.';
+    }
+});
