@@ -12,7 +12,8 @@
     <div class="sidebar">
         <input type="text" class="search-bar" placeholder="Search for documents, emails, websites...">
         <h1>Registration Hub</h1>
-        <button id="authButton" class="sidebar-button">Login / Sign Up</button>
+        <!-- Login/Sign-Up Button -->
+        <button id="authModalButton" class="open-modal-button">Login / Sign Up</button>
         <nav>
             <ul>
                 <li><a href="#" data-section="home">Home</a></li>
@@ -401,37 +402,41 @@
             <button onclick="closeVAGuide()">Close</button>
         </div>
     </div>
-<div id="authModal" class="modal">
-  <div class="modal-content">
-    <span id="modalClose" class="close">&times;</span>
-    <div id="loginFormContainer">
-      <h2>Login</h2>
-      <form id="loginForm">
-        <label for="loginEmail">Email:</label>
-        <input type="email" id="loginEmail" required>
-        <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" required>
-        <button type="submit">Log In</button>
-        <p id="loginMessage"></p>
-        <p>Don't have an account? <a id="showSignUp" href="#">Sign Up</a></p>
-      </form>
+   <!-- Login/Sign-Up Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span id="modalClose" class="close">&times;</span>
+            <div id="loginFormContainer">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required>
+                    <button type="submit">Log In</button>
+                    <p id="loginMessage"></p>
+                    <p>Don't have an account? <span id="showSignUp">Sign Up</span></p>
+                </form>
+            </div>
+            <div id="registerFormContainer" style="display: none;">
+                <h2>Sign Up</h2>
+                <form id="registerForm">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
+                    <label for="registerPassword">Password:</label>
+                    <input type="password" id="registerPassword" required>
+                    <label for="registerName">Name:</label>
+                    <input type="text" id="registerName" required>
+                    <button type="submit">Sign Up</button>
+                    <p id="signupMessage"></p>
+                    <p>Already have an account? <span id="showLogin">Login</span></p>
+                </form>
+            </div>
+        </div>
     </div>
-    <div id="registerFormContainer" style="display: none;">
-      <h2>Sign Up</h2>
-      <form id="registerForm">
-        <label for="registerEmail">Email:</label>
-        <input type="email" id="registerEmail" required>
-        <label for="registerPassword">Password:</label>
-        <input type="password" id="registerPassword" required>
-        <label for="registerName">Name:</label>
-        <input type="text" id="registerName" required>
-        <button type="submit">Sign Up</button>
-        <p id="signupMessage"></p>
-        <p>Already have an account? <a id="showLogin" href="#">Log In</a></p>
-      </form>
-    </div>
-  </div>
-</div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
 <script type="module" src="script.js"></script>
 <script type="module" src="auth.js"></script>
 <script type="module" src="supabase.js"></script>
