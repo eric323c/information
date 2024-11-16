@@ -292,3 +292,104 @@ body {
 .resource-item[data-type="documents"] {
     background-color: #ffffff; /* White for documents */
 }
+/* Login/Signup Modal Styling */
+#authModal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90%; /* Adjust for smaller screens */
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+/* Modal Content */
+#authModal .modal-content {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Close Button */
+#authModal .modal-content .close {
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+#authModal .modal-content .close:hover {
+    color: #000;
+}
+
+/* Login and Signup Form Styling */
+#authContainer {
+    text-align: center;
+}
+
+#authContainer h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#authContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#authContainer form label {
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+#authContainer form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#authContainer form button {
+    padding: 10px 20px;
+    background-color: #3e5068;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#authContainer form button:hover {
+    background-color: #2d3e50;
+}
+
+/* Toggle Links for Login/Signup Forms */
+#authContainer p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#authContainer p a:hover {
+    text-decoration: underline;
+}
+
+/* Feedback Messages */
+#authContainer #loginMessage,
+#authContainer #signupMessage {
+    font-size: 14px;
+    margin-top: 10px;
+    color: red; /* Default error message color */
+    text-align: center;
+}
