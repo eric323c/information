@@ -411,11 +411,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const showSignUp = document.getElementById('showSignUp');
   const showLogin = document.getElementById('showLogin');
   const modalClose = document.getElementById('modalClose');
-  const authModalButton = document.getElementById('authModalButton'); // Correct ID
+  const authModalButton = document.getElementById('authModalButton');
   const signupMessage = document.getElementById('signupMessage');
   const loginMessage = document.getElementById('loginMessage');
 
-  // Ensure elements exist to avoid errors
+  // Ensure elements exist to avoid runtime errors
   if (!modal || !loginFormContainer || !registerFormContainer) {
     console.error('Authentication modal or form containers are missing.');
     return;
@@ -500,6 +500,7 @@ function toggleAuthForm(formType) {
     registerFormContainer.style.display = 'block';
   }
 }
+
 <script type="module" src="script.js"></script>
 <script type="module" src="auth.js"></script>
 <script type="module" src="supabase.js"></script>
