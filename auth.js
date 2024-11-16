@@ -5,33 +5,18 @@ export async function signUpUser(email, password, name, avatar_url) {
         const { user, error } = await supabase.auth.signUp({
             email,
             password,
+            options: {
+                data: { name, avatar_url },
+            },
         });
 
         if (error) {
-            console.error('Error signing up:', error);
-            alert(`Sign up failed: ${error.message}`);
-            return;
+            throw error;
         }
 
-        // Insert additional profile data into `users` table
-        const { data, error: insertError } = await supabase
-            .from('users')
-            .insert([
-                {
-                    id: user.id,
-                    name: name,
-                    avatar_url: avatar_url,
-                },
-            ]);
-
-        if (insertError) {
-            console.error('Error inserting user profile:', insertError);
-            alert(`Profile creation failed: ${insertError.message}`);
-        } else {
-            alert('Sign up successful! Welcome!');
-        }
-    } catch (e) {
-        console.error('Unexpected error:', e);
-        alert('Unexpected error occurred. Check console for details.');
+        alert('Sign-up successful! Please check your email to confirm.');
+    } catch (error) {
+        console.error('Sign-up error:', error.message);
+        alert(`Error: ${error.message}`);
     }
 }
