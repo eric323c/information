@@ -1,55 +1,34 @@
 import { supabase } from './supabase.js';
 
-// Sign Up User
+// Sign-Up User
 export async function signUpUser(email, password, name = null) {
   try {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: {
-          name,
-        },
+        data: { name },
       },
     });
 
     if (error) throw error;
-
-    alert('Sign up successful! Please check your email for verification.');
     return data;
   } catch (err) {
-    alert(`Error signing up: ${err.message}`);
-    console.error(err);
+    console.error('Error signing up:', err.message);
+    return null;
   }
 }
 
-// Log In User
+// Log-In User
 export async function logInUser(email, password) {
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) throw error;
-
-    alert('Login successful!');
     return data;
   } catch (err) {
-    alert(`Error logging in: ${err.message}`);
-    console.error(err);
+    console.error('Error logging in:', err.message);
+    return null;
   }
 }
 
-// Log Out User
-export async function logOutUser() {
-  try {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
-
-    alert('Logged out successfully!');
-  } catch (err) {
-    alert(`Error logging out: ${err.message}`);
-    console.error(err);
-  }
-}
