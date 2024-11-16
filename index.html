@@ -401,106 +401,37 @@
             <button onclick="closeVAGuide()">Close</button>
         </div>
     </div>
-import { signUpUser, logInUser } from './auth.js';
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Modal and Form Elements
-  const modal = document.getElementById('authModal');
-  const loginFormContainer = document.getElementById('loginFormContainer');
-  const registerFormContainer = document.getElementById('registerFormContainer');
-  const showSignUp = document.getElementById('showSignUp');
-  const showLogin = document.getElementById('showLogin');
-  const modalClose = document.getElementById('modalClose');
-  const authModalButton = document.getElementById('authModalButton');
-  const signupMessage = document.getElementById('signupMessage');
-  const loginMessage = document.getElementById('loginMessage');
-
-  // Ensure elements exist to avoid runtime errors
-  if (!modal || !loginFormContainer || !registerFormContainer) {
-    console.error('Authentication modal or form containers are missing.');
-    return;
-  }
-
-  // Open Modal
-  authModalButton.addEventListener('click', () => {
-    modal.style.display = 'block';
-    loginFormContainer.style.display = 'block'; // Default to login form
-    registerFormContainer.style.display = 'none';
-  });
-
-  // Close Modal
-  modalClose.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-
-  // Switch to Sign-Up
-  showSignUp.addEventListener('click', () => {
-    loginFormContainer.style.display = 'none';
-    registerFormContainer.style.display = 'block';
-  });
-
-  // Switch to Login
-  showLogin.addEventListener('click', () => {
-    registerFormContainer.style.display = 'none';
-    loginFormContainer.style.display = 'block';
-  });
-
-  // Handle Sign-Up Form Submission
-  document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('registerEmail').value.trim();
-    const password = document.getElementById('registerPassword').value.trim();
-    const name = document.getElementById('registerName').value.trim();
-
-    if (!email || !password || !name) {
-      signupMessage.textContent = 'All fields are required.';
-      return;
-    }
-
-    const result = await signUpUser(email, password, name);
-    if (result) {
-      signupMessage.textContent = 'Sign-up successful! Please check your email.';
-      toggleAuthForm('login'); // Switch to login after sign-up
-    } else {
-      signupMessage.textContent = 'Error during sign-up. Please try again.';
-    }
-  });
-
-  // Handle Login Form Submission
-  document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value.trim();
-
-    if (!email || !password) {
-      loginMessage.textContent = 'Email and password are required.';
-      return;
-    }
-
-    const result = await logInUser(email, password);
-    if (result) {
-      loginMessage.textContent = 'Login successful!';
-      modal.style.display = 'none'; // Close modal on success
-    } else {
-      loginMessage.textContent = 'Invalid email or password. Please try again.';
-    }
-  });
-});
-
-// Helper function to toggle between login and sign-up forms
-function toggleAuthForm(formType) {
-  const loginFormContainer = document.getElementById('loginFormContainer');
-  const registerFormContainer = document.getElementById('registerFormContainer');
-
-  if (formType === 'login') {
-    loginFormContainer.style.display = 'block';
-    registerFormContainer.style.display = 'none';
-  } else if (formType === 'register') {
-    loginFormContainer.style.display = 'none';
-    registerFormContainer.style.display = 'block';
-  }
-}
-
+<div id="authModal" class="modal">
+  <div class="modal-content">
+    <span id="modalClose" class="close">&times;</span>
+    <div id="loginFormContainer">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" required>
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required>
+        <button type="submit">Log In</button>
+        <p id="loginMessage"></p>
+        <p>Don't have an account? <a id="showSignUp" href="#">Sign Up</a></p>
+      </form>
+    </div>
+    <div id="registerFormContainer" style="display: none;">
+      <h2>Sign Up</h2>
+      <form id="registerForm">
+        <label for="registerEmail">Email:</label>
+        <input type="email" id="registerEmail" required>
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" required>
+        <label for="registerName">Name:</label>
+        <input type="text" id="registerName" required>
+        <button type="submit">Sign Up</button>
+        <p id="signupMessage"></p>
+        <p>Already have an account? <a id="showLogin" href="#">Log In</a></p>
+      </form>
+    </div>
+  </div>
+</div>
 <script type="module" src="script.js"></script>
 <script type="module" src="auth.js"></script>
 <script type="module" src="supabase.js"></script>
