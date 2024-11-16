@@ -174,3 +174,42 @@ function openVAGuide() {
     guideWindow.document.write(guideContent);
     guideWindow.document.close();
 }
+// Function to open the login/signup modal
+function openModal() {
+    const authModal = document.getElementById('authModal');
+    if (authModal) {
+        authModal.style.display = 'block';
+    } else {
+        console.error('Auth modal not found');
+    }
+}
+
+// Function to close the modal
+function closeModal() {
+    const authModal = document.getElementById('authModal');
+    if (authModal) {
+        authModal.style.display = 'none';
+    }
+}
+
+// Function to toggle between login and signup forms in the modal
+function toggleAuth(formType) {
+    const loginFormContainer = document.getElementById('loginFormContainer');
+    const registerFormContainer = document.getElementById('registerFormContainer');
+
+    if (formType === 'login') {
+        loginFormContainer.style.display = 'block';
+        registerFormContainer.style.display = 'none';
+    } else if (formType === 'register') {
+        loginFormContainer.style.display = 'none';
+        registerFormContainer.style.display = 'block';
+    }
+}
+
+// Close the modal when clicking outside the modal content
+window.onclick = function (event) {
+    const modal = document.getElementById('authModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+};
