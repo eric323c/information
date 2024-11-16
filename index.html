@@ -12,7 +12,6 @@
     <div class="sidebar">
         <input type="text" class="search-bar" placeholder="Search for documents, emails, websites...">
         <h1>Registration Hub</h1>
-<button onclick="openModal()">Login / Sign Up</button>
         <nav>
             <ul>
                 <li><a href="#" data-section="home">Home</a></li>
@@ -401,43 +400,6 @@
             <button onclick="closeVAGuide()">Close</button>
         </div>
     </div>
-<div id="authModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <div id="authContainer">
-      <!-- Login Form -->
-      <div id="loginFormContainer">
-        <h2>Login</h2>
-        <form id="loginForm">
-          <label for="loginEmail">Email:</label>
-          <input type="email" id="loginEmail" placeholder="Enter your email" required>
-          <label for="loginPassword">Password:</label>
-          <input type="password" id="loginPassword" placeholder="Enter your password" required>
-          <button type="submit">Login</button>
-        </form>
-        <p id="loginMessage"></p>
-        <p>Don't have an account? <a href="#" onclick="toggleAuth('register')">Sign up</a></p>
-      </div>
-
-      <!-- Registration Form -->
-      <div id="registerFormContainer" style="display: none;">
-        <h2>Sign Up</h2>
-        <form id="registerForm">
-          <label for="registerEmail">Email:</label>
-          <input type="email" id="registerEmail" placeholder="Enter your email" required>
-          <label for="registerPassword">Password:</label>
-          <input type="password" id="registerPassword" placeholder="Create a password" required>
-          <button type="submit">Sign Up</button>
-        </form>
-        <p id="signupMessage"></p>
-        <p>Already have an account? <a href="#" onclick="toggleAuth('login')">Login</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
     <script src="script.js"></script>
-<script type="module" src="./supabase.js"></script>
-<script type="module" src="./auth.js"></script>
 </body>
 </html>
