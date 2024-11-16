@@ -1,41 +1,45 @@
-import { supabase } from './supabase.js';
+const email = document.getElementById('registerEmail').value;
+const password = document.getElementById('registerPassword').value;
+const name = document.getElementById('name')?.value || null;
+const avatar_url = document.getElementById('avatar')?.value || null;
 
-// Login Functionality
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+try {
+    // Attempt to sign up the user
+    const { user, error } = await supabase.auth.signUp({
+        email,
+        password,
+    });
 
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
+    if (error) {
+        console.error('Sign up error:', error);
+        alert(`Error during sign up: ${error.message}`); // Display error message to the user
+        return;
+    }
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (user) {
+        console.log('User created:', user);
 
-  const loginMessage = document.getElementById('loginMessage');
-  if (error) {
-    loginMessage.textContent = `Error: ${error.message}`;
-    loginMessage.style.color = 'red';
-  } else {
-    loginMessage.textContent = 'Login successful!';
-    loginMessage.style.color = 'green';
-    closeModal();
-  }
-});
+        // Insert user profile into the `users` table
+        const { data, error: insertError } = await supabase
+            .from('users')
+            .insert([
+                {
+                    id: user.id,
+                    name: name,
+                    avatar_url: avatar_url,
+                },
+            ]);
 
-// Sign-Up Functionality
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+        if (insertError) {
+            console.error('Error inserting user profile:', insertError);
+            alert(`Error saving profile: ${insertError.message}`);
+            return;
+        }
 
-  const email = document.getElementById('registerEmail').value;
-  const password = document.getElementById('registerPassword').value;
-
-  const { error } = await supabase.auth.signUp({ email, password });
-
-  const signupMessage = document.getElementById('signupMessage');
-  if (error) {
-    signupMessage.textContent = `Error: ${error.message}`;
-    signupMessage.style.color = 'red';
-  } else {
-    signupMessage.textContent = 'Sign-Up successful! Please check your email.';
-    signupMessage.style.color = 'green';
-    toggleAuth('login');
-  }
-});
+        alert('Sign up successful! Welcome!');
+        console.log('Profile saved:', data);
+    }
+} catch (e) {
+    console.error('Unexpected error during signup:', e);
+    alert('Unexpected error occurred. Check the console for details.');
+}
