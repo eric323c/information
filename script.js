@@ -174,3 +174,22 @@ function openVAGuide() {
     guideWindow.document.write(guideContent);
     guideWindow.document.close();
 }
+import { signUpUser, logInUser } from './auth.js';
+
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
+  const name = document.getElementById('registerName').value || null;
+  const avatar_url = document.getElementById('registerAvatar').value || null;
+
+  await signUpUser(email, password, name, avatar_url);
+});
+
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+
+  await logInUser(email, password);
+});
