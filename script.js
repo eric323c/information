@@ -1,3 +1,39 @@
+const supabase = createClient(
+    'https://ydadnbbobjvwusyjgaxa.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkYWRuYmJvYmp2d3VzeWpnYXhhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczMTczNDA3MCwiZXhwIjoyMDQ3MzEwMDcwfQ.eKiVVJUyb1UaRiO97CvH6hwO5FbCvS0pnA7t1-48EUM'
+);
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'block';
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+}
+document.getElementById('loginButton').addEventListener('click', async () => {
+    const email = document.getElementById('authEmail').value;
+    const password = document.getElementById('authPassword').value;
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+        alert(`Login Error: ${error.message}`);
+    } else {
+        alert('Logged in successfully!');
+        closeAuthModal();
+    }
+});
+
+document.getElementById('signupButton').addEventListener('click', async () => {
+    const email = document.getElementById('authEmail').value;
+    const password = document.getElementById('authPassword').value;
+
+    const { data, error } = await supabase.auth.signUp({ email, password });
+    if (error) {
+        alert(`Signup Error: ${error.message}`);
+    } else {
+        alert('Signup successful! Please verify your email.');
+        closeAuthModal();
+    }
+});
 document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.querySelector('.search-bar');
     const resourceContainer = document.getElementById('resourceContainer');
