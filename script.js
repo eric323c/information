@@ -1,7 +1,3 @@
-const supabase = supabase.createClient(
-    'https://ydadnbbobjvwusyjgaxa.supabase.co', // Supabase URL
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkYWRuYmJvYmp2d3VzeWpnYXhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE3MzQwNzAsImV4cCI6MjA0NzMxMDA3MH0.PC43GVqiDoVgLhHfh-ibh7hEISG88YGeyk2Nz4XUthk'  // Supabase Public API Key
-);
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.querySelector('.search-bar');
@@ -85,35 +81,4 @@ function openVAGuide() {
     const guideWindow = window.open("", "VA Guide", "width=400,height=600");
     guideWindow.document.write(guideContent);
     guideWindow.document.close();
-}
-//bs
-// Open Modal
-function openAuthModal() {
-    document.getElementById('authModal').style.display = 'block';
-}
-
-// Close Modal
-function closeAuthModal() {
-    document.getElementById('authModal').style.display = 'none';
-}
-
-// Handle Login/Signup
-async function handleAuth(action) {
-    const email = document.getElementById('authEmail').value;
-    const password = document.getElementById('authPassword').value;
-
-    try {
-        if (action === 'signup') {
-            const { error } = await supabase.auth.signUp({ email, password });
-            if (error) throw error;
-            alert('Signup successful. Check your email.');
-        } else if (action === 'login') {
-            const { error } = await supabase.auth.signInWithPassword({ email, password });
-            if (error) throw error;
-            alert('Login successful.');
-        }
-        closeAuthModal();
-    } catch (error) {
-        alert(`Error: ${error.message}`);
-    }
 }
