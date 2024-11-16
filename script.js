@@ -83,3 +83,37 @@ function openVAGuide() {
     guideWindow.document.write(guideContent);
     guideWindow.document.close();
 }
+//bs
+
+const supabase = createClient('https://ydadnbbobjvwusyjgaxa.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'); // Your actual keys
+
+// Show modal
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'block';
+}
+
+// Close modal
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+}
+
+// Handle Login/Signup actions
+async function handleAuth(action) {
+    const email = document.getElementById('authEmail').value;
+    const password = document.getElementById('authPassword').value;
+
+    try {
+        if (action === 'signup') {
+            const { error } = await supabase.auth.signUp({ email, password });
+            if (error) throw error;
+            alert('Signup successful. Check your email for verification.');
+        } else if (action === 'login') {
+            const { error } = await supabase.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+            alert('Login successful.');
+        }
+        closeAuthModal();
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+    }
+}
