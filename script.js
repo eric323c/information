@@ -186,7 +186,6 @@ function closeAuthModal() {
     document.getElementById('authModal').style.display = 'none';
 }
 
-// Toggle between Login and Sign Up forms
 function toggleAuth(formType) {
     const loginFormContainer = document.getElementById('loginFormContainer');
     const registerFormContainer = document.getElementById('registerFormContainer');
@@ -194,11 +193,12 @@ function toggleAuth(formType) {
     if (formType === 'login') {
         loginFormContainer.style.display = 'block';
         registerFormContainer.style.display = 'none';
-    } else {
+    } else if (formType === 'register') {
         loginFormContainer.style.display = 'none';
         registerFormContainer.style.display = 'block';
     }
 }
+
 
 // Add event listener for the sign-up form
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
