@@ -3,51 +3,61 @@ const supabase = createClient(
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkYWRuYmJvYmp2d3VzeWpnYXhhIiwicm9sZSIsInNlcnZpY2Vfcm9sZSIsImlhdCI6MTczMTczNDA3MCwiZXhwIjoyMDQ3MzEwMDcwfQ.eKiVVJUyb1UaRiO97CvH6hwO5FbCvS0pnA7t1-48EUM'
 );
 
+let isLogin = true;
+
 function openAuthModal() {
     document.getElementById('authModal').style.display = 'block';
+    updateModalState();
 }
 
 function closeAuthModal() {
     document.getElementById('authModal').style.display = 'none';
 }
 
-function showLogin() {
-    document.getElementById('loginSection').style.display = 'block';
-    document.getElementById('signupSection').style.display = 'none';
-    document.getElementById('loginTab').classList.add('active');
-    document.getElementById('signupTab').classList.remove('active');
-}
+function updateModalState() {
+    const modalTitle = document.getElementById('modalTitle');
+    const authActionButton = document.getElementById('authActionButton');
+    const toggleAuthMessage = document.getElementById('toggleAuthMessage');
 
-function showSignup() {
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('signupSection').style.display = 'block';
-    document.getElementById('signupTab').classList.add('active');
-    document.getElementById('loginTab').classList.remove('active');
-}
-
-document.getElementById('loginButton').addEventListener('click', async () => {
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) {
-        alert(`Login Error: ${error.message}`);
+    if (isLogin) {
+        modalTitle.textContent = 'Login';
+        authActionButton.textContent = 'Login';
+        toggleAuthMessage.innerHTML = `Don't have an account? <a href="#" id="toggleAuthLink">Sign up</a>`;
     } else {
-        alert('Logged in successfully!');
-        closeAuthModal();
+        modalTitle.textContent = 'Sign up';
+        authActionButton.textContent = 'Sign up';
+        toggleAuthMessage.innerHTML = `Already have an account? <a href="#" id="toggleAuthLink">Login</a>`;
     }
-});
 
-document.getElementById('signupButton').addEventListener('click', async () => {
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
+    document.getElementById('toggleAuthLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        isLogin = !isLogin;
+        updateModalState();
+    });
+}
 
-    const { data, error } = await supabase.auth.signUp({ email, password });
-    if (error) {
-        alert(`Signup Error: ${error.message}`);
+document.getElementById('authActionButton').addEventListener('click', async () => {
+    const email = document.getElementById('authEmail').value;
+    const password = document.getElementById('authPassword').value;
+
+    if (isLogin) {
+        // Handle Login
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) {
+            alert(`Login Error: ${error.message}`);
+        } else {
+            alert('Logged in successfully!');
+            closeAuthModal();
+        }
     } else {
-        alert('Signup successful! Please verify your email.');
-        closeAuthModal();
+        // Handle Signup
+        const { data, error } = await supabase.auth.signUp({ email, password });
+        if (error) {
+            alert(`Signup Error: ${error.message}`);
+        } else {
+            alert('Signup successful! Please verify your email.');
+            closeAuthModal();
+        }
     }
 });
 document.addEventListener('DOMContentLoaded', () => {
