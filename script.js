@@ -231,99 +231,67 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 import { signUpUser, logInUser } from './auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Modal and Form Elements
-  const modal = document.getElementById('authModal');
-  const loginFormContainer = document.getElementById('loginFormContainer');
-  const registerFormContainer = document.getElementById('registerFormContainer');
-  const showSignUp = document.getElementById('showSignUp');
-  const showLogin = document.getElementById('showLogin');
-  const modalClose = document.getElementById('modalClose');
-  const authButton = document.getElementById('authButton');
-  const signupMessage = document.getElementById('signupMessage');
-  const loginMessage = document.getElementById('loginMessage');
+    const authModal = document.getElementById('authModal');
+    const loginFormContainer = document.getElementById('loginFormContainer');
+    const registerFormContainer = document.getElementById('registerFormContainer');
+    const authModalButton = document.getElementById('authModalButton');
+    const modalClose = document.getElementById('modalClose');
+    const showSignUp = document.getElementById('showSignUp');
+    const showLogin = document.getElementById('showLogin');
 
-  // Ensure elements exist to avoid errors
-  if (!modal || !loginFormContainer || !registerFormContainer) {
-    console.error('Authentication modal or form containers are missing.');
-    return;
-  }
+    // Open modal
+    authModalButton.addEventListener('click', () => {
+        authModal.style.display = 'block';
+        loginFormContainer.style.display = 'block';
+        registerFormContainer.style.display = 'none';
+    });
 
-  // Open Modal
-  authButton.addEventListener('click', () => {
-    modal.style.display = 'block';
-    loginFormContainer.style.display = 'block'; // Default to login form
-    registerFormContainer.style.display = 'none';
-  });
+    // Close modal
+    modalClose.addEventListener('click', () => {
+        authModal.style.display = 'none';
+    });
 
-  // Close Modal
-  modalClose.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
+    // Switch to Sign-Up form
+    showSignUp.addEventListener('click', () => {
+        loginFormContainer.style.display = 'none';
+        registerFormContainer.style.display = 'block';
+    });
 
-  // Switch to Sign-Up
-  showSignUp.addEventListener('click', () => {
-    loginFormContainer.style.display = 'none';
-    registerFormContainer.style.display = 'block';
-  });
+    // Switch to Login form
+    showLogin.addEventListener('click', () => {
+        loginFormContainer.style.display = 'block';
+        registerFormContainer.style.display = 'none';
+    });
 
-  // Switch to Login
-  showLogin.addEventListener('click', () => {
-    registerFormContainer.style.display = 'none';
-    loginFormContainer.style.display = 'block';
-  });
+    // Handle sign-up form submission
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+        const name = document.getElementById('registerName').value;
 
-  // Handle Sign-Up Form Submission
-  document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('registerEmail').value.trim();
-    const password = document.getElementById('registerPassword').value.trim();
-    const name = document.getElementById('registerName').value.trim();
+        const result = await signUpUser(email, password, name);
+        if (result) {
+            document.getElementById('signupMessage').textContent = 'Sign-up successful! Check your email.';
+            loginFormContainer.style.display = 'block';
+            registerFormContainer.style.display = 'none';
+        } else {
+            document.getElementById('signupMessage').textContent = 'Error during sign-up.';
+        }
+    });
 
-    if (!email || !password || !name) {
-      signupMessage.textContent = 'All fields are required.';
-      return;
-    }
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
 
-    const result = await signUpUser(email, password, name);
-    if (result) {
-      signupMessage.textContent = 'Sign-up successful! Please check your email.';
-      toggleAuthForm('login'); // Switch to login after success
-    } else {
-      signupMessage.textContent = 'Error during sign-up. Please try again.';
-    }
-  });
-
-  // Handle Login Form Submission
-  document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value.trim();
-
-    if (!email || !password) {
-      loginMessage.textContent = 'Email and password are required.';
-      return;
-    }
-
-    const result = await logInUser(email, password);
-    if (result) {
-      loginMessage.textContent = 'Login successful!';
-      modal.style.display = 'none'; // Close modal on success
-    } else {
-      loginMessage.textContent = 'Invalid email or password. Please try again.';
-    }
-  });
+        const result = await logInUser(email, password);
+        if (result) {
+            document.getElementById('loginMessage').textContent = 'Login successful!';
+            authModal.style.display = 'none';
+        } else {
+            document.getElementById('loginMessage').textContent = 'Login failed.';
+        }
+    });
 });
-
-// Helper function to toggle between login and sign-up forms
-function toggleAuthForm(formType) {
-  const loginFormContainer = document.getElementById('loginFormContainer');
-  const registerFormContainer = document.getElementById('registerFormContainer');
-
-  if (formType === 'login') {
-    loginFormContainer.style.display = 'block';
-    registerFormContainer.style.display = 'none';
-  } else if (formType === 'register') {
-    loginFormContainer.style.display = 'none';
-    registerFormContainer.style.display = 'block';
-  }
-}
