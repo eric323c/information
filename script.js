@@ -174,3 +174,53 @@ function openVAGuide() {
     guideWindow.document.write(guideContent);
     guideWindow.document.close();
 }
+import { supabase } from './supabase.js';
+
+const loginForm = document.getElementById('loginForm');
+const loginMessage = document.getElementById('loginMessage');
+
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Supabase login function
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+    });
+
+    if (error) {
+        loginMessage.textContent = `Error: ${error.message}`;
+        loginMessage.style.color = 'red';
+    } else {
+        loginMessage.textContent = 'Login successful!';
+        loginMessage.style.color = 'green';
+        // Redirect user or perform additional actions
+        window.location.href = '/dashboard'; // Example redirect
+    }
+});
+const signupForm = document.getElementById('signupForm');
+const signupMessage = document.getElementById('signupMessage');
+
+signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+
+    // Supabase signup function
+    const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+    });
+
+    if (error) {
+        signupMessage.textContent = `Error: ${error.message}`;
+        signupMessage.style.color = 'red';
+    } else {
+        signupMessage.textContent = 'Signup successful! Please check your email to confirm.';
+        signupMessage.style.color = 'green';
+    }
+});
