@@ -1,3 +1,5 @@
+import { supabase } from './supabase.js';
+
 const email = document.getElementById('registerEmail').value;
 const password = document.getElementById('registerPassword').value;
 const name = document.getElementById('name')?.value || null;
