@@ -176,51 +176,67 @@ function openVAGuide() {
 }
 import { supabase } from './supabase.js';
 
-const loginForm = document.getElementById('loginForm');
-const loginMessage = document.getElementById('loginMessage');
+// Open and Close Modal Functions
+function openModal() {
+  document.getElementById('authModal').style.display = 'flex';
+}
 
-loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+function closeModal() {
+  document.getElementById('authModal').style.display = 'none';
+}
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+// Toggle Between Login and Register Forms
+function toggleAuth(authType) {
+  if (authType === 'register') {
+    document.getElementById('loginFormContainer').style.display = 'none';
+    document.getElementById('registerFormContainer').style.display = 'block';
+  } else {
+    document.getElementById('loginFormContainer').style.display = 'block';
+    document.getElementById('registerFormContainer').style.display = 'none';
+  }
+}
 
-    // Supabase login function
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-    });
+// Handle Login Form Submission
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
 
-    if (error) {
-        loginMessage.textContent = `Error: ${error.message}`;
-        loginMessage.style.color = 'red';
-    } else {
-        loginMessage.textContent = 'Login successful!';
-        loginMessage.style.color = 'green';
-        // Redirect user or perform additional actions
-        window.location.href = '/dashboard'; // Example redirect
-    }
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  const loginMessage = document.getElementById('loginMessage');
+  if (error) {
+    loginMessage.textContent = `Error: ${error.message}`;
+    loginMessage.style.color = 'red';
+  } else {
+    loginMessage.textContent = 'Login successful!';
+    loginMessage.style.color = 'green';
+    // Example: Redirect to dashboard
+    window.location.href = '/dashboard';
+  }
 });
-const signupForm = document.getElementById('signupForm');
-const signupMessage = document.getElementById('signupMessage');
 
-signupForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+// Handle Registration Form Submission
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
 
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
 
-    // Supabase signup function
-    const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-    });
-
-    if (error) {
-        signupMessage.textContent = `Error: ${error.message}`;
-        signupMessage.style.color = 'red';
-    } else {
-        signupMessage.textContent = 'Signup successful! Please check your email to confirm.';
-        signupMessage.style.color = 'green';
-    }
+  const signupMessage = document.getElementById('signupMessage');
+  if (error) {
+    signupMessage.textContent = `Error: ${error.message}`;
+    signupMessage.style.color = 'red';
+  } else {
+    signupMessage.textContent = 'Signup successful! Please check your email to confirm.';
+    signupMessage.style.color = 'green';
+    toggleAuth('login'); // Switch back to login form
+  }
 });
