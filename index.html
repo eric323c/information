@@ -400,7 +400,6 @@
             <button onclick="closeVAGuide()">Close</button>
         </div>
     </div>
-<!-- Authentication Modal -->
 <div id="authModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
@@ -418,8 +417,7 @@
                 <p id="loginMessage"></p>
                 <p>Don't have an account? <a href="#" onclick="toggleAuth('register')">Sign up</a></p>
             </div>
-
-            <!-- Sign-Up Form -->
+            <!-- Registration Form -->
             <div id="registerFormContainer" style="display: none;">
                 <h2>Sign Up</h2>
                 <form id="registerForm">
@@ -435,6 +433,7 @@
         </div>
     </div>
 </div>
+
   <script type="module" src="./supabase.js"></script>
   <script type="module" src="./auth.js"></script>
   <script src="script.js"></script>
