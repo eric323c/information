@@ -198,8 +198,6 @@ function toggleAuth(formType) {
         registerFormContainer.style.display = 'block';
     }
 }
-
-
 // Add event listener for the sign-up form
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -229,4 +227,36 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     } else {
         document.getElementById('loginMessage').textContent = 'Invalid email or password. Please try again.';
     }
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('authModal');
+  const loginFormContainer = document.getElementById('loginFormContainer');
+  const registerFormContainer = document.getElementById('registerFormContainer');
+  const showSignUp = document.getElementById('showSignUp');
+  const showLogin = document.getElementById('showLogin');
+  const modalClose = document.getElementById('modalClose');
+
+  // Show Login
+  showLogin.addEventListener('click', () => {
+    registerFormContainer.style.display = 'none';
+    loginFormContainer.style.display = 'block';
+  });
+
+  // Show Sign-Up
+  showSignUp.addEventListener('click', () => {
+    loginFormContainer.style.display = 'none';
+    registerFormContainer.style.display = 'block';
+  });
+
+  // Close Modal
+  modalClose.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  // Open Modal (Sidebar button)
+  document.getElementById('authButton').addEventListener('click', () => {
+    modal.style.display = 'block';
+    loginFormContainer.style.display = 'block';
+    registerFormContainer.style.display = 'none';
+  });
 });
