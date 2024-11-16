@@ -228,70 +228,65 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         document.getElementById('loginMessage').textContent = 'Invalid email or password. Please try again.';
     }
 });
-import { signUpUser, logInUser } from './auth.js';
+document.addEventListener("DOMContentLoaded", () => {
+  const root = document.getElementById("root");
 
-document.addEventListener('DOMContentLoaded', () => {
-    const authModal = document.getElementById('authModal');
-    const loginFormContainer = document.getElementById('loginFormContainer');
-    const registerFormContainer = document.getElementById('registerFormContainer');
-    const authModalButton = document.getElementById('authModalButton');
-    const modalClose = document.getElementById('modalClose');
-    const showSignUp = document.getElementById('showSignUp');
-    const showLogin = document.getElementById('showLogin');
+  // Placeholder credentials
+  const validUsername = "admin";
+  const validPassword = "password123";
 
-    // Open modal
-    authModalButton.addEventListener('click', () => {
-        authModal.style.display = 'block';
-        loginFormContainer.style.display = 'block';
-        registerFormContainer.style.display = 'none';
-    });
+  // Render the login form
+  const renderLoginForm = () => {
+    root.innerHTML = `
+      <div id="login-container">
+        <form id="login-form">
+          <h1>Login</h1>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <button type="submit" id="login-button">Login</button>
+          <p id="error-message"></p>
+        </form>
+      </div>
+    `;
 
-    // Close modal
-    modalClose.addEventListener('click', () => {
-        authModal.style.display = 'none';
-    });
-
-    // Switch to Sign-Up form
-    showSignUp.addEventListener('click', () => {
-        loginFormContainer.style.display = 'none';
-        registerFormContainer.style.display = 'block';
-    });
-
-    // Switch to Login form
-    showLogin.addEventListener('click', () => {
-        loginFormContainer.style.display = 'block';
-        registerFormContainer.style.display = 'none';
-    });
-
-    // Handle sign-up form submission
-    document.getElementById('registerForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('registerEmail').value;
-        const password = document.getElementById('registerPassword').value;
-        const name = document.getElementById('registerName').value;
-
-        const result = await signUpUser(email, password, name);
-        if (result) {
-            document.getElementById('signupMessage').textContent = 'Sign-up successful! Check your email.';
-            loginFormContainer.style.display = 'block';
-            registerFormContainer.style.display = 'none';
-        } else {
-            document.getElementById('signupMessage').textContent = 'Error during sign-up.';
-        }
-    });
+    const loginForm = document.getElementById("login-form");
+    const errorMessage = document.getElementById("error-message");
 
     // Handle login form submission
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
 
-        const result = await logInUser(email, password);
-        if (result) {
-            document.getElementById('loginMessage').textContent = 'Login successful!';
-            authModal.style.display = 'none';
-        } else {
-            document.getElementById('loginMessage').textContent = 'Login failed.';
-        }
+      if (username === validUsername && password === validPassword) {
+        renderMainContent();
+      } else {
+        errorMessage.textContent = "Invalid username or password. Please try again.";
+        errorMessage.style.color = "red";
+      }
     });
+  };
+
+  // Render the main content after successful login
+  const renderMainContent = () => {
+    root.innerHTML = `
+      <div id="main-container">
+        <h1>Welcome to the Main Page</h1>
+        <p>You have successfully logged in.</p>
+        <button id="logout-button">Logout</button>
+      </div>
+    `;
+
+    const logoutButton = document.getElementById("logout-button");
+    logoutButton.addEventListener("click", renderLoginForm);
+  };
+
+  // Initially render the login form
+  renderLoginForm();
 });
