@@ -13,6 +13,20 @@
     <div class="sidebar">
         <input type="text" class="search-bar" placeholder="Search for documents, emails, websites...">
         <h1>Registration Hub</h1>
+<div id="authModal" style="display: none;">
+    <div>
+        <h2>Login</h2>
+        <label>Email</label>
+        <input type="email" id="authEmail" />
+        <label>Password</label>
+        <input type="password" id="authPassword" />
+        <button onclick="handleAuth('login')">Login</button>
+        <button onclick="handleAuth('signup')">Sign Up</button>
+        <button onclick="closeAuthModal()">Close</button>
+    </div>
+</div>
+
+<!-- Button to Open Modal -->
 <button onclick="openAuthModal()">Login/Signup</button>
 
         <nav>
@@ -401,19 +415,6 @@
             
             <!-- Close Button -->
             <button onclick="closeVAGuide()">Close</button>
-        </div>
-    </div>
-    <!-- Login/Signup Modal -->
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <h2 id="modalTitle">Login</h2>
-            <label for="authEmail">Email:</label>
-            <input type="email" id="authEmail" placeholder="Enter your email">
-            <label for="authPassword">Password:</label>
-            <input type="password" id="authPassword" placeholder="Enter your password">
-            <button id="authActionButton">Login</button>
-            <p id="toggleAuthMessage">Don't have an account? <a href="#" id="toggleAuthLink">Sign up</a></p>
-            <button onclick="closeAuthModal()">Close</button>
         </div>
     </div>
     <script src="script.js"></script>
