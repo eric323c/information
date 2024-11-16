@@ -2,7 +2,6 @@ const supabase = supabase.createClient(
     'https://ydadnbbobjvwusyjgaxa.supabase.co', // Supabase URL
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkYWRuYmJvYmp2d3VzeWpnYXhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE3MzQwNzAsImV4cCI6MjA0NzMxMDA3MH0.PC43GVqiDoVgLhHfh-ibh7hEISG88YGeyk2Nz4XUthk'  // Supabase Public API Key
 );
-
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.querySelector('.search-bar');
@@ -88,20 +87,17 @@ function openVAGuide() {
     guideWindow.document.close();
 }
 //bs
-
-const supabase = createClient('https://ydadnbbobjvwusyjgaxa.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'); // Your actual keys
-
-// Show modal
+// Open Modal
 function openAuthModal() {
     document.getElementById('authModal').style.display = 'block';
 }
 
-// Close modal
+// Close Modal
 function closeAuthModal() {
     document.getElementById('authModal').style.display = 'none';
 }
 
-// Handle Login/Signup actions
+// Handle Login/Signup
 async function handleAuth(action) {
     const email = document.getElementById('authEmail').value;
     const password = document.getElementById('authPassword').value;
@@ -110,7 +106,7 @@ async function handleAuth(action) {
         if (action === 'signup') {
             const { error } = await supabase.auth.signUp({ email, password });
             if (error) throw error;
-            alert('Signup successful. Check your email for verification.');
+            alert('Signup successful. Check your email.');
         } else if (action === 'login') {
             const { error } = await supabase.auth.signInWithPassword({ email, password });
             if (error) throw error;
