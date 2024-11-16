@@ -193,3 +193,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
   await logInUser(email, password);
 });
+function fetchDocuments() {
+    console.log("fetchDocuments function called, but it isn't implemented yet.");
+}
