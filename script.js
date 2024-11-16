@@ -213,3 +213,14 @@ window.onclick = function (event) {
         modal.style.display = 'none';
     }
 };
+import { signUpUser } from './auth.js';
+
+document.getElementById('registerForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+    const name = document.getElementById('registerName').value || null;
+    const avatar_url = document.getElementById('registerAvatar').value || null;
+
+    signUpUser(email, password, name, avatar_url);
+});
