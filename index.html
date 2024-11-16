@@ -12,26 +12,38 @@
     <div class="sidebar">
         <input type="text" class="search-bar" placeholder="Search for documents, emails, websites...">
         <h1>Registration Hub</h1>
-        <div class="login-container">
-    <h2>Login</h2>
-    <form id="loginForm">
-        <input type="email" id="email" placeholder="Enter your email" required />
-        <input type="password" id="password" placeholder="Enter your password" required />
-        <button type="submit">Login</button>
-    </form>
-    <p id="loginMessage"></p>
-</div>
-<div class="signup-container">
-    <h2>Sign Up</h2>
-    <form id="signupForm">
-        <input type="email" id="signupEmail" placeholder="Enter your email" required />
-        <input type="password" id="signupPassword" placeholder="Enter your password" required />
-        <button type="submit">Sign Up</button>
-    </form>
-    <p id="signupMessage"></p>
-</div>
+<div id="authModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="authContainer">
+      <!-- Login Form -->
+      <div id="loginFormContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <label for="loginEmail">Email:</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required>
+          <label for="loginPassword">Password:</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required>
+          <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" onclick="toggleAuth('register')">Sign up</a></p>
+      </div>
 
-
+      <!-- Registration Form -->
+      <div id="registerFormContainer" style="display: none;">
+        <h2>Sign Up</h2>
+        <form id="registerForm">
+          <label for="registerEmail">Email:</label>
+          <input type="email" id="registerEmail" placeholder="Enter your email" required>
+          <label for="registerPassword">Password:</label>
+          <input type="password" id="registerPassword" placeholder="Create a password" required>
+          <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="#" onclick="toggleAuth('login')">Login</a></p>
+      </div>
+    </div>
+  </div>
+</div>
         <nav>
             <ul>
                 <li><a href="#" data-section="home">Home</a></li>
