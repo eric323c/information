@@ -4,83 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f3f3f3;
-            font-family: Arial, sans-serif;
         }
 
         .login-container {
-            width: 300px;
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            padding: 20px 30px;
             border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
+            width: 350px;
         }
 
-        .login-container h1 {
+        .login-container h2 {
             margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
         }
 
         .login-container input[type="password"] {
-            width: 100%;
+            width: calc(100% - 40px);
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
+            display: inline-block;
         }
 
         .login-container button {
             width: 100%;
             padding: 10px;
-            background-color: #3e5068;
+            background-color: #2d3e50;
             color: #fff;
             border: none;
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .login-container button:hover {
-            background-color: #2d3e50;
+            background-color: #3e5068;
         }
 
-        .login-container .error-message {
-            margin-top: 10px;
-            color: red;
-            font-size: 14px;
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-container .toggle-password {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .password-container .toggle-password:hover {
+            color: #333;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h1>Login</h1>
-        <input type="password" id="passwordInput" placeholder="Enter password" />
+        <h2>Login</h2>
+        <div class="password-container">
+            <input id="password" type="password" placeholder="Enter password">
+            <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+        </div>
         <button onclick="checkPassword()">Login</button>
-        <p class="error-message" id="errorMessage" style="display: none;">Incorrect password. Try again.</p>
     </div>
 
     <script>
-        const hardcodedPassword = "PsuMapa2017"; 
+        const correctHash = "e1c55512c932b4fef27fb5c3bbab8ff2"; // MD5 hash for your password (e.g., 'PsuMapa2017')
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordInput = document.getElementById("password");
+
+        togglePassword.addEventListener("click", () => {
+            const type = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = type;
+            togglePassword.classList.toggle("fa-eye");
+            togglePassword.classList.toggle("fa-eye-slash");
+        });
+
+        function md5(string) {
+            return CryptoJS.MD5(string).toString();
+        }
 
         function checkPassword() {
-            const passwordInput = document.getElementById('passwordInput').value;
-            const errorMessage = document.getElementById('errorMessage');
+            const enteredPassword = passwordInput.value;
+            const hashedPassword = md5(enteredPassword);
 
-            if (passwordInput === hardcodedPassword) {
-                window.location.href = "dashboard.html"; // Redirect to dashboard
+            if (hashedPassword === correctHash) {
+                window.location.href = "dashboard.html"; // Redirect to the dashboard
             } else {
-                errorMessage.style.display = 'block';
+                alert("Invalid password. Please try again.");
             }
         }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </body>
 </html>
