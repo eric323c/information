@@ -3,404 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Hub</title>
-    <link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/x-icon" href="https://content.sportslogos.net/logos/33/801/full/penn_state_nittany_lions_logo_secondary_20055796.png">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <title>Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            width: 300px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3e5068;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #2d3e50;
+        }
+
+        .login-container .error-message {
+            margin-top: 10px;
+            color: red;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <input type="text" class="search-bar" placeholder="Search for documents, emails, websites..">
-        <h1>Hub</h1>
-        <nav>
-            <ul>
-                <li><a href="#" data-section="home">Home</a></li>
-                <li><a href="#" data-section="documents">Documents</a></li>
-                <li><a href="#" data-section="websites">Websites</a></li>
-            </ul>
-        </nav>
-        <!-- container for the script boxes -->
-        <div class="script-box-container">
-            <!-- First Script Box -->
-            <div class="script-box">
-                <p>PT VERIFIED PHONE # & SSN</p>
-                <button id="copyButton1" onclick="copyScript('PT VERIFIED PHONE # & SSN', 'copyButton1')">Copy</button>
-            </div>
-
-            <!-- Second Script Box -->
-            <div class="script-box">
-                <p>PATIENT VERIFIED NAME, DOB, SSN AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.</p>
-                <button id="copyButton2" onclick="copyScript('PATIENT VERIFIED NAME, DOB, SSN AND ALL OTHER DEMO INFO. INSURANCE IS ?. PCP IS DR. ?.', 'copyButton2')">Copy</button>
-            </div>
+    <div class="login-container">
+        <h1>Login</h1>
+        <input type="password" id="passwordInput" placeholder="Enter password" />
+        <button onclick="checkPassword()">Login</button>
+        <p class="error-message" id="errorMessage" style="display: none;">Incorrect password. Try again.</p>
     </div>
-    </div>
-    <!-- Main Content Area -->
-    <div class="content">
-        <h2>All Resources</h2>
-        <div class="resource-container" id="resourceContainer">
-            <!-- Website Containers -->
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=https://www.pearprovider.com/" alt="Pear Portal Favicon" class="favicon">
-                    PEAR
-                </h3>
-                <p>
-                    <a href="https://sso.pearprovider.com/am/XUI/?realm=/alpha&authIndexType=service&authIndexValue=Pear_Login&goto=https%3A%2F%2Fsso.pearprovider.com%3A443%2Fam%2Foauth2%2Fauthorize%3Fscope%3Dopenid%26response_type%3Did_token%26realm%3D%2Falpha%26redirect_uri%3Dhttps%3A%2F%2Fwww.pearprovider.com%2Fhome%2Fcdsso%2Fredirect%26nonce%3D2dhv6whkncqt9i9u8dyh557kqq9kqbk%26state%3Dbe4b4tc2padtehhentwyhi74oq6qqve%26client_id%3Dfr_ig%26response_mode%3Dform_post%26service%3DPear_Login#/" target="_blank">pearprovider.com</a>
-                </p>
-                <button onclick="visitWebsite('https://sso.pearprovider.com/am/XUI/?realm=/alpha&authIndexType=service&authIndexValue=Pear_Login&goto=https%3A%2F%2Fsso.pearprovider.com%3A443%2Fam%2Foauth2%2Fauthorize%3Fscope%3Dopenid%26response_type%3Did_token%26realm%3D%2Falpha%26redirect_uri%3Dhttps%3A%2F%2Fwww.pearprovider.com%2Fhome%2Fcdsso%2Fredirect%26nonce%3D2dhv6whkncqt9i9u8dyh557kqq9kqbk%26state%3Dbe4b4tc2padtehhentwyhi74oq6qqve%26client_id%3Dfr_ig%26response_mode%3Dform_post%26service%3DPear_Login#/">Visit</button>
-            </div>
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=https://www.changehealthcare.com/" alt="Emdeon Favicon" class="favicon">
-                    Emdeon
-                </h3>
-                <p>
-                    <a href="https://ohid.changehealthcare.com/idp" target="_blank">changehealthcare.com</a>
-                </p>
-                <button onclick="visitWebsite('https://ohid.changehealthcare.com/idp')">Visit</button>
-            </div>
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=https://providercloud.inovalon.com" alt="InoAvalon Favicon" class="favicon">
-                    InoAvalon (MyAbility)
-                </h3>
-                <p>
-                    <a href="https://providercloud.inovalon.com/Auth/" target="_blank">providercloud.inovalon.com</a>
-                </p>
-                <button onclick="visitWebsite('https://providercloud.inovalon.com/Auth/')">Visit</button>
-            </div>
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=https://www.uhcprovider.com/en/access.html" alt="UHC Portal Favicon" class="favicon">
-                    United Healthcare
-                </h3>
-                <p>
-                    <a href="https://identity.onehealthcareid.com/oneapp/index.html#/login" target="_blank">uhc.com</a>
-                </p>
-                <button onclick="visitWebsite('https://identity.onehealthcareid.com/oneapp/index.html#/login')">Visit</button>
-            </div>
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=https://www.waystar.com/" alt="HealthPay 24 Favicon" class="favicon">
-                    HealthPay 24
-                </h3>
-                <p>
-                    <a href="https://pennstatehealth.provider.ci.healthpay24.cloud/account/login?ReturnUrl=%2F" target="_blank">healthpay24.cloud</a>
-                </p>
-                <button onclick="visitWebsite('https://pennstatehealth.provider.ci.healthpay24.cloud/account/login?ReturnUrl=%2F')">Visit</button>
-            </div>
 
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=va.gov" alt="VA Portal Favicon" class="favicon">
-                    VA Portal
-                </h3>
-                <p>
-                    <a href="https://emergencycarereporting.communitycare.va.gov/#/request" target="_blank">VA.gov</a>
-                </p>
-                <button onclick="visitWebsite('https://emergencycarereporting.communitycare.va.gov/#/request')">Visit</button>
-                <button onclick="openVAGuide()">VA Guide</button>
-            </div>
+    <script>
+        const hardcodedPassword = "securePassword123"; // Replace with your hardcoded password
 
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=apps.availity.com" alt="Availity Favicon" class="favicon">
-                    Availity
-                </h3>
-                <p>
-                    <a href="https://apps.availity.com/web/onboarding/availity-fr-ui/" target="_blank">apps.availity.com</a>
-                </p>
-                <button onclick="visitWebsite('https://apps.availity.com/web/onboarding/availity-fr-ui/')">Visit</button>
-            </div>
+        function checkPassword() {
+            const passwordInput = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
 
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=dhs.gov" alt="PROMISe Favicon" class="favicon">
-                    PROMISe
-                </h3>
-                <p>
-                    <a href="https://promise.dhs.pa.gov/portal/provider/Home/tabid/135/Default.aspx" target="_blank">promise.dhs.pa.gov</a>
-                </p>
-                <button onclick="visitWebsite('https://promise.dhs.pa.gov/portal/provider/Home/tabid/135/Default.aspx')">Visit</button>
-            </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=teams.microsoft.com" alt="Microsoft Teams Favicon" class="favicon">
-                    Microsoft Teams
-                </h3>
-                <p>
-                    <a href="https://teams.microsoft.com/v2/" target="_blank">teams.microsoft.com</a>
-                </p>
-                <button onclick="visitWebsite('https://teams.microsoft.com/v2/')">Visit</button>
-            </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=https://nanthealth.com/payers/navinet-open/support/" alt="NaviNet Favicon" class="favicon">
-                    NaviNet
-                </h3>
-                <p>
-                    <a href="https://identity.navinet.net/Account/Login" target="_blank">identity.navinet.net</a>
-                </p>
-                <button onclick="visitWebsite('https://identity.navinet.net/Account/Login')">Visit</button>
-            </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=outlook.office.com" alt="Outlook Favicon" class="favicon">
-                    Outlook
-                </h3>
-                <p>
-                    <a href="https://outlook.office.com/mail/" target="_blank">outlook.office.com</a>
-                </p>
-                <button onclick="visitWebsite('https://outlook.office.com/mail/')">Visit</button>
-            </div>
-
-            <div class="resource-item" data-type="websites">
-                <h3>
-                    <img src="https://www.google.com/s2/favicons?sz=32&domain=https://www.novitas-solutions.com/webcenter/portal/NovitasSolutions" alt="Novitasphere Favicon" class="favicon">
-                    Novitasphere
-                </h3>
-                <p>
-                    <a href="https://home.idm.cms.gov/sso/signin/login.html" target="_blank">novitasphere.com</a>
-                </p>
-                <button onclick="visitWebsite('https://home.idm.cms.gov/sso/signin/login.html')">Visit</button>
-            </div>
-        <!-- Document Containers with Links and Icon -->
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Switching Attendings
-            </h3>
-            <p>A Guide To Switch Attending Doctors</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EU6XYQ00paZOnqUcGM1bzYIB23X3Th4VYkteHE1sCgKpzw?e=kRsAa8', '_blank')">Download</button>
-        </div>
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Weekend Infusions
-            </h3>
-            <p>A Guide To Weekend Infusions</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/EUoVIlU79x9Eog75PeSByJoBwbKcYBLupdekdc1N0LZmZg?e=xr1jlb', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Radiology Registration
-            </h3>
-            <p>A Guide To Radiology Registration</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/Ec6T4OSvs3RJrSi-8EIlTUoBok7NIcvj6Mq1i03ib8JuKw?e=buWDae', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Client Billing 
-            </h3>
-            <p>A Guide To Client Billing For Lab and Radiology</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/EVLFAbxho89DooMp3HEzOYoB_xl1rXoHNg4rw-uzxBEWpg?e=Pr7aZf', '_blank')">Download</button>
-        </div>
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Scripts
-            </h3>
-            <p>Several Scripts And Guides For Questions In The ED</p>
-            <!-- Button for ED Verbiage document -->
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/EVRmWMr59CtMoyXybcgdMcIB94Wp3GeNDAGFtoUskzUCkQ?e=P3KGuW', '_blank')">ED Verbiage</button>
-            <!-- Button for POS Verbiage -->
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:p:/g/personal/emitchell2_pennstatehealth_psu_edu/EaGvdVsbZJJEvZXCNbIU998BgVjFN3bhe70SMbetmB7BLA?e=09vKmD', '_blank')">POS Verbiage</button>
-            <!-- Button for Greeting AIDET document -->
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/EbcLlf7VtZhOvoThhhKpIfAB7cVngtphHNKv3vRMT6DukA?e=OV2jhL', '_blank')">Greeting AIDET</button>
-        </div>
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Accidental Discharge
-            </h3>
-            <p>A Guide To Add An Accidentally Discharged Patient Back To The Tracker</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EYJCjYV5EZxGmqrySC_0ubkBBnE_mfMVOmIJDlqpTQdEeg?e=dptB6N', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Direct Admit
-            </h3>
-            <p>A Guide To Registering A Direct Admit</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EaQolr8OOwJJrqbaF4sDuw0BretAiwJkhBgaSdnBWO7ldQ?e=m2lUVT', '_blank')">Download</button>
-        </div>        
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Un-Admitting
-            </h3>
-            <p>A Guide To Un-Admit A Patient</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EWm4mXK30JdDghd7yos8dYkBtZMwoBhMuz03bd1swTAZ3Q?e=Tb0tTK', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                HDX
-            </h3>
-            <p>A Guide To What HDX Is</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EXcbtz6bUH9NpWYxZr1XwlEBEUduMAT1-LMLh63EwgtEmw?e=oHGHHE', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                VA Reporting
-            </h3>
-            <p>A Guide For Reports To VA</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/EXoYDz-BdiBJruTdpgxzVgEB9BZ5X9R2PFne8fojq0Aeiw?e=Y9LZbx', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Hospice/Gift Of Life
-            </h3>
-            <p>A Guide For Hospice And Gift of Life</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/EXaBOuLVMOBAmREBv8DENU8B7lkYom1o6w6L0K6e9bye6g?e=wlB2Yi', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                OISU and SPU
-            </h3>
-            <p>A Guide For OISU And SPU Departments</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/ESa0wiv9N2xBuf91qK6G01gBQ38S-pnYW-5KrVaTZUTf3g?e=nPun3Y', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Outpatient Consent
-            </h3>
-            <p>A Guide For Obtaining Consent In Outpatient</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/EUYyqUmFGyJPuIjjZclU_0cB349jI36bKW9XmLHQ8Rai9Q?e=YZcRny', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Precaution Signage
-            </h3>
-            <p>A Guide To Understanding Precaution Signage</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EbWfPj27wSNMuiH1Zw5qPrIBHJSYr7NPgftHL-ayM-yaiQ?e=lsMUp0', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Text-To-Collect
-            </h3>
-            <p>A Guide For HP24 Text-To-Collect Feature</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EUIvrNCtn8FAosWvK_C5ed0Bs8WixUkeBlRBoHp4rWNjrA?e=isnMgw', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Violent Patient
-            </h3>
-            <p>A Guide For Registering Violent Patients</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EbFjHW62r3hMugtUYl3AUYYB7-ijyq335QwjSzejUVTbDw?e=Ic6kLd', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Minor Consent
-            </h3>
-            <p>A Guide For Obtaining Consent From Minors</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:b:/g/personal/emitchell2_pennstatehealth_psu_edu/EUIVr-eC7g9DsrVAwIgjGeUBrMfoMlOFf5p1DKezTUJHXw?e=wPNuHW', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Selecting Providers
-            </h3>
-            <p>A Guide For Selecting Providers</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/ETs-KR-thnpMnYw-5qhql0ABSwdDFARnwjiiCowBybTwdQ?e=0hfMjn', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Baby Run!
-            </h3>
-            <p>A Guide To Labor Checks, NST's and C-Sections</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/ETKHxIscigFJtdVy1D5TKQ4BiB7frwwk7sweCbTD_Qqv4g?e=kYsS2j', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Downtime
-            </h3>
-            <p>A Guide For Downtime</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EfXIGWkl3iNGv-H3LZItnXwBDkFFQB5Qko7UrDWHUBqcrw?e=0CMng8', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Eligibility Websites
-            </h3>
-            <p>A Guide For All Eligibility Websites</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EaCzb1QliElPr2QK6R9Y7EMBWmBwe-2WzJWCYQwrZJJjAA?e=EUglW6', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Work Queues
-            </h3>
-            <p>A Guide To Completing An Incomplete Discharge</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EQk7mDN0p6hDjqUD3qHbQ2sBlnKakMIIDBTwE6fqDLSp6w?e=Seyoxd', '_blank')">Download</button>
-        </div>
-
-        <div class="resource-item" data-type="documents">
-            <h3>
-                <img src="https://th.bing.com/th/id/OIP.79aM94zyRL6QyoNX2ZKwwgHaHa?rs=1&pid=ImgDetMain" alt="Document Icon" class="container-icon"> 
-                Admission Signatures
-            </h3>
-            <p>A Guide To Explaining Admission Signatures And What They Mean</p>
-            <button onclick="window.open('https://pennstatehealth-my.sharepoint.com/:w:/g/personal/emitchell2_pennstatehealth_psu_edu/EQXaCqO880lAnlDWlhrcaBYB39rILNnjOFeCGdsXR5yD_A?e=qQUsEJ', '_blank')">Download</button>
-        </div>
-        </div>
-</div>
-    <!-- VA Guide Modal -->
-    <div id="vaGuideModal" class="modal">
-        <div class="modal-content">
-            <h2>VA Reporting Information</h2>
-            
-            <!-- Form Inputs for Patient Info -->
-            <label for="patientName">Patient Name:</label>
-            <input type="text" id="patientName" placeholder="Enter patient's name">
-            
-            <label for="patientDOB">Date of Birth:</label>
-            <input type="date" id="patientDOB">
-            
-            <label for="insurance">Insurance:</label>
-            <input type="text" id="insurance" placeholder="Enter insurance details">
-            
-            <!-- Submit and Edit Buttons -->
-            <button id="submitInfoButton" onclick="submitVAInfo()">Submit</button>
-            <button id="editInfoButton" style="display: none;" onclick="editVAInfo()">Edit</button>
-            
-            <!-- Close Button -->
-            <button onclick="closeVAGuide()">Close</button>
-        </div>
-    </div>
-    <script src="script.js"></script>
+            if (passwordInput === hardcodedPassword) {
+                window.location.href = "dashboard.html"; // Redirect to dashboard
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
