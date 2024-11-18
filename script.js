@@ -80,42 +80,94 @@ function openVAGuide() {
                 h2 {
                     font-weight: bold;
                 }
-                p {
+                p, label {
                     margin: 5px 0;
                 }
                 hr {
                     margin: 10px 0;
                 }
-                label {
-                    font-weight: bold;
-                    margin-top: 10px;
-                    display: block;
+                input[type="text"], .uneditable-text {
+                    width: 100%;
+                    padding: 5px;
+                    margin: 5px 0 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
                 }
-                .info {
-                    margin-bottom: 15px;
+                .uneditable-text {
+                    background-color: #f3f3f3;
+                    border: none;
+                }
+                button {
+                    margin-top: 15px;
+                    padding: 10px 20px;
+                    background-color: #4CAF50;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+                button:hover {
+                    background-color: #45a049;
                 }
             </style>
         </head>
         <body>
             <h2>VA Reporting Guide</h2>
-            <div class="info">
-                <strong>Facility Information:</strong>
-                <p>Name: Penn State Health St. Joseph Medical Center</p>
-                <p>Phone: 610-378-2595</p>
-                <p>NPI: 1699734665</p>
-                <p>Tax ID: 231352211</p>
-                <p>Address: 2500 Bernville Rd, Reading PA, 19605, United States</p>
-            </div>
+            <p><strong>Facility Information –</strong></p>
+            <p>Name: Penn State Health St. Joseph Medical Center</p>
+            <p>Phone: 610-378-2595</p>
+            <p>NPI: 1699734665</p>
+            <p>Tax ID: 231352211</p>
+            <p>Address: 2500 Bernville Rd, Reading PA, 19605, United States</p>
             <hr>
-            <div class="info">
-                <strong>Point of Contact Information:</strong>
-                <p>Name: UR (Utilization Review)</p>
-                <p>Phone Number: 610-378-2479</p>
-                <p>Fax Number: 610-378-2395</p>
-                <p>Department: Utilization Review</p>
-                <p>Email: ur@pennstatehealth.psu.edu</p>
-            </div>
+            <p><strong>Point of Contact Information –</strong></p>
+            <p>Name: UR (Utilization Review)</p>
+            <p>Phone Number: 610-378-2479</p>
+            <p>Fax Number: 610-378-2395</p>
+            <p>Department: Utilization Review</p>
+            <p>Email: ur@pennstatehealth.psu.edu</p>
             <hr>
+            <h3>Temporary Information</h3>
+            <label>First Name:</label> 
+            <input type="text" id="firstName" placeholder="Enter first name">
+            <label>Last Name:</label> 
+            <input type="text" id="lastName" placeholder="Enter last name">
+            <label>Gender:</label> 
+            <input type="text" id="gender" placeholder="M/F">
+            <label>DOB:</label> 
+            <input type="text" id="dob" placeholder="MM/DD/YYYY">
+            <label>SSN:</label> 
+            <input type="text" id="ssn" placeholder="Enter SSN">
+            <label>Address:</label> 
+            <input type="text" id="address" placeholder="Enter address">
+            <label>Chief Complaint:</label> 
+            <input type="text" id="chiefComplaint" placeholder="Enter complaint">
+            <label>Date/Time of Arrival:</label> 
+            <input type="text" id="arrivalTime" placeholder="MM/DD/YYYY HH:MM AM/PM">
+            <label>Ambulance:</label> 
+            <input type="text" id="ambulance" placeholder="Y/N">
+            <label>Admitted:</label> 
+            <input type="text" id="admitted" placeholder="Y/N">
+            <label>VA Form Completion:</label> 
+            <input type="text" id="vaFormCompletion" placeholder="Enter form details">
+
+            <button onclick="submitVAForm()">Submit</button>
+
+            <script>
+                function submitVAForm() {
+                    // Get all input elements
+                    const inputs = document.querySelectorAll('input[type="text"]');
+                    inputs.forEach(input => {
+                        // Create a non-editable text element
+                        const uneditableText = document.createElement('div');
+                        uneditableText.className = 'uneditable-text';
+                        uneditableText.textContent = input.value || "N/A";
+                        
+                        // Replace the input field with the non-editable text
+                        input.parentNode.replaceChild(uneditableText, input);
+                    });
+                }
+            </script>
         </body>
         </html>
     `;
